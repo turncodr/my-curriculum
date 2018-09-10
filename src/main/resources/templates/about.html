@@ -7,5 +7,22 @@
 <body>
 	<h1>My Curriculum</h1>
 	<p data-th-text="#{about.title}" />
+	<h2>Degree Programs</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Degree</th>
+				<th>Number of Semesters</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="degreeProgram : ${degreePrograms}">
+				<td th:text="${degreeProgram.name}"/>
+				<td th:text="${degreeProgram.degree}"/>
+				<td th:text="${degreeProgram.numberOfSemesters}"/>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
