@@ -3,11 +3,11 @@ A cloud-native application for managing the curriculum and syllabi handbooks of 
 
 ## Getting Started
 The following steps will take you to the start:
-<!-- Grp1: One row telling to install JDK 8 (or later)-->
+The prerequisite to work on this project is to install JDK 8 (or later) on your system.
 
-<!-- Grp1: One row telling to install Maven -->
+Next install the project building tool Maven.
 
-<!-- Grp1: One row telling to install Git-->
+The third program you'll need to participate is the version control tool git.
 
 <!-- Grp2: One row about creating a github account and forking the repo
 
