@@ -9,10 +9,10 @@ Next install the project building tool Maven.
 
 The third program you'll need to participate is the version control tool git.
 
-<!-- Grp2: One row about creating a github account and forking the repo
+If you don't have a GitHub-Account yet, create one [here](https://github.com/) and fork this repository.
 
-<!-- Grp2: One row about cloning the forked repo -->
+Clone the repository via `git clone https://github.com/yourgithubname/my-curriculum.git`
 
-<!-- Grp2: One row about adding the remote repo upstream -->
+Add the remote repository *upstream* via `git remote add upstream https://github.com/turncodr/my-curriculum.git`
 
-<!-- Grp2: One row about starting the application -->
+Start the application by navigating to the project folder and executing `./mvnw spring-boot:run`
