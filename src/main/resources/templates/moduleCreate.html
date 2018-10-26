@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title data-th-text="#{moduleCreate.pageTitle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<h1 data-th-text="#{moduleCreate.createModuleHeader}"></h1>
+<!-- th:object="${module}" sets the module attribute of the model as reference for *{...} expressions in this form -->
+<form action="#" th:action="@{/module/create}" method="post"
+      th:object="${module}">
+    <table>
+        <tbody>
+        <tr>
+            <td th:text="#{module.code}"></td>
+            <td><input type="text" th:field="*{code}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.title}"></td>
+            <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.subtitle}"></td>
+            <td><input type="text" th:field="*{subtitle}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.offerFrequency}"></td>
+            <td><input type="text" th:field="*{offerFrequency}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.moduleCoordinator}"></td>
+            <td><input type="text" th:field="*{moduleCoordinator}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.lecturers}"></td>
+            <td><input type="text" th:field="*{lecturers}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.teachingLanguage}"></td>
+            <td><input type="text" th:field="*{teachingLanguage}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.credits}"></td>
+            <td><input type="number" th:field="*{credits}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.prerequisites}"></td>
+            <td><input type="text" th:field="*{prerequisites}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.recommendedPrerequisites}"></td>
+            <td><input type="text" th:field="*{recommendedPrerequisites}"/></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.learningOutcomes}"></td>
+            <td><textarea th:field="*{learningOutcomes}"></textarea></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.contents}"></td>
+            <td><textarea th:field="*{contents}"></textarea></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.teachingMethodology}"></td>
+            <td><textarea th:field="*{teachingMethodology}"></textarea></td>
+        </tr>
+        <tr>
+            <td th:text="#{module.readingList}"></td>
+            <td><textarea th:field="*{readingList}"></textarea></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit" th:text="#{general.submit}"></button>
+</form>
+</body>
+</html>

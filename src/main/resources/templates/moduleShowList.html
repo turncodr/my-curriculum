@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title data-th-text="#{moduleShowList.pageTitle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<h1 data-th-text="#{moduleShowList.moduleHeader}"></h1>
+<table>
+    <tbody>
+    <!-- Proof of concept -->
+    <tr th:each="module : ${moduleList}">
+        <td th:text="${module.code}"></td>
+        <td th:text="${module.title}"></td>
+        <td th:text="${module.subtitle}"></td>
+        <td th:text="${module.offerFrequency}"></td>
+        <td th:text="${module.moduleCoordinator}"></td>
+        <td th:text="${module.lecturers}"></td>
+        <td th:text="${module.teachingLanguage}"></td>
+        <td th:text="${module.credits}"></td>
+        <td th:text="${module.prerequisites}"></td>
+        <td th:text="${module.recommendedPrerequisites}"></td>
+        <td th:text="${module.learningOutcomes}"></td>
+        <td th:text="${module.contents}"></td>
+        <td th:text="${module.teachingMethodology}"></td>
+        <td th:text="${module.readingList}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
