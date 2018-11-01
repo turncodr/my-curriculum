@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
 
 /**
  * Entity module.
@@ -21,6 +23,7 @@ public class Module {
     /**
      * The full name of the module without subtitle.
      */
+    @NotEmpty
     private String title;
     /**
      * The subtitle of the module. May be empty.
@@ -42,6 +45,7 @@ public class Module {
     /**
      * ECTS awarded for passing this module.
      */
+    @PositiveOrZero
     private int credits;
     /**
      * Requirements for enrolling in this module.
