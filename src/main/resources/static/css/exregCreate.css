@@ -1,0 +1,11 @@
+.modulesArea .module, .modulesArea .dragAndDropPlaceholder {
+    margin-bottom: 0.5rem !important;
+}
+
+.dragAndDropPlaceholder {
+    border: 3px dashed darkgray;
+}
+
+.placeholderText {
+    border: none;
+}
