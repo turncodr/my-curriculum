@@ -15,14 +15,14 @@ import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
  *
  */
 @Controller
-public class AboutController {
+public class CurriculumController {
     @Autowired
-    private CurriculumJpaRepository curriculumService;
+    private CurriculumJpaRepository curriculumJpaRepository;
 
-    @GetMapping("/about")
-    public String about(Model model) {
-        List<Curriculum> curriculum = curriculumService.findAll();
-        model.addAttribute("curriculum", curriculum);
-        return "about";
+    @GetMapping("/curriculum/list")
+    public String getCurriculumList(Model model) {
+        List<Curriculum> curricula = curriculumJpaRepository.findAll();
+        model.addAttribute("curricula", curricula);
+        return "curriculumList";
     }
 }
