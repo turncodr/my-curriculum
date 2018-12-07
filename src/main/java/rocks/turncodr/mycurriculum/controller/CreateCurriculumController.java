@@ -26,6 +26,6 @@ public class CreateCurriculumController {
     @PostMapping("/createCurriculum")
     public String curriculumSubmit(@ModelAttribute Curriculum curriculum) {
         curriculumService.save(curriculum);
-        return "redirect:/about";
+        return "redirect:/curriculum/list";
     }
 }
