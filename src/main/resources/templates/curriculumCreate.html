@@ -11,7 +11,7 @@
 		<h1 data-th-text="#{createCurriculum.title}" /></h1>
 		<hr class="pb-5">
 		<div class="col-md-8">
-			<form th:action="@{/createCurriculum}" th:object="${curriculum}"
+			<form th:action="@{/curriculum/create}" th:object="${curriculum}"
 				method="POST">
 				<div class="form-group row mb-4">
 					<label class="col" th:text="#{createCurriculum.name}"></label>
