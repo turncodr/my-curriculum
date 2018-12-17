@@ -14,6 +14,7 @@ import rocks.turncodr.mycurriculum.model.Curriculum;
 import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.model.Syllabus;
+import rocks.turncodr.mycurriculum.model.Syllabus.Semester;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
 import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
 import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
@@ -31,8 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
-
-import static rocks.turncodr.mycurriculum.model.Syllabus.*;
+import java.util.TreeSet;
 
 /**
  * Controller for the Examination Regulations sites.
@@ -164,5 +164,35 @@ public class ExRegController {
         }
         model.addAttribute("exRegList", exRegList);
         return "exregList";
+    }
+
+    @GetMapping("/exreg/overview")
+    public String getExregOverview(@RequestParam(value = "id", required = false, defaultValue = "0") String urlId, Model model) {
+        Integer id = Integer.parseInt(urlId);
+        Optional<ExReg> exregResult = exRegJpaRepository.findById(id);
+        if (exRegJpaRepository.existsById(id)) {
+            ExReg exreg = exregResult.get();
+            model.addAttribute("exRegSemester", getNumberOfSemesters(exreg));
+            model.addAttribute("exRegModules", moduleJpaRepository.findByExReg(exreg));
+            model.addAttribute("exreg", exreg);
+
+            TreeSet<AreaOfStudies> areaOfStudiesUsed = new TreeSet<>();
+            for (Module module : moduleJpaRepository.findByExReg(exreg)) {
+                areaOfStudiesUsed.add(module.getAreaOfStudies());
+            }
+            model.addAttribute("areaOfStudiesUsed", areaOfStudiesUsed);
+        } else {
+            model.addAttribute("error", "exregSyllabus.exregDoesntExist");
+        }
+        return "exregOverview";
+    }
+
+    private int getNumberOfSemesters(ExReg exreg) {
+        int semesters = 0;
+        for (Module module : moduleJpaRepository.findByExReg(exreg)) {
+            int moduleSemester = module.getSemester();
+            semesters = (moduleSemester > semesters) ? moduleSemester : semesters;
+        }
+        return semesters;
     }
 }

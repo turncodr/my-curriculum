@@ -56,6 +56,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wib.setValidFrom(Date.valueOf("2018-01-01"));
         wib.setCurriculum(curriculum.get(0));
         wib = exregJpaRepository.save(wib);
+        System.out.println(wib.getId());
 
         this.createSemester1Wib(wib);
         this.createSemester2Wib(wib);
@@ -214,9 +215,11 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         auslandssemester.setExReg(wib);
         moduleJpaRepository.save(auslandssemester);
 
-        Module spezialisierungssemester = this.createModuleSpezialisierungssemester();
-        spezialisierungssemester.setExReg(wib);
-        moduleJpaRepository.save(spezialisierungssemester);
+        //this is an alternative to "auslandssemester". alternative lectures are currently not supported
+        //until it's supported, it breaks /exreg/overview
+        //Module spezialisierungssemester = this.createModuleSpezialisierungssemester();
+        //spezialisierungssemester.setExReg(wib);
+        //moduleJpaRepository.save(spezialisierungssemester);
 
     }
 
@@ -869,7 +872,10 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         grundlagenInformatik.setSubtitle("");
         grundlagenInformatik.setOfferFrequency("jedes Semester");
         grundlagenInformatik.setModuleCoordinator("Prof. Dr. Wolfgang Blochinger");
-        grundlagenInformatik.setLecturers("Prof. Dr. Eckhard Ammann, " + "Prof. Dr. Wolfgang Blochinger, " + "Prof. Dr. Christian Decker, " + "Prof. Dr. Bernhard Mößner, " + "Prof. Dr. Jürgen Münch, " + " Prof. Dr. Ilia Petrov, " + "Prof. Dr. Martin Schmollinger");
+        grundlagenInformatik.setLecturers(
+                "Prof. Dr. Eckhard Ammann, " + "Prof. Dr. Wolfgang Blochinger, " + "Prof. Dr. Christian Decker, "
+                        + "Prof. Dr. Bernhard Mößner, " + "Prof. Dr. Jürgen Münch, " + " Prof. Dr. Ilia Petrov, "
+                        + "Prof. Dr. Martin Schmollinger");
         grundlagenInformatik.setTeachingLanguage("Deutsch");
         grundlagenInformatik.setSemester(1);
         grundlagenInformatik.setCredits(5);
@@ -990,7 +996,8 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
                         + "Zusammengang zwischen Ergebnis und Risikoverteilung.Die Studierenden sind in der Lage, \n"
                         + "dieses Wissen auf ihr Handeln zu überragen.");
         grundlagenBWL.setContents("Grundbegriffe und Erfolgsmaßstäbe der Betriebswirtschaftslehre\n "
-                + "Betriebswirtschaftliche Zielkonzeption\n " + "Grundlagen der wertorientierten Unternehmensführung\n "
+                + "Betriebswirtschaftliche Zielkonzeption\n "
+                + "Grundlagen der wertorientierten Unternehmensführung\n "
                 + "Rechtsformen und deren betriebswirtschaftliche Konsequenzen \n "
                 + "(insb. Unternehmensführung, Gewinnverteilung, Haftung, Finanzierung und Steuern)\n "
                 + "Unternehmenszusammenschlüsse\n "
@@ -1000,8 +1007,8 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
                         + "Tafelanschriebe. Gemeinsame Besprechung und Analyse aktueller wirtschaftlicher Ereignisse \n "
                         + "anhand von Presseartikeln. Studierende erarbeiten Lösungen zu Übungsaufgaben in \n "
                         + "Gruppenarbeit und präsentieren ihre Ergebnisse im Plenum");
-        grundlagenBWL
-                .setReadingList("Jung (2013): Allgemeine Betriebswirtschaftslehre. 13. Auflage. Berlin: De Gruyter.\n"
+        grundlagenBWL.setReadingList(
+                "Jung (2013): Allgemeine Betriebswirtschaftslehre. 13. Auflage. Berlin: De Gruyter.\n"
                         + "Wöhe (2016): Einführung in die Allgemeine Betriebswirtschaftslehre. 26. Auflage. München: Vahlen\n"
                         + "Wöhe / Kaiser / Döring (2016): Übungsbuch zur allgemeinen Betriebswirtschaftslehre. 15. Auflage. München: Vahlen");
 
@@ -1053,6 +1060,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             module1.setContents("Entwicklung objektorientierter Programme");
             module1.setTeachingMethodology("Vorlesung im seminaristischen [sic!] Stil.");
             module1.setReadingList("Sprechen Sie Java?");
+            module1.setAreaOfStudies(areaOfStudiesJpaRepository.findByName("Informatik"));
             modules.add(module1);
 
             Module module2 = new Module();
@@ -1071,6 +1079,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             module2.setContents("Kenntnis der grundlegenden Konzepte");
             module2.setTeachingMethodology("Vorlesung mit begleitendem Praktikum.");
             module2.setReadingList("Mathematik für Wirtschaftswissenschaftler");
+            module2.setAreaOfStudies(areaOfStudiesJpaRepository.findByName("Mathematik"));
             modules.add(module2);
 
             moduleJpaRepository.saveAll(modules);

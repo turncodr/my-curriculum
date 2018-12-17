@@ -1,0 +1,47 @@
+/* ------------ .table-module-overview ------------ */
+.table-module-overview {
+    table-layout: fixed;
+    width: 100%;
+    break-word: normal;
+    min-width: 690px;
+}
+
+.table-module-overview td {
+    border: 1px solid #6d6e71;
+    vertical-align:top;
+    hyphens: auto;
+    width: 3.125%;
+}
+
+.table-module-overview tr td:first-child, .table-module-overview thead th:first-child{
+    width: 6.25%;
+}
+
+.table-module-overview th {
+    border: 1px solid #6d6e71;
+}
+
+.table-module-overview tfoot td, .table-module-overview thead th {
+    background-color: #6d6e71;
+    overflow-wrap: break-word;
+}
+
+.table-module-overview tfoot .ects{
+    text-align: center;
+}
+
+.table-module-overview tbody .semester{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-module-overview tbody tr{
+    height: 5rem;
+}
+
+/* ---------- .table-module-overview end ---------- */
+
+.modal-module-overview {
+    margin-left: -1rem;
+    margin-right: -3rem;
+}
