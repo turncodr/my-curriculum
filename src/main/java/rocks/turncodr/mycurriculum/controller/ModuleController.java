@@ -26,7 +26,8 @@ public class ModuleController {
 
     @GetMapping("/module/create")
     public String getModuleCreate(Model model) {
-        // Create empty module object for form data (will be received in postModuleCreate as parameter 'module')
+        // Create empty module object for form data (will be received in
+        // postModuleCreate as parameter 'module')
         Module module = new Module();
         model.addAttribute("module", module);
 
@@ -47,18 +48,18 @@ public class ModuleController {
             // Saving the form values to database
             moduleJpaRepository.save(module);
 
-            return "redirect:/module/showList";
+            return "redirect:/module/List";
         }
     }
 
-    @GetMapping("/module/showList")
+    @GetMapping("/module/list")
     public String getModuleShowList(Model model) {
         // Fetching all modules from database
         List<Module> moduleList = moduleJpaRepository.findAll();
         model.addAttribute("moduleList", moduleList);
 
         // Set moduleShowList.html as template to be parsed
-        return "moduleShowList";
+        return "moduleList";
     }
 
 }
