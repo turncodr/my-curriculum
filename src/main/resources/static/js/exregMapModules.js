@@ -135,7 +135,7 @@ function addNewSemester() {
                  * Browser issue: When the span character is clicked in Chrome: Event target is a span
                  * In Firefox it is the button.
                  */
-                var idToDelete = delBtnSemesterId[event.target.id || $(event.target).parent().attr('id')];
+                var idToDelete = delBtnSemesterId[event.target.id || $(event.target).parent().attr('id') || $(event.target).parent().parent().attr('id')];
                 var semesterToDelete = listOfSemester[idToDelete];
                 var lastSemester = $("#semesterContainer").children(":last");
                 var modules = {};
