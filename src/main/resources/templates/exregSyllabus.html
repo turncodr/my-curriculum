@@ -8,7 +8,14 @@
 <div class="container">
     <div th:if="${error != null}" class="alert alert-danger" role="alert" th:text="#{${error}}"></div>
     <th:block th:if="${error == null}">
-        <h1 th:text="#{exregSyllabus.syllabus}"></h1>
+        <div class="d-flex flex-row">
+            <div class="flex-grow-1">
+                <h1 th:text="#{exregSyllabus.syllabus}"></h1>
+            </div>
+            <div>
+                <a class="btn btn-primary" th:text=#{general.pdf} th:href="@{/exreg/syllabus/pdf(id=${exreg.id})}|"></a>
+            </div>
+        </div>
 
         <!-- list of modules by semester -->
         <div>
