@@ -22,6 +22,7 @@
     <script class="custom-script" th:inline="javascript">
         var listOfUnmappedModules = /*[[${moduleList}]]*/ [];
         var dropYourModuleHere = /*[[#{exRegCreate.dropYourModuleHere}]]*/ '';
+        var areaOfStudiesMap = /*[[${areaOfStudiesMap}]]*/ [];
     </script>
     <script class="custom-script" src="../static/js/exregMapModules.js" th:src="@{/js/exregMapModules.js}"></script>
 </head>
@@ -85,10 +86,10 @@
                         </div>
                         <!-- list of unmapped modules -->
                         <div class="card-body" id="unmappedModulesList">
-                            <div class="card bg-primary text-white module"
+                            <div class="card module"
                                  th:id="modulelist_module+${module.id}"
                                  th:each="module : ${moduleList}" draggable="true" ondragstart="drag(event);"
-                                 th:data-module-id="${module.id}">
+                                 th:data-module-id="${module.id}" th:style="'background-color:rgb('+${module.areaOfStudies.colorRGB}+')'">
                                 <div class="card-header text-truncate"
                                      th:text="${module.code} + ' ' + ${module.title}"></div>
                             </div>
