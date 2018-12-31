@@ -33,10 +33,6 @@ public class ExReg {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Date getExpiresOn() {
         return expiresOn;
     }
