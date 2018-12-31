@@ -72,15 +72,19 @@ public class Module {
     /**
      * Learning goals of this module and competencies acquired.
      */
+    @Lob
     private String learningOutcomes;
+    @Lob
     private String contents;
     /**
      * The mode the contents are taught in (e.g. seminar and tutorial) .
      */
+    @Lob
     private String teachingMethodology;
     /**
      * A selection of relevant literature.
      */
+    @Lob
     private String readingList;
     /**
      * The ExReg semester that the module is scheduled to be in.
