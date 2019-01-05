@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
     <title th:text="#{moduleList.pageTitle}">My Curriculum</title>
 </head>
 <body>
-<header th:replace="fragments/header :: header"></header>
-<div class="container">
+<div id="content">
     <h1 th:text="#{moduleList.pageTitle}">Modules</h1>
-    <hr/>
+    <hr class="pb-2"/>
     <div>
         <form>
             <div class="row justify-content-center">
@@ -25,7 +24,8 @@
                 </div>
                 <div class="col-md-2">
                     <label for="newModule" th:text="#{moduleList.createModule}">Create</label>
-                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}" href="#" th:href="@{/module/create}">New</a>
+                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}"
+                       href="#" th:href="@{/module/create}">New</a>
                 </div>
             </div>
         </form>
@@ -44,7 +44,5 @@
         </div>
     </div>
 </div>
-
-<footer th:replace="fragments/footer ::footer"></footer>
 </body>
 </html>

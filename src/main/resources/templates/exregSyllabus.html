@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
     <title th:text="#{exregSyllabus.exregSyllabus}">My Curriculum</title>
 </head>
 <body>
-<header th:replace="fragments/header :: header"></header>
-<div class="container">
+<div id="content">
     <div th:if="${error != null}" class="alert alert-danger" role="alert" th:text="#{${error}}"></div>
     <th:block th:if="${error == null}">
         <div class="d-flex flex-row">
@@ -13,9 +12,10 @@
                 <h1 th:text="#{exregSyllabus.syllabus}"></h1>
             </div>
             <div>
-                <a class="btn btn-primary" th:text=#{general.pdf} th:href="@{/exreg/syllabus/pdf(id=${exreg.id})}|"></a>
+                <a class="btn btn-primary" th:text=#{general.pdf} th:href="@{/exreg/syllabus/pdf(id=${exreg.id})}"></a>
             </div>
         </div>
+        <hr class="pb-2"/>
 
         <!-- list of modules by semester -->
         <div>
@@ -61,7 +61,7 @@
 
         <!-- description of each module in semester order -->
         <th:block th:each="semester : ${syllabus.semesters}">
-            <div th:each="module : ${semester.modules}" class="mt-5" th:id="'module' + ${module.id}">
+            <div th:each="module : ${semester.modules}" class="my-5 p-3 border" th:id="'module' + ${module.id}">
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
@@ -132,6 +132,5 @@
         </th:block>
     </th:block>
 </div>
-<footer th:replace="fragments/footer ::footer"></footer>
 </body>
 </html>

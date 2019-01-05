@@ -1,6 +1,6 @@
 <!--suppress ThymeleafMessagesResolveInspection -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{this :: .custom-css}, ~{this :: .custom-script})">
     <title th:text="#{exRegCreate.pageTitle}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -26,10 +26,10 @@
     </script>
     <script class="custom-script" src="../static/js/exregMapModules.js" th:src="@{/js/exregMapModules.js}"></script>
 </head>
-<body class="h-100 d-flex flex-column">
-<header th:replace="fragments/header :: header"></header>
-<div class="container flex-grow-1">
+<body>
+<div id="content">
     <h1 th:text="#{exRegCreate.pageTitle}">StuPro anlegen</h1>
+    <hr class="pb-2"/>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a data-toggle="tab" class="nav-link active" role="tab" href="#exRegTab"
@@ -89,7 +89,8 @@
                             <div class="card module"
                                  th:id="modulelist_module+${module.id}"
                                  th:each="module : ${moduleList}" draggable="true" ondragstart="drag(event);"
-                                 th:data-module-id="${module.id}" th:style="'background-color:rgb('+${module.areaOfStudies.colorRGB}+')'">
+                                 th:data-module-id="${module.id}"
+                                 th:style="'background-color:rgb('+${module.areaOfStudies.colorRGB}+')'">
                                 <div class="card-header text-truncate"
                                      th:text="${module.code} + ' ' + ${module.title}"></div>
                             </div>
@@ -103,6 +104,5 @@
     </div>
     <div th:replace="fragments/popup :: createModuleStub"></div>
 </div>
-<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
