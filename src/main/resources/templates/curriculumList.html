@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
     <title th:text="#{curriculumList.listOfCurricula}">My Curriculum</title>
 </head>
 <body>
-<header th:replace="fragments/header :: header"></header>
-<div class="container">
-    <h1 th:text="#{curriculumList.search}">Search</h1>
-    <hr/>
+<div id="content">
+    <h1 th:text="#{curriculumList.listOfCurricula}"></h1>
+    <hr class="pb-2"/>
     <div>
         <form>
             <div class="row justify-content-center">
@@ -40,7 +39,5 @@
         </div>
     </div>
 </div>
-
-<footer th:replace="fragments/footer ::footer"></footer>
 </body>
 </html>

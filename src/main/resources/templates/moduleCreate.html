@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--suppress ThymeleafVariablesResolveInspection -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
     <title th:text="#{moduleCreate.pageTitle}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -14,9 +14,9 @@
     <script src="../static/js/bootstrap.min.js"></script>
 </head>
 <body>
-<header th:replace="fragments/header :: header"></header>
-<div class="container py-2">
-    <h1 data-th-text="#{moduleCreate.createModuleHeader}">Neues Modul anlegen</h1>
+<div id="content">
+    <h1 th:text="#{moduleCreate.createModuleHeader}">Neues Modul anlegen</h1>
+    <hr class="pb-2"/>
     <!-- th:object="${module}" sets the module attribute of the model as reference for *{...} expressions in this form -->
     <form action="#" th:action="@{/module/create}" method="post" th:object="${module}">
         <ul class="nav nav-tabs">
@@ -55,14 +55,18 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label" th:text="#{module.areaOfStudies}" for="areaOfStudies"></label>
+                    <label class="col-md-4 col-form-label" th:text="#{module.areaOfStudies}"
+                           for="areaOfStudies"></label>
                     <div class="col-md-8">
-                        <select class="form-control" th:classappend="${#fields.hasErrors('areaOfStudies')} ? is-invalid : ''"
-                               th:field="*{areaOfStudies}" id="areaOfStudies">
-                               <option value="0"></option>
-                               <option th:each="option : ${areaOfStudies}" th:value="${option.id}" th:text="${option.name}"></option>
+                        <select class="form-control"
+                                th:classappend="${#fields.hasErrors('areaOfStudies')} ? is-invalid : ''"
+                                th:field="*{areaOfStudies}" id="areaOfStudies">
+                            <option value="0"></option>
+                            <option th:each="option : ${areaOfStudies}" th:value="${option.id}"
+                                    th:text="${option.name}"></option>
                         </select>
-                        <div class="invalid-feedback" th:if="${#fields.hasErrors('areaOfStudies')}" th:errors="*{areaOfStudies}"></div>
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('areaOfStudies')}"
+                             th:errors="*{areaOfStudies}"></div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -175,6 +179,5 @@
         </div>
     </form>
 </div>
-<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
