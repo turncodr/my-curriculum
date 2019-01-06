@@ -3,10 +3,16 @@ package rocks.turncodr.mycurriculum.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import rocks.turncodr.mycurriculum.model.Curriculum;
 import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.ExRegSaveData;
 import rocks.turncodr.mycurriculum.model.Module;
+import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
 import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
 import rocks.turncodr.mycurriculum.services.ModuleJpaRepository;
 
@@ -26,9 +32,12 @@ public class ExRegRestController {
     private ExRegJpaRepository exRegJpaRepository;
     @Autowired
     private ModuleJpaRepository moduleJpaRepository;
+    @Autowired
+    private CurriculumJpaRepository curriculumJpaRepository;
 
     /**
      * Creates a new exReg object and maps the selected modules to it.
+     *
      * @param data
      * @return
      */
@@ -42,8 +51,19 @@ public class ExRegRestController {
             data.setNewModuleStubs(new ArrayList<>());
         }
 
+        ExReg exReg = data.getExReg();
+
+        //fetch the chosen Curriculum to map it
+        Optional curriculumFetch = curriculumJpaRepository.findById(exReg.getCurriculum().getId());
+        if (curriculumFetch.isPresent()) {
+            Curriculum curriculum = (Curriculum) curriculumFetch.get();
+            exReg.setCurriculum(curriculum);
+        } else {
+            throw new IllegalArgumentException("Curriculum to be mapped does not exist in DB.");
+        }
+
         //save new ExReg
-        ExReg exReg = exRegJpaRepository.save(data.getExReg());
+        exReg = exRegJpaRepository.save(exReg);
 
         //map the new Module stubs to the new ExReg and save them to the DB
         for (Module module : data.getNewModuleStubs()) {
@@ -67,7 +87,7 @@ public class ExRegRestController {
         }
         moduleJpaRepository.saveAll(modulesToBeMapped);
 
-        return new ResponseEntity<>("{\"status\": \"success\"}", HttpStatus.OK);
+        return new ResponseEntity<>("{\"status\": \"ExReg '" + exReg.getName() + "' was successfully created\"}", HttpStatus.OK);
     }
 
     @ExceptionHandler

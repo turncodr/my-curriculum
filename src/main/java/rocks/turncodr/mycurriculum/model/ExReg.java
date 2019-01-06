@@ -1,9 +1,6 @@
 package rocks.turncodr.mycurriculum.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -28,6 +25,9 @@ public class ExReg {
      */
     private String name;
     private int numberOfSemesters;
+
+    @ManyToOne
+    private Curriculum curriculum;
 
     public Integer getId() {
         return id;
@@ -63,5 +63,13 @@ public class ExReg {
 
     public void setNumberOfSemesters(int numberOfSemesters) {
         this.numberOfSemesters = numberOfSemesters;
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
     }
 }

@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import rocks.turncodr.mycurriculum.model.AreaOfStudies;
 import rocks.turncodr.mycurriculum.model.ExReg;
+import rocks.turncodr.mycurriculum.model.Curriculum;
 import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.model.Syllabus;
 import rocks.turncodr.mycurriculum.model.Syllabus.Semester;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
 import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
+import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
 import rocks.turncodr.mycurriculum.services.ModuleJpaRepository;
 import rocks.turncodr.mycurriculum.services.PdfConfigManager;
 import rocks.turncodr.mycurriculum.services.PdfGeneratorUtil;
@@ -38,6 +40,8 @@ public class ExRegController {
 
     @Autowired
     private ModuleJpaRepository moduleJpaRepository;
+    @Autowired
+    private CurriculumJpaRepository curriculumService;
 
     @Autowired
     private ExRegJpaRepository exRegJpaRepository;
@@ -63,6 +67,10 @@ public class ExRegController {
             areaOfStudiesMap.put(areaOfStudies.getId(), areaOfStudies);
         }
         model.addAttribute("areaOfStudiesMap", areaOfStudiesMap);
+
+        List<Curriculum> curriculumList = curriculumService.findAll();
+        model.addAttribute("curriculumList", curriculumList);
+
         return "exregCreate";
     }
 
