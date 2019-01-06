@@ -59,6 +59,19 @@
                     <input class="form-control" type="date" id="exReg_validFrom" required/>
                 </div>
             </div>
+
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label" th:text="#{exReg.curriculum}"
+                       for="exReg_curriculum"></label>
+                <div class="col-md-4">
+                    <select class="form-control" id="exReg_curriculum">
+                        <option disabled selected value="0" th:text="#{exregCreate.selectCurriculum}"></option>
+                        <option th:each="curriculum : ${curriculumList}"
+                                th:value="${curriculum.id}"
+                                th:text="${curriculum.acronym}+' '+${curriculum.name}"></option>
+                    </select>
+                </div>
+            </div>
         </div>
 
         <div id="mapModulesTab" class="tab-pane fade show flex-grow-1" role="tabpanel">

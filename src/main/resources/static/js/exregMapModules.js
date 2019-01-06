@@ -362,7 +362,10 @@ function save() {
     var exregData = {
         exReg: {
             name: $('#exReg_name').val(),
-            validFrom: $('#exReg_validFrom').val()
+            validFrom: $('#exReg_validFrom').val(),
+            curriculum: {
+                id: $('#exReg_curriculum').find(":selected").val()
+            }
         },
         newModuleStubs: stubsToBeMapped,
         modulesToBeMapped: modulesToBeMapped

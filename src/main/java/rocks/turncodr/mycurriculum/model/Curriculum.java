@@ -16,21 +16,31 @@ public class Curriculum {
     private String acronym;
     private String name;
     private String degree;
+
+    public Integer getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDegree() {
         return degree;
     }
+
     public void setDegree(String degree) {
         this.degree = degree;
     }
+
     public String getAcronym() {
         return acronym;
     }
+
     public void setAcronym(String acronym) {
         this.acronym = acronym;
     }
