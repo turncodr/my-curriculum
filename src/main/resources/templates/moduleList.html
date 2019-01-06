@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title data-th-text="#{moduleShowList.pageTitle}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="/css/main.css"/>
+<head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
+    <title th:text="#{moduleList.pageTitle}">My Curriculum</title>
 </head>
 <body>
-<h1 data-th-text="#{moduleShowList.moduleHeader}"></h1>
-<table>
-    <tbody>
-    <!-- Proof of concept -->
-    <tr th:each="module : ${moduleList}">
-        <td th:text="${module.code}"></td>
-        <td th:text="${module.title}"></td>
-        <td th:text="${module.subtitle}"></td>
-        <td th:text="${module.offerFrequency}"></td>
-        <td th:text="${module.moduleCoordinator}"></td>
-        <td th:text="${module.lecturers}"></td>
-        <td th:text="${module.teachingLanguage}"></td>
-        <td th:text="${module.credits}"></td>
-        <td th:text="${module.prerequisites}"></td>
-        <td th:text="${module.recommendedPrerequisites}"></td>
-        <td th:text="${module.learningOutcomes}"></td>
-        <td th:text="${module.contents}"></td>
-        <td th:text="${module.teachingMethodology}"></td>
-        <td th:text="${module.readingList}"></td>
-    </tr>
-    </tbody>
-</table>
+<header th:replace="fragments/header :: header"></header>
+<div class="container">
+    <h1 th:text="#{moduleList.pageTitle}">Modules</h1>
+    <hr/>
+    <div>
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-md-2">
+                    <label for="exreg" th:text="#{moduleList.exreg}">ExReg</label>
+                    <input id="exreg" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <label for="curriculum" th:text="#{moduleList.curriculum}">Curriculum</label>
+                    <input id="curriculum" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="module" th:text="#{moduleList.module}">Module</label>
+                    <input id="module" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <label for="newModule" th:text="#{moduleList.createModule}">Create</label>
+                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}" href="#" th:href="@{/module/create}">New</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div>
+        <div class="form-group form-row border p-1"
+             th:each="module : ${moduleList}">
+            <div class="col-md-3">Gültigkeit ExReg</div>
+            <div class="col-md-2">3WIB</div>
+            <div class="col-md-5" th:text="${module.title}"></div>
+            <div class="col-md-2">
+                <button class="btn btn-info float-right">PDF</button>
+                <button class="btn btn-info float-right mr-1">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer ::footer"></footer>
 </body>
 </html>
