@@ -11,8 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
+
 import rocks.turncodr.mycurriculum.model.AreaOfStudies;
 import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.Module;
@@ -45,7 +45,33 @@ public class ModuleController {
         model.addAttribute("module", module);
         List<AreaOfStudies> areaOfStudiesList = areaOfStudiesJpaRepository.findAll();
         model.addAttribute("areaOfStudies", areaOfStudiesList);
+        model.addAttribute("editMode", false);
         // Set moduleCreate.html as template to be parsed
+        return "moduleCreate";
+    }
+
+    @GetMapping("/module/edit")
+    public String getAreaOfStudiesEdit(@RequestParam(value = "id", required = false, defaultValue = "0") String urlId, Model model) {
+        Integer id;
+        try {
+            id = Integer.parseInt(urlId);
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
+        Optional<Module> moduleResult = moduleJpaRepository.findById(id);
+        if (moduleResult.isPresent()) {
+            Module module = moduleResult.get();
+            if (module.getExReg() == null) {
+                model.addAttribute("module", module);
+                List<AreaOfStudies> areaOfStudiesList = areaOfStudiesJpaRepository.findAll();
+                model.addAttribute("areaOfStudies", areaOfStudiesList);
+                model.addAttribute("editMode", true);
+            } else {
+                model.addAttribute("error", "module.moduleAlreadyMapped");
+            }
+        } else {
+            model.addAttribute("error", "module.moduleDoesntExist");
+        }
         return "moduleCreate";
     }
 
@@ -59,6 +85,28 @@ public class ModuleController {
             return "moduleCreate";
         } else {
             // Saving the form values to database
+            moduleJpaRepository.save(module);
+            return "redirect:/module/list";
+        }
+    }
+
+    @PostMapping("/module/edit")
+    public String postModuleEdit(@RequestParam(value = "id", required = false, defaultValue = "0") String urlId,
+        Model model, @Valid @ModelAttribute Module module, BindingResult bindingResult) {
+        Integer id;
+        try {
+            id = Integer.parseInt(urlId);
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
+
+        if (bindingResult.hasErrors()) {
+            // validation failed, therefore stay on the page
+            List<AreaOfStudies> areaOfStudiesList = areaOfStudiesJpaRepository.findAll();
+            model.addAttribute("areaOfStudies", areaOfStudiesList);
+            model.addAttribute("editMode", true);
+            return "moduleCreate";
+        } else {
             moduleJpaRepository.save(module);
             return "redirect:/module/list";
         }

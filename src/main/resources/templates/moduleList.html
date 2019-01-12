@@ -54,7 +54,12 @@
         <div class="col-md-2 my-1" th:unless="${module.exReg}!=null">-</div>
         <div class="col-md-2 my-1" th:unless="${module.exReg}!=null">-</div>
         <div class="col-md-4 my-1" th:text="${module.title}"></div>
-        <div class="col-md-4 my-1" th:text="${module.moduleCoordinator}"></div>
+        <div class="col-md-3 my-1" th:text="${module.moduleCoordinator}"></div>
+        <div class="col-md-1 text-center">
+            <a class="btn btn-info text-white py-0 px-2" role="button" th:href="@{/module/edit?id=} + |${module.id}|">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+        </div>
     </div>
 </div>
 </body>

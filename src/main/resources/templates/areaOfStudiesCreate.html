@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
-    <title th:text="#{areaOfStudiesCreate.title}"></title>
+    <title th:text="${editMode} ? #{areaOfStudiesEdit.title} : #{areaOfStudiesCreate.title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <div id="content">
-    <h1 data-th-text="#{areaOfStudiesCreate.title}"/></h1>
+	<div th:if="${error != null}" class="alert alert-danger"
+    	role="alert" th:text="#{${error}}"></div>
+    <th:block th:if="${error == null}">
+    <h1 data-th-text="${editMode} ? #{areaOfStudiesEdit.title} : #{areaOfStudiesCreate.title}"/></h1>
     <hr class="pb-2">
     <div class="col-md-8">
-        <form id="areaOfStudiesForm" th:action="@{/areaofstudies/create}" th:object="${areaOfStudies}"
+        <form id="areaOfStudiesForm" th:action="${editMode} ? @{/areaofstudies/edit?id=} + |${areaOfStudies.id}| : @{/areaofstudies/create}" th:object="${areaOfStudies}"
               method="POST">
             <div class="form-group row mb-4">
-                <label class="col" th:text="#{areaOfStudies.name}"></label>
+                <label class="col col-form-label" th:text="#{areaOfStudies.name}"></label>
                 <div class="col">
                     <input id="nameInput" class="form-control" type="text" th:field="*{name}"
                            th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''"/>
@@ -20,20 +23,21 @@
                 </div>
             </div>
             <div class="form-group row mb-4">
-                <label class="col" th:text="#{areaOfStudies.color}"></label>
+                <label class="col col-form-label" th:text="#{areaOfStudies.color}"></label>
                 <div class="col">
-                    <input id="colorInput" class="form-control" type="color" th:field="*{color}"
+                    <input id="colorInput" class="form-control" type="color" th:name="color" th:value="${editMode} ? ${moduleColor} : '#000000'"
                            th:classappend="${#fields.hasErrors('color')} ? is-invalid : ''"/>
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></div>
                 </div>
             </div>
             <div class="form-group row mb-4">
                 <div class="col">
-                    <button class="btn btn-success float-right" th:text="#{general.create}" type="submit"></button>
+                    <button class="btn btn-success float-right" th:text="${editMode} ? #{general.save} : #{general.create}" type="submit"></button>
                 </div>
             </div>
         </form>
     </div>
+    </th:block>
 </div>
 </body>
 </html>

@@ -37,3 +37,9 @@ footer .icon-foreground {
 #content-wrapper {
     flex-basis: 0; /*otherwise exregCreate is completely broken in Chrome*/
 }
+
+.v-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
