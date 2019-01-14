@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import rocks.turncodr.mycurriculum.model.AreaOfStudies;
-import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.Curriculum;
+import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.model.Syllabus;
-import rocks.turncodr.mycurriculum.model.Syllabus.Semester;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
-import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
 import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
+import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
 import rocks.turncodr.mycurriculum.services.ModuleJpaRepository;
 import rocks.turncodr.mycurriculum.services.PdfConfigManager;
 import rocks.turncodr.mycurriculum.services.PdfGeneratorUtil;
@@ -27,10 +26,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
+
+import static rocks.turncodr.mycurriculum.model.Syllabus.*;
 
 /**
  * Controller for the Examination Regulations sites.
@@ -40,11 +42,12 @@ public class ExRegController {
 
     @Autowired
     private ModuleJpaRepository moduleJpaRepository;
-    @Autowired
-    private CurriculumJpaRepository curriculumService;
 
     @Autowired
     private ExRegJpaRepository exRegJpaRepository;
+
+    @Autowired
+    private CurriculumJpaRepository curriculumService;
 
     @Autowired
     private AreaOfStudiesJpaRepository areaOfStudiesJpaRepository;
@@ -145,5 +148,21 @@ public class ExRegController {
         }
         exregData.put("syllabus", syllabus);
         return exregData;
+    }
+
+    @GetMapping("/exreg/list")
+    public String getExRegList(Model model, @RequestParam(value = "curriculum", required = false) Integer cid) {
+        List<ExReg> exRegList = new LinkedList<>();
+        if (cid == null) {
+            exRegList = exRegJpaRepository.findAll();
+        } else {
+            if (curriculumService.existsById(cid)) {
+                Optional<Curriculum> curriculum = curriculumService.findById(cid);
+                model.addAttribute("curriculum", curriculum.get());
+                exRegList = exRegJpaRepository.findByCurriculum(curriculum.get());
+            }
+        }
+        model.addAttribute("exRegList", exRegList);
+        return "exregList";
     }
 }

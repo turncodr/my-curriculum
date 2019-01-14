@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
+    <title th:text="#{exRegList.exRegList}">My Curriculum</title>
+</head>
+<body>
+<div id="content">
+    <h1 th:text="#{exRegList.exRegList}">ExRegs</h1>
+    <hr class="pb-2">
+    <div>
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-md-2">
+                    <label for="backButton" style="padding-right:100%">&nbsp;</label>
+                    <input id="backButton" class="btn btn-primary" onclick='javascript:window.history.back()' th:value="'&laquo; '+#{general.back}" type='button'/>
+                </div>
+                <div class="col-md-3">
+                    <label for="curriculum" th:text="#{exRegList.curriculum}">Curriculum</label>
+                    <input id="curriculum" type="text" class="form-control" th:value="${curriculum != null} ? ${curriculum.acronym} : ''"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="exreg" th:text="#{exRegList.exreg}">ExReg</label>
+                    <input id="exreg" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <label for="newExReg" th:text="#{general.create}">Create</label>
+                    <a id="newExReg" role="button" class="btn btn-primary mb-2" th:text="#{exRegList.newExReg}" href="#" th:href="@{/exreg/create}">New</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div>
+        <div class="form-group form-row border p-1"
+             th:each="exReg : ${exRegList}">
+            <div class="col-md-3 my-1"> <a th:href="@{/module/list(exreg=${exReg.id})}" th:text="${exReg.name}">-</a></div>
+            <div class="col-md-2 my-1"> <a th:href="@{/module/list(exreg=${exReg.id})}" th:text="#{exReg.from}+' '+${exReg.validFrom}">-</a></div>
+            <div class="col-md-2 my-1" th:if="${exReg.curriculum}!=null">
+                <div th:text="${exReg.curriculum.acronym}"/>
+            </div>
+            <div class="col-md-2 my-1" th:unless="${exReg.curriculum}!=null">-</div>
+            <div class="col-md-3 my-1" th:if="${exReg.curriculum}!=null">
+                <div th:text="${exReg.curriculum.name}"/>
+            </div>
+            <div class="col-md-3 my-1" th:unless="${exReg.curriculum}!=null">-</div>
+            <div class="col-md-2">
+                <a role="button" class="btn btn-danger float-right"  th:href="@{/exreg/syllabus/pdf(id=${exReg.id})}">PDF</a>
+                <a role="button" class="btn btn-info float-right mr-1"  th:href="@{/exreg/syllabus(id=${exReg.id})}">HTML</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer ::footer"></footer>
+</body>
+</html>

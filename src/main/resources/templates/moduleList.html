@@ -11,37 +11,44 @@
         <form>
             <div class="row justify-content-center">
                 <div class="col-md-2">
-                    <label for="exreg" th:text="#{moduleList.exreg}">ExReg</label>
-                    <input id="exreg" type="text" class="form-control"/>
+                    <label for="backButton" style="padding-right:100%">&nbsp;</label>
+                    <input id="backButton" class="btn btn-primary" onclick='javascript:window.history.back()' th:value="'&laquo; '+#{general.back}" type='button'/>
                 </div>
                 <div class="col-md-2">
                     <label for="curriculum" th:text="#{moduleList.curriculum}">Curriculum</label>
-                    <input id="curriculum" type="text" class="form-control"/>
+                    <input id="curriculum" type="text" class="form-control" th:value="${param.curriculum}"/>
+                </div>
+                <div class="col-md-3">
+                    <label for="exreg" th:text="#{moduleList.exreg}">ExReg</label>
+                    <input id="exreg" type="text" class="form-control" th:value="${exreg != null} ? ${exreg.name} : ''"/>
                 </div>
                 <div class="col-md-3">
                     <label for="module" th:text="#{moduleList.module}">Module</label>
                     <input id="module" type="text" class="form-control"/>
                 </div>
                 <div class="col-md-2">
-                    <label for="newModule" th:text="#{moduleList.createModule}">Create</label>
-                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}"
-                       href="#" th:href="@{/module/create}">New</a>
+                    <label for="newModule" th:text="#{general.create}">Create</label>
+                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}" href="#" th:href="@{/module/create}">New</a>
                 </div>
             </div>
         </form>
     </div>
     <hr/>
-    <div>
-        <div class="form-group form-row border p-1"
-             th:each="module : ${moduleList}">
-            <div class="col-md-3">Gültigkeit ExReg</div>
-            <div class="col-md-2">3WIB</div>
-            <div class="col-md-5" th:text="${module.title}"></div>
-            <div class="col-md-2">
-                <button class="btn btn-info float-right">PDF</button>
-                <button class="btn btn-info float-right mr-1">Edit</button>
+    <div class="form-group form-row border p-1"
+         th:each="module : ${moduleList}">
+        <div class="col-md-2 my-1" th:if="${module.exReg}!=null">
+            <div th:if="${module.exReg.curriculum}!=null">
+                <div th:text="${module.exReg.curriculum.name}">-</div>
             </div>
+            <div th:unless="${module.exReg.curriculum}!=null">-</div>
         </div>
+        <div class="col-md-2 my-1" th:if="${module.exReg}!=null">
+            <div th:text="#{exReg.from}+' '+${module.exReg.validFrom}">-</div>
+        </div>
+        <div class="col-md-2 my-1" th:unless="${module.exReg}!=null">-</div>
+        <div class="col-md-2 my-1" th:unless="${module.exReg}!=null">-</div>
+        <div class="col-md-4 my-1" th:text="${module.title}"></div>
+        <div class="col-md-4 my-1" th:text="${module.moduleCoordinator}"></div>
     </div>
 </div>
 </body>

@@ -1,6 +1,9 @@
 package rocks.turncodr.mycurriculum.controller;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import rocks.turncodr.mycurriculum.model.AreaOfStudies;
+import rocks.turncodr.mycurriculum.model.ExReg;
 import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
+import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
 import rocks.turncodr.mycurriculum.services.ModuleJpaRepository;
 
 import javax.validation.Valid;
@@ -24,6 +30,9 @@ public class ModuleController {
 
     @Autowired
     private ModuleJpaRepository moduleJpaRepository;
+
+    @Autowired
+    private ExRegJpaRepository exRegJpaRepository;
 
     @Autowired
     private AreaOfStudiesJpaRepository areaOfStudiesJpaRepository;
@@ -56,9 +65,18 @@ public class ModuleController {
     }
 
     @GetMapping("/module/list")
-    public String getModuleShowList(Model model) {
-        // Fetching all modules from database
-        List<Module> moduleList = moduleJpaRepository.findAll();
+    public String getModuleShowList(Model model, @RequestParam(value = "exreg", required = false) Integer eid) {
+        List<Module> moduleList = new LinkedList<>();
+        if (eid == null) {
+            // Fetching all modules from database
+            moduleList = moduleJpaRepository.findAll();
+        } else {
+            if (exRegJpaRepository.existsById(eid)) {
+                Optional<ExReg> exReg = exRegJpaRepository.findById(eid);
+                model.addAttribute("exreg", exReg.get());
+                moduleList = moduleJpaRepository.findByExReg(exReg.get());
+            }
+        }
         model.addAttribute("moduleList", moduleList);
 
         // Set moduleShowList.html as template to be parsed
