@@ -50,9 +50,11 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
      * them to it.
      */
     private void createExregWIB() {
+        List<Curriculum> curriculum = curriculumService.findAll();
         ExReg wib = new ExReg();
         wib.setName("Wirtschaftsinformatik Bachelor");
         wib.setValidFrom(Date.valueOf("2018-01-01"));
+        wib.setCurriculum(curriculum.get(0));
         wib = exregJpaRepository.save(wib);
 
         this.createSemester1Wib(wib);
