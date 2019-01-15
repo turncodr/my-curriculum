@@ -46,7 +46,8 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
     }
 
     /**
-     * Creates the WIB ExReg and the modules for the first two semesters and maps them to it.
+     * Creates the WIB ExReg and the modules for the first two semesters and maps
+     * them to it.
      */
     private void createExregWIB() {
         ExReg wib = new ExReg();
@@ -54,9 +55,588 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wib.setValidFrom(Date.valueOf("2018-01-01"));
         wib = exregJpaRepository.save(wib);
 
-
         this.createSemester1Wib(wib);
         this.createSemester2Wib(wib);
+        this.createSemester3Wib(wib);
+        this.createSemester4Wib(wib);
+        this.createSemester5Wib(wib);
+        this.createSemester6Wib(wib);
+        this.createSemester7Wib(wib);
+    }
+
+    private void createSemester7Wib(ExReg wib) {
+        Module wissenschaftlichesArbeiten = this.createModuleWissenschaftlichesArbeiten();
+        wissenschaftlichesArbeiten.setExReg(wib);
+        moduleJpaRepository.save(wissenschaftlichesArbeiten);
+
+        Module bachelorThesis = this.createModuleBachelorThesis();
+        bachelorThesis.setExReg(wib);
+        moduleJpaRepository.save(bachelorThesis);
+
+        Module wahlpflichtmodul2 = this.createModuleWahlpflichtmodul2();
+        wahlpflichtmodul2.setExReg(wib);
+        moduleJpaRepository.save(wahlpflichtmodul2);
+
+        Module wahlpflichtmodul3 = this.createModuleWahlpflichtmodul3();
+        wahlpflichtmodul3.setExReg(wib);
+        moduleJpaRepository.save(wahlpflichtmodul3);
+
+        Module wahlpflichtmodul4 = this.createModuleWahlpflichtmodul4();
+        wahlpflichtmodul4.setExReg(wib);
+        moduleJpaRepository.save(wahlpflichtmodul4);
+
+    }
+
+    private Module createModuleWahlpflichtmodul4() {
+        Module wahlpflichtmodul4 = new Module();
+        wahlpflichtmodul4.setTitle("Wahlpflichtmodul 4");
+        wahlpflichtmodul4.setCode("WIB73");
+        wahlpflichtmodul4.setSubtitle("");
+        wahlpflichtmodul4.setOfferFrequency("jedes Semester");
+        wahlpflichtmodul4.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        wahlpflichtmodul4.setLecturers("Alle Dozenten der Fakultät");
+        wahlpflichtmodul4.setTeachingLanguage("Deutsch");
+        wahlpflichtmodul4.setSemester(7);
+        wahlpflichtmodul4.setCredits(5);
+        wahlpflichtmodul4.setPrerequisites("Keine");
+        wahlpflichtmodul4.setRecommendedPrerequisites("keine");
+        wahlpflichtmodul4.setLearningOutcomes("Die Wahlfachangebote erlauben es den Studierenden, ihre persönlichen Neigungen zu vertiefen und das persönliche Lernportfolio entweder um bisher unbekannte Themen aus der Wirtschaftsinformatik oder um Inhalte aus angrenzenden Fachdisziplinen zu erweitern.");
+        wahlpflichtmodul4.setContents("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul4.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul4.setReadingList("Abhängig von der gewählten Veranstaltung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        wahlpflichtmodul4.setAreaOfStudies(wahl);
+
+        return wahlpflichtmodul4;
+    }
+
+    private Module createModuleWahlpflichtmodul3() {
+        Module wahlpflichtmodul3 = new Module();
+        wahlpflichtmodul3.setTitle("Wahlpflichtmodul 3");
+        wahlpflichtmodul3.setCode("WIB72");
+        wahlpflichtmodul3.setSubtitle("");
+        wahlpflichtmodul3.setOfferFrequency("jedes Semester");
+        wahlpflichtmodul3.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        wahlpflichtmodul3.setLecturers("Alle Dozenten der Fakultät");
+        wahlpflichtmodul3.setTeachingLanguage("Deutsch");
+        wahlpflichtmodul3.setSemester(7);
+        wahlpflichtmodul3.setCredits(5);
+        wahlpflichtmodul3.setPrerequisites("Keine");
+        wahlpflichtmodul3.setRecommendedPrerequisites("keine");
+        wahlpflichtmodul3.setLearningOutcomes("Die Wahlfachangebote erlauben es den Studierenden, ihre persönlichen Neigungen zu vertiefen und das persönliche Lernportfolio entweder um bisher unbekannte Themen aus der Wirtschaftsinformatik oder um Inhalte aus angrenzenden Fachdisziplinen zu erweitern.");
+        wahlpflichtmodul3.setContents("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul3.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul3.setReadingList("Abhängig von der gewählten Veranstaltung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        wahlpflichtmodul3.setAreaOfStudies(wahl);
+
+        return wahlpflichtmodul3;
+    }
+
+    private Module createModuleWahlpflichtmodul2() {
+        Module wahlpflichtmodul2 = new Module();
+        wahlpflichtmodul2.setTitle("Wahlpflichtmodul 2");
+        wahlpflichtmodul2.setCode("WIB71");
+        wahlpflichtmodul2.setSubtitle("");
+        wahlpflichtmodul2.setOfferFrequency("jedes Semester");
+        wahlpflichtmodul2.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        wahlpflichtmodul2.setLecturers("Alle Dozenten der Fakultät");
+        wahlpflichtmodul2.setTeachingLanguage("Deutsch");
+        wahlpflichtmodul2.setSemester(7);
+        wahlpflichtmodul2.setCredits(5);
+        wahlpflichtmodul2.setPrerequisites("Keine");
+        wahlpflichtmodul2.setRecommendedPrerequisites("keine");
+        wahlpflichtmodul2.setLearningOutcomes("Die Wahlfachangebote erlauben es den Studierenden, ihre persönlichen Neigungen zu vertiefen und das persönliche Lernportfolio entweder um bisher unbekannte Themen aus der Wirtschaftsinformatik oder um Inhalte aus angrenzenden Fachdisziplinen zu erweitern.");
+        wahlpflichtmodul2.setContents("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul2.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul2.setReadingList("Abhängig von der gewählten Veranstaltung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        wahlpflichtmodul2.setAreaOfStudies(wahl);
+
+        return wahlpflichtmodul2;
+    }
+
+    private Module createModuleBachelorThesis() {
+        Module bachelorThesis = new Module();
+        bachelorThesis.setTitle("Bachelor Thesis");
+        bachelorThesis.setCode("WIB75");
+        bachelorThesis.setSubtitle("");
+        bachelorThesis.setOfferFrequency("jedes Semester");
+        bachelorThesis.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        bachelorThesis.setLecturers("Alle Dozenten der Fakultät");
+        bachelorThesis.setTeachingLanguage("Deutsch");
+        bachelorThesis.setSemester(7);
+        bachelorThesis.setCredits(12);
+        bachelorThesis.setPrerequisites("Mindestens 140 ECTS, Modul Auslandssemester oder Spezialisierungssemester wurde absolviert");
+        bachelorThesis.setRecommendedPrerequisites("keine");
+        bachelorThesis.setLearningOutcomes("Die Bachelor-Thesis ist eine abschließende Prüfungsarbeit, mit der die Studierenden nachweisen, dass sie eine interdisziplinäre Aufgabenstellung der Wirtschaftsinformatik selbstständig nach grundlegenden wissenschaftlichen Methoden in einem vorgegebenen Zeitrahmen bearbeiten können.");
+        bachelorThesis.setContents("Themen von Bachelorarbeiten beziehen sich auf Aufgabenstellungen der Wirtschaftsinformatik, die aktuell und in der absehbaren Zukunft in der Disziplin relevant sind.");
+        bachelorThesis.setTeachingMethodology("Fachliche und methodische Betreuung der Bachelorarbeit durch Beratungs-Betreuungsgespräche, die bei unternehmensnahen Arbeiten auch vor Ort stattfinden.");
+        bachelorThesis.setReadingList("Abhängig von der jeweiligen Aufgabenstellung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        bachelorThesis.setAreaOfStudies(wahl);
+
+        return bachelorThesis;
+    }
+
+    private Module createModuleWissenschaftlichesArbeiten() {
+        Module wissenschaftlichesArbeiten = new Module();
+        wissenschaftlichesArbeiten.setTitle("Wissenschaftliches Arbeiten");
+        wissenschaftlichesArbeiten.setCode("WIB74");
+        wissenschaftlichesArbeiten.setSubtitle("");
+        wissenschaftlichesArbeiten.setOfferFrequency("jedes Semester");
+        wissenschaftlichesArbeiten.setModuleCoordinator("Frau Christa Biberacher");
+        wissenschaftlichesArbeiten.setLecturers("Frau Christa Biberacher");
+        wissenschaftlichesArbeiten.setTeachingLanguage("Deutsch");
+        wissenschaftlichesArbeiten.setSemester(7);
+        wissenschaftlichesArbeiten.setCredits(3);
+        wissenschaftlichesArbeiten.setPrerequisites("Keine");
+        wissenschaftlichesArbeiten.setRecommendedPrerequisites("Alle Module der ersten 4 Semester");
+        wissenschaftlichesArbeiten.setLearningOutcomes("Das Modul Wissenschaftliches Arbeiten lehrt Kompetenzen zum wissenschaftlichen Lesen und Schreiben und führt die Studierenden an die Bearbeitung der Bachelor-Thesis heran.");
+        wissenschaftlichesArbeiten.setContents("Empirische und formale Methoden");
+        wissenschaftlichesArbeiten.setTeachingMethodology("-");
+        wissenschaftlichesArbeiten.setReadingList("Balzert, Helmut; Schröder, Marion; Schäfer, Christian (2013): Wissenschaftliches Arbeiten. 2. Auflage, Dortmund: W3L");
+
+        AreaOfStudies methoden = areaOfStudiesJpaRepository.findByName("Methoden");
+        wissenschaftlichesArbeiten.setAreaOfStudies(methoden);
+
+        return wissenschaftlichesArbeiten;
+    }
+
+    private void createSemester6Wib(ExReg wib) {
+        Module auslandssemester = this.createModuleAuslandssemester();
+        auslandssemester.setExReg(wib);
+        moduleJpaRepository.save(auslandssemester);
+
+        Module spezialisierungssemester = this.createModuleSpezialisierungssemester();
+        spezialisierungssemester.setExReg(wib);
+        moduleJpaRepository.save(spezialisierungssemester);
+
+    }
+
+    private Module createModuleSpezialisierungssemester() {
+        Module spezialisierungssemester = new Module();
+        spezialisierungssemester.setTitle("Spezialisierungssemester");
+        spezialisierungssemester.setCode("WIB62");
+        spezialisierungssemester.setSubtitle("");
+        spezialisierungssemester.setOfferFrequency("jedes Semester");
+        spezialisierungssemester.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        spezialisierungssemester.setLecturers("Dozenten der Hochschule Reutlingen");
+        spezialisierungssemester.setTeachingLanguage("Abhängig von besuchten Modulen");
+        spezialisierungssemester.setSemester(6);
+        spezialisierungssemester.setCredits(30);
+        spezialisierungssemester.setPrerequisites("Es werden in Summe weniger als 15 ECTS-Punkte an ausländischen Hochschule erreicht");
+        spezialisierungssemester.setRecommendedPrerequisites("Keine");
+        spezialisierungssemester.setLearningOutcomes("Werden an ausländischen Hochschule in Summe weniger als 15 ECTS-Punkte erreicht, so muss stattdessen das Modul Spezialisierungssemester absolviert werden.");
+        spezialisierungssemester.setContents("Abhängig von den im Learning Agreement vereinbarten Veranstaltungen.");
+        spezialisierungssemester.setTeachingMethodology("Abhängig von den im Learning Agreement vereinbarten Veranstaltungen.");
+        spezialisierungssemester.setReadingList("Abhängig von den im Learning Agreement vereinbarten Veranstaltungen.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        spezialisierungssemester.setAreaOfStudies(wahl);
+
+        return spezialisierungssemester;
+    }
+
+    private Module createModuleAuslandssemester() {
+        Module auslandssemester = new Module();
+        auslandssemester.setTitle("Auslandssemester");
+        auslandssemester.setCode("WIB61");
+        auslandssemester.setSubtitle("Studienaufenthalt an einer ausländischen Hochschule");
+        auslandssemester.setOfferFrequency("jedes Semester");
+        auslandssemester.setModuleCoordinator("Prof. Dr. Dietmar Bönke");
+        auslandssemester.setLecturers("Diverse, vornehmlich von Lehrenden der ausländischen Hochschule, an der der Studienaufenthalt durchgeführt wird");
+        auslandssemester.setTeachingLanguage("Sprache, in der an der ausländischen Hochschule, an der der Studienaufenthalt durchgeführt wird, gelehrt");
+        auslandssemester.setSemester(6);
+        auslandssemester.setCredits(30);
+        auslandssemester.setPrerequisites("Bestandene Zwischenprüfung");
+        auslandssemester.setRecommendedPrerequisites("Keine");
+        auslandssemester.setLearningOutcomes("Ziele des Studienaufenthaltes an einer ausländischen Hochschule im sechsten Semester ist, Kenntnisse und Fähigkeiten zu erwerben, die es dem Studierenden erlauben, sich selbständig in einem fremden Kulturkreis zu bewegen.");
+        auslandssemester.setContents("Die Inhalte eines Auslandsstudiums werden in einem Learning Agreement vorab vereinbart. Diese passen inhaltlich in das Curriculum des 6.Semester der Wirtschaftsinformatik in Reutlingen.");
+        auslandssemester.setTeachingMethodology("Diverse Medienformen, die von der Lehrenden der ausländischen Hochschule, an der der Studienaufenthalt durchgeführt wird, bestimmt werden.");
+        auslandssemester.setReadingList("Literaturverzeichnisse zu den jeweiligen Lehrveranstaltungen der Gasthochschule. ");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        auslandssemester.setAreaOfStudies(wahl);
+
+        return auslandssemester;
+    }
+
+    private void createSemester5Wib(ExReg wib) {
+        Module corporateFinance = this.createModuleCorporateFinance();
+        corporateFinance.setExReg(wib);
+        moduleJpaRepository.save(corporateFinance);
+
+        Module managementUndControlling = this.createModuleManagementUndControlling();
+        managementUndControlling.setExReg(wib);
+        moduleJpaRepository.save(managementUndControlling);
+
+        Module businessConsulting = this.createModuleBusinessConsulting();
+        businessConsulting.setExReg(wib);
+        moduleJpaRepository.save(businessConsulting);
+
+        Module systemeUndSicherheit = this.createModuleSystemeUndSicherheit();
+        systemeUndSicherheit.setExReg(wib);
+        moduleJpaRepository.save(systemeUndSicherheit);
+
+        Module verteilteSysteme = this.createModuleVerteilteSysteme();
+        verteilteSysteme.setExReg(wib);
+        moduleJpaRepository.save(verteilteSysteme);
+
+        Module wahlpflichtmodul = this.createModuleWahlpflichtmodul();
+        wahlpflichtmodul.setExReg(wib);
+        moduleJpaRepository.save(wahlpflichtmodul);
+
+    }
+
+    private Module createModuleWahlpflichtmodul() {
+        Module wahlpflichtmodul = new Module();
+        wahlpflichtmodul.setTitle("Wahlpflichtmodul 1");
+        wahlpflichtmodul.setCode("WIB55");
+        wahlpflichtmodul.setSubtitle("");
+        wahlpflichtmodul.setOfferFrequency("jedes Semester");
+        wahlpflichtmodul.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        wahlpflichtmodul.setLecturers("Alle Dozenten der Fakultät");
+        wahlpflichtmodul.setTeachingLanguage("Deutsch");
+        wahlpflichtmodul.setSemester(5);
+        wahlpflichtmodul.setCredits(5);
+        wahlpflichtmodul.setPrerequisites("Keine");
+        wahlpflichtmodul.setRecommendedPrerequisites("keine");
+        wahlpflichtmodul.setLearningOutcomes("Die Wahlfachangebote erlauben es den Studierenden, ihre persönlichen Neigungen zu vertiefen und das persönliche Lernportfolio entweder um bisher unbekannte Themen aus der Wirtschaftsinformatik oder um Inhalte aus angrenzenden Fachdisziplinen zu erweitern.");
+        wahlpflichtmodul.setContents("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
+        wahlpflichtmodul.setReadingList("Abhängig von der gewählten Veranstaltung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        wahlpflichtmodul.setAreaOfStudies(wahl);
+
+        return wahlpflichtmodul;
+    }
+
+    private Module createModuleVerteilteSysteme() {
+        Module verteilteSysteme = new Module();
+        verteilteSysteme.setTitle("Verteilte Systeme");
+        verteilteSysteme.setCode("WIB56");
+        verteilteSysteme.setSubtitle("");
+        verteilteSysteme.setOfferFrequency("jedes Semester");
+        verteilteSysteme.setModuleCoordinator("Prof. Dr. Eckhard Ammann");
+        verteilteSysteme.setLecturers("Prof. Dr. Eckhard Ammann");
+        verteilteSysteme.setTeachingLanguage("Deutsch");
+        verteilteSysteme.setSemester(5);
+        verteilteSysteme.setCredits(5);
+        verteilteSysteme.setPrerequisites("Keine");
+        verteilteSysteme.setRecommendedPrerequisites("Fortgeschrittene Programmierung");
+        verteilteSysteme.setLearningOutcomes("Die Studierenden entwickeln Verständnis für das Zusammenwirken von Anwendungen und Programmteilen in verteilten Umgebungen, insbesondere auch die dabei auftretenden neuen Problemstellungen relativ zu nicht verteilten Anwendungen.");
+        verteilteSysteme.setContents("Konzepte, Modelle und Problemstellungen von verteilten Systemen und Anwendungen werden eingeführt.");
+        verteilteSysteme.setTeachingMethodology("Vorlesung: Vortrag und Referate Praktikum/Übungen: Entwickeln von verteilten Anwendungslösungen, Lösen von Programmieraufgaben");
+        verteilteSysteme.setReadingList("A.Tanenbaum, M.van Steen: Distributed Systems – Principles and Paradigms, Pearson Prentice Hall (2007)");
+
+        AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
+        verteilteSysteme.setAreaOfStudies(informatik);
+
+        return verteilteSysteme;
+    }
+
+    private Module createModuleSystemeUndSicherheit() {
+        Module systemeUndSicherheit = new Module();
+        systemeUndSicherheit.setTitle("Systeme und Sicherheit");
+        systemeUndSicherheit.setCode("WIB54");
+        systemeUndSicherheit.setSubtitle("");
+        systemeUndSicherheit.setOfferFrequency("jedes Semester");
+        systemeUndSicherheit.setModuleCoordinator("Prof. Dr. Wolfgang Blochinger");
+        systemeUndSicherheit.setLecturers("Prof. Dr. Wolfgang Blochinger");
+        systemeUndSicherheit.setTeachingLanguage("Deutsch");
+        systemeUndSicherheit.setSemester(5);
+        systemeUndSicherheit.setCredits(5);
+        systemeUndSicherheit.setPrerequisites("Keine");
+        systemeUndSicherheit.setRecommendedPrerequisites("keine");
+        systemeUndSicherheit.setLearningOutcomes("Dieses Modul soll Studierenden sowohl im Bereich der Systemkonzepte als auch im Bereich der ITSicherheit jeweils umfassende Kenntnisse vermitteln.");
+        systemeUndSicherheit.setContents("Aufgaben, Aufbau und grundlegende Funktionsweise von Systemsoftware");
+        systemeUndSicherheit.setTeachingMethodology("Folien, Tafel, Demonstrationen und Übungen am Rechner");
+        systemeUndSicherheit.setReadingList("Eckert, Claudia (2014): IT-Sicherheit. Konzepte - Verfahren - Protokolle. 9. Aufl. München: Oldenbourg.");
+
+        AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
+        systemeUndSicherheit.setAreaOfStudies(informatik);
+
+        return systemeUndSicherheit;
+    }
+
+    private Module createModuleBusinessConsulting() {
+        Module businessConsulting = new Module();
+        businessConsulting.setTitle("Business Consulting");
+        businessConsulting.setCode("WIB53");
+        businessConsulting.setSubtitle("");
+        businessConsulting.setOfferFrequency("jedes Semester");
+        businessConsulting.setModuleCoordinator("Prof. Dr. N.N");
+        businessConsulting.setLecturers("Prof. Dr. N.N");
+        businessConsulting.setTeachingLanguage("Englisch");
+        businessConsulting.setSemester(5);
+        businessConsulting.setCredits(5);
+        businessConsulting.setPrerequisites("Keine");
+        businessConsulting.setRecommendedPrerequisites("keine");
+        businessConsulting.setLearningOutcomes("Die Teilnehmer kennen grundlegende Methoden des Business Consultings, sowie der Business Analysis und können diese Methoden in konkreten Beratungssituationen anwenden.");
+        businessConsulting.setContents("Allgemeine Einordnung von Consulting Methoden.");
+        businessConsulting.setTeachingMethodology("Vorlesung Übungen und Fallstudien");
+        businessConsulting.setReadingList("Schmelzer, H. Sesselmann W. (2013): Geschäftsprozess-Management in der Praxis. 8., korrigierte Auflage. Hanser Verlag.");
+
+        AreaOfStudies methoden = areaOfStudiesJpaRepository.findByName("Methoden");
+        businessConsulting.setAreaOfStudies(methoden);
+
+        return businessConsulting;
+    }
+
+    private Module createModuleManagementUndControlling() {
+        Module managementUndControlling = new Module();
+        managementUndControlling.setTitle("Management und Controlling");
+        managementUndControlling.setCode("WIB52");
+        managementUndControlling.setSubtitle("");
+        managementUndControlling.setOfferFrequency("jedes Semester");
+        managementUndControlling.setModuleCoordinator("Prof. Dipl.-Kfm. Armin Roth");
+        managementUndControlling.setLecturers("Prof. Dipl.-Kfm. Armin Roth");
+        managementUndControlling.setTeachingLanguage("Deutsch");
+        managementUndControlling.setSemester(5);
+        managementUndControlling.setCredits(5);
+        managementUndControlling.setPrerequisites("Keine");
+        managementUndControlling.setRecommendedPrerequisites("Grundlagen der BWL; Betriebliches Rechnungswesen");
+        managementUndControlling.setLearningOutcomes("Innerhalb des Moduls wird der Managementprozess ganzheitlich vorgestellt und diskutiert.");
+        managementUndControlling.setContents("Anhand des Management-Prozesses (Planung, Organisation, Personaleinsatz, Führung und Kontrolle) werden die jeweiligen Prozessschritte betrachtet und die jeweils aktuellen Instrumente und Methoden vorgestellt.");
+        managementUndControlling.setTeachingMethodology("Vorlesung, Kleingruppenarbeit, Fallstudien, Präsentation und schriftliche Ausarbeitung, Planspiel.");
+        managementUndControlling.setReadingList("Staehle, W.: Management, Vahlen, jeweils neueste Auflage.");
+
+        AreaOfStudies bwl = areaOfStudiesJpaRepository.findByName("BWL");
+        managementUndControlling.setAreaOfStudies(bwl);
+
+        return managementUndControlling;
+    }
+
+    private Module createModuleCorporateFinance() {
+        Module corporateFinance = new Module();
+        corporateFinance.setTitle("Corporate Finance");
+        corporateFinance.setCode("WIB52");
+        corporateFinance.setSubtitle("");
+        corporateFinance.setOfferFrequency("jedes Semester");
+        corporateFinance.setModuleCoordinator("Prof. Dr. Josef Schürle");
+        corporateFinance.setLecturers("Prof. Dr. Josef Schürle");
+        corporateFinance.setTeachingLanguage("Deutsch");
+        corporateFinance.setSemester(3);
+        corporateFinance.setCredits(5);
+        corporateFinance.setPrerequisites("Keine");
+        corporateFinance.setRecommendedPrerequisites("Grundlagen der BWL; Betriebliches Rechnungswesen");
+        corporateFinance.setLearningOutcomes("Ziel des Moduls ist es, den Studierenden eine Vertiefung in das Themengebiet der betrieblichen Finanzwirtschaft zu geben.");
+        corporateFinance.setContents("Grundlagen der Finanzmathematik (Zins-, Renten- und Tilgungsrechnung)");
+        corporateFinance.setTeachingMethodology("Vermittlung der theoretischen Grundlagen mittels Beamer-Präsentation, ergänzt durch Tafelanschriebe.");
+        corporateFinance.setReadingList("Becker (2015): Investition und Finanzierung: Grundlagen der betrieblichen Finanzwirtschaft. 7. Auflage. Wiesbaden: SpringerGabler.");
+
+        AreaOfStudies bwl = areaOfStudiesJpaRepository.findByName("BWL");
+        corporateFinance.setAreaOfStudies(bwl);
+
+        return corporateFinance;
+    }
+
+    private void createSemester4Wib(ExReg wib) {
+        Module berufspraktischesSemester = this.createModuleBerufspraktischesSemester();
+        berufspraktischesSemester.setExReg(wib);
+        moduleJpaRepository.save(berufspraktischesSemester);
+
+    }
+
+    private Module createModuleBerufspraktischesSemester() {
+        Module berufspraktischesSemester = new Module();
+        berufspraktischesSemester.setTitle("Berufspraktisches Semester");
+        berufspraktischesSemester.setCode("WIB41");
+        berufspraktischesSemester.setSubtitle("");
+        berufspraktischesSemester.setOfferFrequency("jedes Semester");
+        berufspraktischesSemester.setModuleCoordinator("Prof. Dr. Alexander Rossmann");
+        berufspraktischesSemester.setLecturers("Prof. Dr. Alexander Rossmann");
+        berufspraktischesSemester.setTeachingLanguage("Deutsch");
+        berufspraktischesSemester.setSemester(4);
+        berufspraktischesSemester.setCredits(30);
+        berufspraktischesSemester.setPrerequisites("Bestandene Zwischenprüfung");
+        berufspraktischesSemester.setRecommendedPrerequisites("alle Module der Semester 1-3");
+        berufspraktischesSemester.setLearningOutcomes("Die Praxisphase des Studienganges Wirtschaftsinformatik dient der Vermittlung praktischer Kenntnisse und der Einübung von Schlüsselqualifikationen.");
+        berufspraktischesSemester.setContents("");
+        berufspraktischesSemester.setTeachingMethodology("");
+        berufspraktischesSemester.setReadingList("Vorbereitungsveranstaltungen zu Form und Inhalt der betrieblichen Praxisphase: Verweise auf Internet-Quellen.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        berufspraktischesSemester.setAreaOfStudies(wahl);
+
+        return berufspraktischesSemester;
+    }
+
+    private void createSemester3Wib(ExReg wib) {
+        Module logistikUndProduktion = this.createModuleLogistikUndProduktion();
+        logistikUndProduktion.setExReg(wib);
+        moduleJpaRepository.save(logistikUndProduktion);
+
+        Module rhethorikUndKommunikationsverhalten = this.createModuleRhethorikUndKommunikationsverhalten();
+        rhethorikUndKommunikationsverhalten.setExReg(wib);
+        moduleJpaRepository.save(rhethorikUndKommunikationsverhalten);
+
+        Module softwareengineering = this.createModuleSoftwareengineeringg();
+        softwareengineering.setExReg(wib);
+        moduleJpaRepository.save(softwareengineering);
+
+        Module relationaleDatenbanken = this.createModuleRelationaleDatenbanken();
+        relationaleDatenbanken.setExReg(wib);
+        moduleJpaRepository.save(relationaleDatenbanken);
+
+        Module datenbankenPraktikum = this.createModuleDatenbankenPraktikum();
+        datenbankenPraktikum.setExReg(wib);
+        moduleJpaRepository.save(datenbankenPraktikum);
+
+        Module webprogrammierung = this.createModuleWebprogrammierung();
+        webprogrammierung.setExReg(wib);
+        moduleJpaRepository.save(webprogrammierung);
+
+    }
+
+    private Module createModuleWebprogrammierung() {
+        Module webprogrammierung = new Module();
+        webprogrammierung.setTitle("Web-Programmierung");
+        webprogrammierung.setCode("WIB36");
+        webprogrammierung.setSubtitle("");
+        webprogrammierung.setOfferFrequency("jedes Semester");
+        webprogrammierung.setModuleCoordinator("Prof. Dr. Martin Schmollinger");
+        webprogrammierung.setLecturers("Matthias Gutbrod");
+        webprogrammierung.setTeachingLanguage("Deutsch");
+        webprogrammierung.setSemester(3);
+        webprogrammierung.setCredits(5);
+        webprogrammierung.setPrerequisites("Keine");
+        webprogrammierung.setRecommendedPrerequisites("Grundlagen der Informatik, Fortgeschrittene Programmierung");
+        webprogrammierung.setLearningOutcomes("Das Ziel des Moduls ist es, den Studierenden eine Einführung in die Technologien, den Aufbau und die Programmierung von Webanwendungen zu geben.");
+        webprogrammierung.setContents("Das Modul vermittelt grundlegende Technologien von Webanwendungen. Inhalte der Veranstaltung sind die Basistechnologien und ausgewählte Varianten der client- und serverseitigen Programmierung von Webanwendungen (Z.B. JavaScript, Java, PHP). Des Weiteren werden ausgewählte Grundlagen der Absicherung von Webanwendungen vorgestellt ");
+        webprogrammierung.setTeachingMethodology("Das Modul besteht aus einer Vorlesung in seminaristischem Stil mit Tafelanschrieb, Tageslichtprojektion und PC-Projektion, sowie einem Praktikum zur Einübung der Vorlesungsinhalte.");
+        webprogrammierung.setReadingList("Ackermann, Philip (2016). JavaScript: Das umfassende Handbuch für Einsteiger, Fortgeschrittene und Profis. Rheinwerk Computing.");
+
+        AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
+        webprogrammierung.setAreaOfStudies(informatik);
+
+        return webprogrammierung;
+    }
+
+    private Module createModuleDatenbankenPraktikum() {
+        Module datenbankenPraktikum = new Module();
+        datenbankenPraktikum.setTitle("Datenbanken Praktikum");
+        datenbankenPraktikum.setCode("WIB35");
+        datenbankenPraktikum.setSubtitle("");
+        datenbankenPraktikum.setOfferFrequency("jedes Semester");
+        datenbankenPraktikum.setModuleCoordinator("Prof. Dr. Ilja Petrov");
+        datenbankenPraktikum.setLecturers("Prof. Dr. Ilja Petrov");
+        datenbankenPraktikum.setTeachingLanguage("Deutsch");
+        datenbankenPraktikum.setSemester(3);
+        datenbankenPraktikum.setCredits(5);
+        datenbankenPraktikum.setPrerequisites("Keine");
+        datenbankenPraktikum.setRecommendedPrerequisites("Statistik, Diskrete Mathematik, Grundlagen der Informatik, Fortgeschrittenen Programmierung, Algorithmen und Datenstrukturen");
+        datenbankenPraktikum.setLearningOutcomes("Das Ziel des Moduls ist es, den Studierenden eine allgemeine praktische Übung in das Themengebiet der relationalen Datenbanksysteme zu geben.");
+        datenbankenPraktikum.setContents("ANSI/SPARC, Entity-Relationship Modell, objektorientierte Konzepte und Modellierung, relationales Modell, Normalisierung, Semantik von Beziehungen, praktische Entwurfsregeln, SQL (Structured Query Language), Transaktionskonzepte, Serialisierbarkeit, Zwei-Phasen-Sperrprotokoll, Datensicherungsund Wiederherstellungsmaßnahmen, Abfrageoptimierung, Programmierschnittstellen (JDBC, Embedded SQL)");
+        datenbankenPraktikum.setTeachingMethodology("Seminaristischer Unterricht, Tafel, PPT-Vortrag, Demos, Übungsaufgaben im Praktikum, Skript mit PPT-Folien, Übungsaufgaben, SQL-Lernprogramm ");
+        datenbankenPraktikum.setReadingList("Ramez Elmasri, Shamkant Navathe. Grundlagen von Datenbanksystemen, Bachelorausgabe. 3. Auflage. Pearson Studium, 2009, ISBN: 978-3-8689-4012-1");
+
+        AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
+        datenbankenPraktikum.setAreaOfStudies(informatik);
+
+        return datenbankenPraktikum;
+    }
+
+    private Module createModuleRelationaleDatenbanken() {
+        Module relationaleDatenbanken = new Module();
+        relationaleDatenbanken.setTitle("Relationale Datenbanken");
+        relationaleDatenbanken.setCode("WIB34");
+        relationaleDatenbanken.setSubtitle("");
+        relationaleDatenbanken.setOfferFrequency("jedes Semester");
+        relationaleDatenbanken.setModuleCoordinator("Prof. Dr. Ilja Petrov");
+        relationaleDatenbanken.setLecturers("Prof. Dr. Ilja Petrov");
+        relationaleDatenbanken.setTeachingLanguage("Deutsch");
+        relationaleDatenbanken.setSemester(3);
+        relationaleDatenbanken.setCredits(5);
+        relationaleDatenbanken.setPrerequisites("Keine");
+        relationaleDatenbanken.setRecommendedPrerequisites("Grundlagen der Informatik, Statistik, Diskrete Mathematik, Fortgeschrittenen Programmierung, Algorithmen und Datenstrukturen");
+        relationaleDatenbanken.setLearningOutcomes("Das Ziel des Moduls ist es, den Studierenden eine allgemeine Einführung in das Themengebiet Datenbank- und Informationssystemen zu geben.");
+        relationaleDatenbanken.setContents("ANSI/SPARC, Entity-Relationship Modell, objektorientierte Konzepte und Modellierung, relationales Modell, Normalisierung, Semantik von Beziehungen, praktische Entwurfsregeln, SQL (Structured Query Language), Transaktionskonzepte, Serialisierbarkeit, Zwei-Phasen-Sperrprotokoll, Datensicherungsund Wiederherstellungsmaßnahmen, Abfrageoptimierung, Programmierschnittstellen (JDBC).");
+        relationaleDatenbanken.setTeachingMethodology("Seminaristischer Unterricht, Tafel, PPT-Vortrag, Demos, Übungsaufgaben im Praktikum, Skript mit PPT-Folien, Übungsaufgaben, SQL-Lernprogramm");
+        relationaleDatenbanken.setReadingList("Ramez Elmasri, Shamkant Navathe. Grundlagen von Datenbanksystemen, Bachelorausgabe. 3. Auflage. Pearson Studium, 2009, ISBN: 978-3-8689-4012-1");
+
+        AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
+        relationaleDatenbanken.setAreaOfStudies(informatik);
+
+        return relationaleDatenbanken;
+    }
+
+    private Module createModuleSoftwareengineeringg() {
+        Module softwareengineering = new Module();
+        softwareengineering.setTitle("Software - Engineering");
+        softwareengineering.setCode("WIB33");
+        softwareengineering.setSubtitle("");
+        softwareengineering.setOfferFrequency("jedes Semester");
+        softwareengineering.setModuleCoordinator("Prof. Dr. Christian Decker");
+        softwareengineering.setLecturers("Prof. Dr. Christian Decker");
+        softwareengineering.setTeachingLanguage("Deutsch");
+        softwareengineering.setSemester(3);
+        softwareengineering.setCredits(5);
+        softwareengineering.setPrerequisites("Keine");
+        softwareengineering.setRecommendedPrerequisites("Keine");
+        softwareengineering.setLearningOutcomes("Softwareprozesse: Grundlegendes Verständnis von Softwareprozessen und Vorgehensmodellen. Wissen, wann kennengelernte Vorgehensmodelle angewendet werden können. Kennen der grundlegenden Prozessaktivitäten");
+        softwareengineering.setContents("Software stellt einen immer größeren Faktor der Wertschöpfung von Produkten dar. Softwareintensive Produkte werden weiter zunehmen.");
+        softwareengineering.setTeachingMethodology("PDF der Folien aus der Vorlesung. Weiteres Material wird während der Vorlesung bekannt gegeben.");
+        softwareengineering.setReadingList("Ian Sommerville. Software Engineering (9. aktualisierte Auflage). Pearson, Deutschland, ISBN: 978-3-8632-6512-0");
+
+        AreaOfStudies methoden = areaOfStudiesJpaRepository.findByName("Methoden");
+        softwareengineering.setAreaOfStudies(methoden);
+
+        return softwareengineering;
+    }
+
+    private Module createModuleRhethorikUndKommunikationsverhalten() {
+        Module rhethorikUndKommunikationsverhalten = new Module();
+        rhethorikUndKommunikationsverhalten.setTitle("Rhetorik und Kommunikationsverhalten");
+        rhethorikUndKommunikationsverhalten.setCode("WIB32");
+        rhethorikUndKommunikationsverhalten.setSubtitle("");
+        rhethorikUndKommunikationsverhalten.setOfferFrequency("jedes Semester");
+        rhethorikUndKommunikationsverhalten.setModuleCoordinator("Prof. Dipl.-Kfm. Armin Roth");
+        rhethorikUndKommunikationsverhalten.setLecturers("Prof. Dipl.-Kfm. Armin Roth");
+        rhethorikUndKommunikationsverhalten.setTeachingLanguage("Deutsch");
+        rhethorikUndKommunikationsverhalten.setSemester(3);
+        rhethorikUndKommunikationsverhalten.setCredits(5);
+        rhethorikUndKommunikationsverhalten.setPrerequisites("Keine");
+        rhethorikUndKommunikationsverhalten.setRecommendedPrerequisites("keine");
+        rhethorikUndKommunikationsverhalten.setLearningOutcomes("Ziel des Moduls ist es, die Studierenden für die Wichtigkeit des Themas Kommunikation und Rhetorik zu sensibilisieren.");
+        rhethorikUndKommunikationsverhalten.setContents("In diesem Modul sollen Grundlagen der Kommunikation und der Rhetorik vermittelt werden. Präsentations- und Gesprächsführungstechniken werden behandelt. Außerdem wird in die Moderationstechnik eingeführt.");
+        rhethorikUndKommunikationsverhalten.setTeachingMethodology("Seminar, Gruppen- und Einzelarbeit, Rollenspiele, Vorlesungsfolien, Präsentations- und Moderationsmaterial");
+        rhethorikUndKommunikationsverhalten.setReadingList("Lay, R.; Birkenbihl, V.: Kommunikationstraining, mgv-Verlag, neueste Aufl.");
+
+        AreaOfStudies methoden = areaOfStudiesJpaRepository.findByName("Methoden");
+        rhethorikUndKommunikationsverhalten.setAreaOfStudies(methoden);
+
+        return rhethorikUndKommunikationsverhalten;
+    }
+
+    private Module createModuleLogistikUndProduktion() {
+        Module logistikUndProduktion = new Module();
+        logistikUndProduktion.setTitle("Logistik und Produktion - Industrie 4.0");
+        logistikUndProduktion.setCode("WIB31");
+        logistikUndProduktion.setSubtitle("");
+        logistikUndProduktion.setOfferFrequency("jedes Semester");
+        logistikUndProduktion.setModuleCoordinator("Prof. Dr. Herbert Glöckle, Prof. Dr. Dietmar Bönke");
+        logistikUndProduktion.setLecturers("Prof. Dr. Herbert Glöckle, Prof. Dr. Dietmar Bönke");
+        logistikUndProduktion.setTeachingLanguage("Deutsch");
+        logistikUndProduktion.setSemester(3);
+        logistikUndProduktion.setCredits(5);
+        logistikUndProduktion.setPrerequisites("Keine");
+        logistikUndProduktion.setRecommendedPrerequisites("Keine");
+        logistikUndProduktion.setLearningOutcomes("Die Studierenden können Planungs- und Herstellungsvorgänge in verschiedenen Produktionsumgebungen und -typologien verstehen und selbständig gestalten. Sie sind in der Lage die zugehörigen Geschäftsprozesse zu entwerfen und davon abgeleitet die IT-Systeme zur Unterstützung dieser Prozesse zu konzipieren.");
+        logistikUndProduktion.setContents("Methodische Grundlagen zur Beschreibung von Geschäftsprozessen, Grundlegende Planungs- undRealisierungsaufgaben in der Produktion, Grundlagen der Produktion mit betriebswirtschaftlichen Planungsmodellen und Betriebstypologien, Systeme zur Produktionsplanung und –steuerung, Grundstrukturen, Datenmodelle und Funktionen sowie Lösungsarchitekturen zur Umsetzung vonUnternehmenszielen, Planung und Überwachung von Fertigungsabläufen,Produktionsprogrammplanung, Zeitwirtschaft, Durchlaufterminierung, Kapazitätsplanung, Fertigungssteuerung, Feinterminierung, Fortschrittskontrolle, Betriebsdatenerfassung undAbfallwirtschaft, Entwicklung von der Produktion nach Programm über die Auftragsfertigung zur Dienstleistungsproduktion, Stammdaten, wie Stücklisten und Variantenstücklisten, Kundenauftragund Prognosemodelle, Bedarfsermittlung (MRP), Disposition von Kuppelprodukten, Bestellpunktverfahren, Kanban, OPT, Bestandsführung und Inventur, Einkaufsabwicklung undRechnungsprüfung. Diskussion der Schnittstellen zur Finanzbuchhaltung. Eigenschaften von Dienstleistungen, wie Immaterialität, Nicht-Lagerfähigkeit und ausgeprägter Kundenbezug, undderen Auswirkungen auf betriebswirtschaftliche und informationstechnische Aspekte, Dienstleistungsmarketing und Qualitätsmanagement. Ideen und Realisierungsansätze von Industrie 4.0-Konzepten.");
+        logistikUndProduktion.setTeachingMethodology("Vorlesungen mit Fallbeispielen zur Erlernung zielorientierter Lösungsfindung. Werksbesichtigung, Integrativer Workshop mit der Vorlesung Datenbanken. Skripte, beispielhafteAnwendungssoftware, mit der die Teilnehmer selbständig typische Lösungsansätze imkontextorientierten Zusammenhang entwickeln können.");
+        logistikUndProduktion.setReadingList("Kürble, Peter , Helmold, Marc , Bode, Olaf H. (2016): Beschaffung, Produktion, Marketing, Marburg: Tectum-Verlag (2016) ");
+
+        AreaOfStudies bwl = areaOfStudiesJpaRepository.findByName("BWL");
+        logistikUndProduktion.setAreaOfStudies(bwl);
+
+        return logistikUndProduktion;
     }
 
     private void createSemester2Wib(ExReg wib) {
@@ -287,13 +867,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         grundlagenInformatik.setSubtitle("");
         grundlagenInformatik.setOfferFrequency("jedes Semester");
         grundlagenInformatik.setModuleCoordinator("Prof. Dr. Wolfgang Blochinger");
-        grundlagenInformatik.setLecturers("Prof. Dr. Eckhard Ammann, "
-                + "Prof. Dr. Wolfgang Blochinger, "
-                + "Prof. Dr. Christian Decker, "
-                + "Prof. Dr. Bernhard Mößner, "
-                + "Prof. Dr. Jürgen Münch, "
-                + "Prof. Dr. Ilia Petrov, "
-                + "Prof. Dr. Martin Schmollinger");
+        grundlagenInformatik.setLecturers("Prof. Dr. Eckhard Ammann, " + "Prof. Dr. Wolfgang Blochinger, " + "Prof. Dr. Christian Decker, " + "Prof. Dr. Bernhard Mößner, " + "Prof. Dr. Jürgen Münch, " + " Prof. Dr. Ilia Petrov, " + "Prof. Dr. Martin Schmollinger");
         grundlagenInformatik.setTeachingLanguage("Deutsch");
         grundlagenInformatik.setSemester(1);
         grundlagenInformatik.setCredits(5);
@@ -403,21 +977,18 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
                         + "und sind in der Lage, die sich aus den jeweiligen Rechtsformen ergebenden \n"
                         + "betriebswirtschaftlichen Konsequenzen zu beurteilen. Die Studierenden kennen unterschiedliche \n"
                         + "Formen der Kooperation von Unternehmen bzw. Formen von Unternehmenszusammenschlüssen \n"
-                        + "sowie ausgewählte Aspekte der Unternehmensführung.\n\n"
-                        + "Fertigkeiten:\n"
+                        + "sowie ausgewählte Aspekte der Unternehmensführung.\n\n" + "Fertigkeiten:\n"
                         + "Die  Studierenden  wenden  das  theoretische  Fachwissen  auf  konkrete  betriebswirtschaftliche \n"
                         + "Fragestellungen  an.  Sie  sind  in  der  Lage,  quantitative  Ergebnisse  abzuleiten,  anhand  derer\n"
                         + "Entscheidungsalternativen zu beurteilen und da\n"
-                        + "raus Entscheidungsvorschläge abzuleiten.\n"
-                        + "Kompetenzen:\n"
+                        + "raus Entscheidungsvorschläge abzuleiten.\n" + "Kompetenzen:\n"
                         + "Die Studierenden denken in wirtschaftlichen Zusammenhängen und sind in der Lage, sich \n"
                         + "bezüglich grundlegender betriebswirtschaftlicher Sachverhalte eine fundierte Meinung zu bilden. \n"
                         + "Sie verstehen die \ngrundlegenden Konzepte zur Beurteilung wirtschaftlichen Erfolgs sowie den \n"
                         + "Zusammengang zwischen Ergebnis und Risikoverteilung.Die Studierenden sind in der Lage, \n"
                         + "dieses Wissen auf ihr Handeln zu überragen.");
         grundlagenBWL.setContents("Grundbegriffe und Erfolgsmaßstäbe der Betriebswirtschaftslehre\n "
-                + "Betriebswirtschaftliche Zielkonzeption\n "
-                + "Grundlagen der wertorientierten Unternehmensführung\n "
+                + "Betriebswirtschaftliche Zielkonzeption\n " + "Grundlagen der wertorientierten Unternehmensführung\n "
                 + "Rechtsformen und deren betriebswirtschaftliche Konsequenzen \n "
                 + "(insb. Unternehmensführung, Gewinnverteilung, Haftung, Finanzierung und Steuern)\n "
                 + "Unternehmenszusammenschlüsse\n "
@@ -427,9 +998,10 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
                         + "Tafelanschriebe. Gemeinsame Besprechung und Analyse aktueller wirtschaftlicher Ereignisse \n "
                         + "anhand von Presseartikeln. Studierende erarbeiten Lösungen zu Übungsaufgaben in \n "
                         + "Gruppenarbeit und präsentieren ihre Ergebnisse im Plenum");
-        grundlagenBWL.setReadingList("Jung (2013): Allgemeine Betriebswirtschaftslehre. 13. Auflage. Berlin: De Gruyter.\n"
-                + "Wöhe (2016): Einführung in die Allgemeine Betriebswirtschaftslehre. 26. Auflage. München: Vahlen\n"
-                + "Wöhe / Kaiser / Döring (2016): Übungsbuch zur allgemeinen Betriebswirtschaftslehre. 15. Auflage. München: Vahlen");
+        grundlagenBWL
+                .setReadingList("Jung (2013): Allgemeine Betriebswirtschaftslehre. 13. Auflage. Berlin: De Gruyter.\n"
+                        + "Wöhe (2016): Einführung in die Allgemeine Betriebswirtschaftslehre. 26. Auflage. München: Vahlen\n"
+                        + "Wöhe / Kaiser / Döring (2016): Übungsbuch zur allgemeinen Betriebswirtschaftslehre. 15. Auflage. München: Vahlen");
 
         AreaOfStudies bwl = areaOfStudiesJpaRepository.findByName("BWL");
         grundlagenBWL.setAreaOfStudies(bwl);
@@ -526,6 +1098,11 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             methoden.setName("Methoden");
             methoden.setColorRGB("255,197,0");
             areaOfStudiesJpaRepository.save(methoden);
+
+            AreaOfStudies wahl = new AreaOfStudies();
+            wahl.setName("Wahl/Projekt/Thesis");
+            wahl.setColorRGB("0,176,80");
+            areaOfStudiesJpaRepository.save(wahl);
         }
     }
 
