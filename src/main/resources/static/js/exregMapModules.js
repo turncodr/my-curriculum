@@ -70,8 +70,30 @@ function addNewSemester() {
             },
             drop: function (event) {
                 event.preventDefault();
-                if ($('#' + draggedElementId).hasClass("semester")) {
+                //because jQuery only passes the jQuery event object instead of the browser event object
+                event.dataTransfer = event.originalEvent.dataTransfer;
+                var draggedElementId = '#' + event.dataTransfer.getData("text");
                 
+                if ($(draggedElementId).hasClass("semester")) {
+                    var targetElementId = '#' + $(event.target).parents("div.semester").attr("id");
+                
+                    if (draggedElementId != event.target.id) {
+                        var modulesAreaDragged = $(draggedElementId).find("div.modulesArea");
+                        var modulesAreaTarget = $(targetElementId).find("div.modulesArea");
+                        var modulesDragged = modulesAreaDragged.find("div.module");
+                        var modulesTarget = modulesAreaTarget.find("div.module");
+                        modulesDragged.detach().appendTo(modulesAreaTarget);
+                        modulesTarget.detach().appendTo(modulesAreaDragged);
+                        checkPlaceholder(modulesAreaDragged);
+                        checkPlaceholder(modulesAreaTarget);
+                        function checkPlaceholder(modulesArea) {
+                            if (modulesArea !== undefined && modulesArea.children().length > 1) {
+                                modulesArea.find(".dragAndDropPlaceholder").remove();
+                            } else if (modulesArea !== undefined && modulesArea.children().length === 0) {
+                                modulesArea.append(dragAndDropModulePlaceholder.clone());
+                            }
+                        }
+                    }
                 }
             },
             dragstart: drag
