@@ -61,8 +61,21 @@ function addNewSemester() {
 
     var semester = $('<div></div>', {
         draggable: true,
-        "class": "card",
-        "id": semesterId
+        "class": "card semester",
+        "id": semesterId,
+        draggable: true,
+        on: {
+            dragover: function (event) {
+                event.preventDefault();
+            },
+            drop: function (event) {
+                event.preventDefault();
+                if ($('#' + draggedElementId).hasClass("semester")) {
+                
+                }
+            },
+            dragstart: drag
+        }
     });
 
     /**
@@ -81,6 +94,9 @@ function addNewSemester() {
                 //because jQuery only passes the jQuery event object instead of the browser event object
                 event.dataTransfer = event.originalEvent.dataTransfer;
                 var draggedElementId = event.dataTransfer.getData("text");
+                
+                if ($('#' + draggedElementId).hasClass("semester")) {return;}
+                
                 testAndSetPlaceholder(draggedElementId);
                 //semesterBody.find('.dragAndDropPlaceholder').remove();
                 $(this).find('.dragAndDropPlaceholder').remove();
@@ -110,6 +126,9 @@ function addNewSemester() {
                 //because jQuery only passes the jQuery event object instead of the browser event object
                 event.dataTransfer = event.originalEvent.dataTransfer;
                 var draggedElementId = event.dataTransfer.getData("text");
+                
+                if ($('#' + draggedElementId).hasClass("semester")) {return;}
+                
                 testAndSetPlaceholder(draggedElementId);
                 semesterBody.find('.dragAndDropPlaceholder').remove();
                 $('#' + draggedElementId).detach().appendTo(semesterBody);
@@ -189,6 +208,15 @@ function allowDrag(event) {
  */
 function moduleListDrop(event) {
     event.preventDefault();
+    var idDataTransfer = '#'+(event.dataTransfer.getData("text"));
+    if ($(idDataTransfer).hasClass("semester")) {
+        var modulesArea = $(idDataTransfer).find("div.modulesArea");
+        var modules = $(idDataTransfer).find("div.module");
+        modulesArea.empty();
+        $("#unmappedModulesList").append(modules);
+        modulesArea.append(dragAndDropModulePlaceholder.clone());
+        return;
+    }
     var moduleId = event.dataTransfer.getData("text");
     testAndSetPlaceholder(moduleId);
     $('#' + moduleId).detach().appendTo($('#unmappedModulesList'));
