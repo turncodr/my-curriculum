@@ -9,3 +9,12 @@
 .placeholderText {
     border: none;
 }
+
+#semesterContainer, #unmappedModulesList {
+    overflow: auto;
+    flex-basis: 0 !important;
+}
+
+#mapModulesTab.active {
+    display: flex;
+}
