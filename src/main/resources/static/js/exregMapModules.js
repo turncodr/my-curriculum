@@ -86,13 +86,6 @@ function addNewSemester() {
                         modulesTarget.detach().appendTo(modulesAreaDragged);
                         checkPlaceholder(modulesAreaDragged);
                         checkPlaceholder(modulesAreaTarget);
-                        function checkPlaceholder(modulesArea) {
-                            if (modulesArea !== undefined && modulesArea.children().length > 1) {
-                                modulesArea.find(".dragAndDropPlaceholder").remove();
-                            } else if (modulesArea !== undefined && modulesArea.children().length === 0) {
-                                modulesArea.append(dragAndDropModulePlaceholder.clone());
-                            }
-                        }
                     }
                 }
             },
@@ -234,9 +227,8 @@ function moduleListDrop(event) {
     if ($(idDataTransfer).hasClass("semester")) {
         var modulesArea = $(idDataTransfer).find("div.modulesArea");
         var modules = $(idDataTransfer).find("div.module");
-        modulesArea.empty();
-        $("#unmappedModulesList").append(modules);
-        modulesArea.append(dragAndDropModulePlaceholder.clone());
+        modules.detach().appendTo($("#unmappedModulesList"));
+        checkPlaceholder(modulesArea);
         return;
     }
     var moduleId = event.dataTransfer.getData("text");
@@ -326,6 +318,18 @@ function addStub(stub) {
             html: stub.code + ' ' + stub.title
         })
     ).appendTo($('#unmappedModulesList'));
+}
+
+/**
+ * Checks if a module area needs a placeholder or if an existing placeholder needs to be removed.
+ *
+ */
+function checkPlaceholder(modulesArea) {
+    if (modulesArea !== undefined && modulesArea.children().length > 1) {
+        modulesArea.find(".dragAndDropPlaceholder").remove();
+    } else if (modulesArea !== undefined && modulesArea.children().length === 0) {
+        modulesArea.append(dragAndDropModulePlaceholder.clone());
+    }
 }
 
 /**
