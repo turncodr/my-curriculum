@@ -27,9 +27,11 @@
     <script class="custom-script" src="../static/js/exregMapModules.js" th:src="@{/js/exregMapModules.js}"></script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="h-100 d-flex flex-column">
     <h1 th:text="#{exRegCreate.pageTitle}">StuPro anlegen</h1>
-    <hr class="pb-2"/>
+    <div>
+        <hr class="pb-2"/>
+    </div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a data-toggle="tab" class="nav-link active" role="tab" href="#exRegTab"
@@ -41,7 +43,7 @@
                 zuordnen</a>
         </li>
     </ul>
-    <div class="tab-content container-fluid p-3">
+    <div class="tab-content container-fluid p-3 flex-grow-1 d-flex flex-column">
         <div id="exRegTab" class="tab-pane fade show active" role="tabpanel">
             <div class="form-group row">
                 <label class="col-md-4 col-form-label" th:text="#{exReg.name}" for="exReg_name"></label>
@@ -59,9 +61,9 @@
             </div>
         </div>
 
-        <div id="mapModulesTab" class="tab-pane fade show" role="tabpanel">
-            <div class="row card-group py-3">
-                <div class="col-md-6 card-group">
+        <div id="mapModulesTab" class="tab-pane fade show flex-grow-1" role="tabpanel">
+            <div class="row card-group py-3 flex-grow-1">
+                <div class="col-md-6 card-group flex-grow-1">
                     <div class="card">
                         <!--  div that contains new semester-->
                         <div class="card-header">
@@ -75,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 card-group flex-grow-1">
                     <div class="card" ondrop="moduleListDrop(event);" ondragover="allowDrag(event);">
                         <div class="card-header">
                             <h2 class="d-inline" th:text="#{exRegCreate.moduleList}">Module</h2>
@@ -99,7 +101,9 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-success float-right" type="button" th:text="#{general.save}" onclick="save();">save
+        <div>
+            <button class="btn btn-success float-right" type="button" th:text="#{general.save}" onclick="save();">save
+        </div>
         </button>
     </div>
     <div th:replace="fragments/popup :: createModuleStub"></div>
