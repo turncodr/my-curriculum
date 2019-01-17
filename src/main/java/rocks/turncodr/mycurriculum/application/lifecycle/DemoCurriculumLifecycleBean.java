@@ -416,13 +416,13 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
     private Module createModuleCorporateFinance() {
         Module corporateFinance = new Module();
         corporateFinance.setTitle("Corporate Finance");
-        corporateFinance.setCode("WIB52");
+        corporateFinance.setCode("WIB51");
         corporateFinance.setSubtitle("");
         corporateFinance.setOfferFrequency("jedes Semester");
         corporateFinance.setModuleCoordinator("Prof. Dr. Josef Schürle");
         corporateFinance.setLecturers("Prof. Dr. Josef Schürle");
         corporateFinance.setTeachingLanguage("Deutsch");
-        corporateFinance.setSemester(3);
+        corporateFinance.setSemester(5);
         corporateFinance.setCredits(5);
         corporateFinance.setPrerequisites("Keine");
         corporateFinance.setRecommendedPrerequisites("Grundlagen der BWL; Betriebliches Rechnungswesen");
