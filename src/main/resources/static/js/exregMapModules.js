@@ -73,10 +73,10 @@ function addNewSemester() {
                 //because jQuery only passes the jQuery event object instead of the browser event object
                 event.dataTransfer = event.originalEvent.dataTransfer;
                 var draggedElementId = '#' + event.dataTransfer.getData("text");
-                
+
                 if ($(draggedElementId).hasClass("semester")) {
                     var targetElementId = '#' + $(event.target).parents("div.semester").attr("id");
-                
+
                     if (draggedElementId != event.target.id) {
                         var modulesAreaDragged = $(draggedElementId).find("div.modulesArea");
                         var modulesAreaTarget = $(targetElementId).find("div.modulesArea");
@@ -109,9 +109,9 @@ function addNewSemester() {
                 //because jQuery only passes the jQuery event object instead of the browser event object
                 event.dataTransfer = event.originalEvent.dataTransfer;
                 var draggedElementId = event.dataTransfer.getData("text");
-                
+
                 if ($('#' + draggedElementId).hasClass("semester")) {return;}
-                
+
                 testAndSetPlaceholder(draggedElementId);
                 //semesterBody.find('.dragAndDropPlaceholder').remove();
                 $(this).find('.dragAndDropPlaceholder').remove();
@@ -141,9 +141,9 @@ function addNewSemester() {
                 //because jQuery only passes the jQuery event object instead of the browser event object
                 event.dataTransfer = event.originalEvent.dataTransfer;
                 var draggedElementId = event.dataTransfer.getData("text");
-                
+
                 if ($('#' + draggedElementId).hasClass("semester")) {return;}
-                
+
                 testAndSetPlaceholder(draggedElementId);
                 semesterBody.find('.dragAndDropPlaceholder').remove();
                 $('#' + draggedElementId).detach().appendTo(semesterBody);
@@ -384,8 +384,22 @@ function save() {
         url: '/exreg/save',
         dataType: 'json',
         data: JSON.stringify(exregData),
-        success: function (data) {
-            alert(data.status); //do stuff when save was successful
+        success: ({data = null, messages = [], redirectTo = null}, textStatus, jqXHR) => {
+            if(redirectTo != null){
+                // store messages
+                sessionStorage.setItem('messages', JSON.stringify(messages));
+                // redirect to wherever we're told to
+                window.location.href = redirectTo;
+            } else{
+                // display messages here and now
+                messages.forEach((message) => {
+                    displayAlert(message);
+                });
+            }
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+            let response = JSON.parse(jqXHR.responseText);
+            displayAlert({type: 'ERROR', message: `${response.status} ${response.error}: ${response.message}`});
         }
     });
 }

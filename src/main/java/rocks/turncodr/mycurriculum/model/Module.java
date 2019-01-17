@@ -96,6 +96,18 @@ public class Module {
     @ManyToOne
     private AreaOfStudies areaOfStudies;
 
+    /**
+     * @return if subtitle is set: {@code code title. subtitle} <br/>
+     * if subtitle is not set: {@code code title}
+     */
+    public String getShortInfo() {
+        String shortInfo = code + " " + title;
+        if (subtitle != null && !subtitle.isEmpty()) {
+            shortInfo += ". " + subtitle;
+        }
+        return shortInfo;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,4 +1,8 @@
-package rocks.turncodr.mycurriculum.model;
+package rocks.turncodr.mycurriculum.json;
+
+import rocks.turncodr.mycurriculum.model.AreaOfStudies;
+import rocks.turncodr.mycurriculum.model.ExReg;
+import rocks.turncodr.mycurriculum.model.Module;
 
 import java.util.List;
 
