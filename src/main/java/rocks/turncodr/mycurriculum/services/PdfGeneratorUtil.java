@@ -36,7 +36,6 @@ public class PdfGeneratorUtil {
         }
 
         String processedHtml = templateEngine.process(templateName, context);
-        System.out.println(processedHtml);
         ByteArrayOutputStream os = null;
         try {
             os = new ByteArrayOutputStream();
@@ -47,7 +46,6 @@ public class PdfGeneratorUtil {
             renderer.createPDF(os, false);
             renderer.finishPDF();
 
-            System.out.println("PDF created successfully, returning...");
             return ResponseEntity.ok()
                     .contentLength(os.size())
                     .contentType(MediaType.parseMediaType("application/pdf"))
