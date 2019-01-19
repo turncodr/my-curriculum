@@ -40,7 +40,7 @@
         <div class="col-md-4" th:text="#{moduleList.module}">Module</div>
         <div class="col-md-4" th:text="#{moduleList.moduleCoordinator}">Module Coordinator</div>
     </div>
-    <div class="form-group form-row border p-1"
+    <div class="form-group form-row border p-1 v-center"
          th:each="module : ${moduleList}">
         <div class="col-md-2 my-1" th:if="${module.exReg}!=null">
             <div th:if="${module.exReg.curriculum}!=null">
