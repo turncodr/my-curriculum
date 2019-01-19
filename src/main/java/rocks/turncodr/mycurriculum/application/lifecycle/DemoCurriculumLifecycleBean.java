@@ -1092,7 +1092,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         if (areaOfStudies.isEmpty()) {
             AreaOfStudies informatik = new AreaOfStudies();
             informatik.setName("Informatik");
-            informatik.setColorRGB("253,235,9");
+            informatik.setColorRGB("253,235,16");
             areaOfStudiesJpaRepository.save(informatik);
 
             AreaOfStudies bwl = new AreaOfStudies();
