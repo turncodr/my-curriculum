@@ -1,0 +1,15 @@
+<!--suppress ThymeleafMessagesResolveInspection -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
+    <title th:text="#{home.pageTitle}"></title>
+
+</head>
+<body>
+<div id="content" class="text-center">
+    <p><h1 th:text="#{home.welcome}"></h1></p>
+    <p th:text="#{home.message}"></p>
+    <img th:src="@{../img/technologies.png}" />
+</div>
+</body>
+</html>
