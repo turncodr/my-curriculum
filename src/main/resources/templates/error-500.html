@@ -1,0 +1,37 @@
+<!--suppress ThymeleafMessagesResolveInspection -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{this :: .custom-css}, ~{this :: .custom-script})">
+    <title th:text="#{exRegCreate.pageTitle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--/* default css */-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!--/* custom css */-->
+    <link class="custom-css" rel="stylesheet" href="../static/css/error.css" th:href="@{/css/error.css}"/>
+
+    <!--/* default scripts */-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+
+    <!--/* custom scripts */-->
+    <script class="custom-script" th:inline="javascript">
+        var listOfUnmappedModules = /*[[${moduleList}]]*/ [];
+        var dropYourModuleHere = /*[[#{exRegCreate.dropYourModuleHere}]]*/ '';
+    </script>
+    <script class="custom-script" src="../static/js/exregMapModules.js" th:src="@{/js/exregMapModules.js}"></script>
+</head>
+<body class="h-100 d-flex flex-column">
+<header th:replace="fragments/header :: header"></header>
+<div>
+    <p><h3  class="text-center">:(</h3></p>
+    <h1><p class="text-center" th:text="#{error-500.message}">Ein interner Serverfehler ist eingetreten.</p></h1>
+    <a href="/" th:text="#{error-404.return}"><p  class="text-center">Zurück zur Startseite.</p></a>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
