@@ -9,6 +9,10 @@
 .table-module-overview td {
     border: 1px solid #6d6e71;
     vertical-align:top;
+    word-wrap: break-word; /*simple break-word for chrome, since it is not supporting auto hyphens*/
+    -ms-hyphens: auto; /*for edge compatibility*/
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
     hyphens: auto;
     width: 3.125%;
 }
