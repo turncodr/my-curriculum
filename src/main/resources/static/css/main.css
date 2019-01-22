@@ -43,3 +43,11 @@ footer .icon-foreground {
     justify-content: center;
     align-items: center;
 }
+
+.w-40 {
+    width: 40%;
+}
+
+.w-60 {
+    width: 60%;
+}
