@@ -61,14 +61,10 @@ public class ModuleController {
         Optional<Module> moduleResult = moduleJpaRepository.findById(id);
         if (moduleResult.isPresent()) {
             Module module = moduleResult.get();
-            if (module.getExReg() == null) {
-                model.addAttribute("module", module);
-                List<AreaOfStudies> areaOfStudiesList = areaOfStudiesJpaRepository.findAll();
-                model.addAttribute("areaOfStudies", areaOfStudiesList);
-                model.addAttribute("editMode", true);
-            } else {
-                model.addAttribute("error", "module.moduleAlreadyMapped");
-            }
+            model.addAttribute("module", module);
+            List<AreaOfStudies> areaOfStudiesList = areaOfStudiesJpaRepository.findAll();
+            model.addAttribute("areaOfStudies", areaOfStudiesList);
+            model.addAttribute("editMode", true);
         } else {
             model.addAttribute("error", "module.moduleDoesntExist");
         }
@@ -107,6 +103,9 @@ public class ModuleController {
             model.addAttribute("editMode", true);
             return "moduleCreate";
         } else {
+            Module oldModule = moduleJpaRepository.getOne(id);
+            module.setSemester(oldModule.getSemester());
+            module.setExReg(oldModule.getExReg());
             moduleJpaRepository.save(module);
             return "redirect:/module/list";
         }
