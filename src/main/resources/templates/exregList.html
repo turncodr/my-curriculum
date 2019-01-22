@@ -41,7 +41,7 @@
              th:each="exReg : ${exRegList}">
             <div class="col-md-3 my-1"> <a th:href="@{/module/list(exreg=${exReg.id})}" th:text="${exReg.name}">-</a></div>
             <div class="col-md-2 my-1"> <a th:href="@{/module/list(exreg=${exReg.id})}" th:text="#{exReg.from}+' '+${exReg.validFrom}">-</a></div>
-            <div class="col-md-2 my-1" th:if="${exReg.curriculum}!=null">
+            <div class="col-md-1 my-1" th:if="${exReg.curriculum}!=null">
                 <div th:text="${exReg.curriculum.acronym}"/>
             </div>
             <div class="col-md-2 my-1" th:unless="${exReg.curriculum}!=null">-</div>
@@ -49,9 +49,10 @@
                 <div th:text="${exReg.curriculum.name}"/>
             </div>
             <div class="col-md-3 my-1" th:unless="${exReg.curriculum}!=null">-</div>
-            <div class="col-md-2">
-                <a role="button" class="btn btn-danger float-right"  th:href="@{/exreg/syllabus/pdf(id=${exReg.id})}">PDF</a>
-                <a role="button" class="btn btn-info float-right mr-1"  th:href="@{/exreg/syllabus(id=${exReg.id})}">HTML</a>
+            <div class="col-md-3 d-flex justify-content-end">
+                <a role="button" class="btn btn-info mr-1"  th:href="@{/exreg/overview(id=${exReg.id})}" th:text="#{exRegList.toOverview}">Studienpln</a>
+                <a role="button" class="btn btn-info mr-1"  th:href="@{/exreg/syllabus(id=${exReg.id})}" th:text="#{exRegList.text}">Text</a>
+                <a role="button" class="btn btn-danger"  th:href="@{/exreg/syllabus/pdf(id=${exReg.id})}" th:text="#{exRegList.pdf}">PDF</a>
             </div>
         </div>
     </div>
