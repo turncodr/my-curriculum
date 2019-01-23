@@ -12,8 +12,8 @@
                 <h1 th:text="#{exregSyllabus.syllabus}"></h1>
             </div>
             <div>
-                <a class="btn btn-primary" th:text=#{exregSyllabus.toOverview} th:href="@{/exreg/overview(id=${exreg.id})}"></a>
-                <a class="btn btn-primary" th:text=#{general.pdf} th:href="@{/exreg/syllabus/pdf(id=${exreg.id})}"></a>
+                <a class="btn btn-info" th:text=#{exregSyllabus.toOverview} th:href="@{/exreg/overview(id=${exreg.id})}"></a>
+                <a class="btn btn-danger" th:text=#{general.pdf} th:href="@{/exreg/syllabus/pdf(id=${exreg.id})}"></a>
             </div>
         </div>
         <h3 th:text="${exreg.name}"></h3>
