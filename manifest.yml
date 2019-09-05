@@ -1,6 +1,6 @@
 applications:
 - name: my-curriculum
   path: target/my-curriculum.jar
-  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v3.19
+  buildpack: java_buildpack
   memory: 1G
   disk_quota: 256M 
