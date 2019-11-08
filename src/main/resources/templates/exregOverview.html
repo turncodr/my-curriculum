@@ -42,7 +42,7 @@
                     <td th:each="module : ${exRegModules}"
                         th:if="${module.semester} == ${i}" th:id="${module.id}"
                         th:colspan="${module.credits}" class="module"
-                        th:style="'background-color: rgb(' + ${module.areaOfStudies.colorRGB} + ');'"
+                        th:style="'background-color: rgb(' + ${module.areaOfStudies.colorRGB} + '); color:' + ${module.areaOfStudies.calcTextColor()}"
                         th:onmouseover="|this.style.backgroundColor='rgba(${module.areaOfStudies.colorRGB},0.7)';|"
                         th:onmouseout="|this.style.backgroundColor='rgb(${module.areaOfStudies.colorRGB})';|"
                         onclick="showModuleDetails(event);">
