@@ -51,20 +51,6 @@ public class AreaOfStudies implements Comparable<AreaOfStudies> {
     }
 
     /**
-     * Calculates if black or white has the highest contrast to its own color. <br>
-     * E.g if the area of studies color is black white is returned and vice-versa.
-     * @return Either "black" or "white" as a String
-     */
-    @SuppressWarnings("checkstyle:magicnumber")
-    public String calcTextColor() {
-        int b = color & 0xFF, g = (color & 0xFF00) >>> 8, r = (color & 0xFF0000) >>> 16;
-        final int redWeight = 299, greenWeight = 587, blueWeight = 114; //weight definition of the colors, change it if you want different results
-        final int divisor = redWeight + greenWeight + blueWeight;
-        int yiq = ((r * redWeight) + (g * greenWeight) + (b * blueWeight)) / divisor; //division is needed so that we stay in the rgb value range
-        return (yiq >= 128) ? "black" : "white";
-    }
-
-    /**
      *
      *Shouldn't be used! Use setColorRGB instead.
      */
