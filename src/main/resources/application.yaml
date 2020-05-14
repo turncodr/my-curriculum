@@ -1,0 +1,14 @@
+spring:
+  messages:
+    basename: i18n/messages
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+area-of-studies:
+  min-color-offset: 40
+  red-weight: 299
+  green-weight: 587
+  blue-weight: 114

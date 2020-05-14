@@ -16,6 +16,7 @@ import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.model.Syllabus;
 import rocks.turncodr.mycurriculum.model.Syllabus.Semester;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
+import rocks.turncodr.mycurriculum.services.AreaOfStudiesUtil;
 import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
 import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
 import rocks.turncodr.mycurriculum.services.ModuleJpaRepository;
@@ -57,6 +58,9 @@ public class ExRegController {
 
     @Autowired
     private PdfConfigManager pdfConfigManager;
+
+    @Autowired
+    private AreaOfStudiesUtil areaOfStudiesUtil;
 
     @GetMapping("/exreg/create")
     public String getExRegCreate(Model model) {
@@ -181,6 +185,7 @@ public class ExRegController {
                 areaOfStudiesUsed.add(module.getAreaOfStudies());
             }
             model.addAttribute("areaOfStudiesUsed", areaOfStudiesUsed);
+            model.addAttribute("areaOfStudiesUtil", areaOfStudiesUtil);
         } else {
             model.addAttribute("error", "exregSyllabus.exregDoesntExist");
         }
