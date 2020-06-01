@@ -13,6 +13,10 @@
     margin: 0 0.25rem;
 }
 
+body {
+    background-color: #a9a9a9;
+}
+
 footer .icon-background-circle {
     position: absolute;
     top: 0.2rem;
