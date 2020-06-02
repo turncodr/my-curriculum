@@ -1,7 +1,7 @@
 dist: trusty
 language: java
 jdk:
-- oraclejdk14
+- oraclejdk11
 deploy:
   provider: cloudfoundry
   api: https://api.ng.bluemix.net
