@@ -16,7 +16,10 @@
 body {
     background-color: #a9a9a9;
 }
-
+#content a:not(.btn) {
+    color: black;
+    text-shadow: black 1px 1px 10px;
+}
 footer .icon-background-circle {
     position: absolute;
     top: 0.2rem;
