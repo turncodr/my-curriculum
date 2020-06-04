@@ -73,12 +73,11 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         ExReg mkib = new ExReg();
         mkib.setName("Medien-und Kommunikationstechnik Bachelor");
         mkib.setValidFrom(Date.valueOf("2018-10-01"));
-        mkib.setCurriculum(curriculum.get(0));
+        mkib.setCurriculum(curriculum.get(2));
         mkib = exregJpaRepository.save(mkib);
         System.out.println(mkib.getId());
 
         this.createSemester1Mkib(mkib);
-        this.createSemester2Mkib(mkib);
     }
 
 
@@ -863,11 +862,6 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
 
     }
 
-    private void createSemester2Mkib(ExReg mkib) {
-        Module grundlagenInformatik = this.createModuleGrundlagenInformatik();
-        grundlagenInformatik.setExReg(mkib);
-        moduleJpaRepository.save(grundlagenInformatik);
-    }
 
     private Module createModulePraktikumFotografie() {
         Module praktikumFotografie = new Module();
