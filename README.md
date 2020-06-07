@@ -3,9 +3,9 @@ A cloud-native application to manage the curriculum and syllabi handbooks of deg
 
 ## Getting Started
 The following steps will take you to the start:
-The prerequisite to work on this project is to install JDK 11 (or later) on your system.
+The prerequisite to work on this project is to install JDK 8 (or later) on your system, though we are working on an update to JDK 11.
 
-Next install the project building tool Mavev (https://maven.apache.org/install.html).
+Next install the project building tool Maven (https://maven.apache.org/install.html).
 
 The third program you'll need to participate is the version control tool git.
 
