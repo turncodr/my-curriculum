@@ -39,11 +39,12 @@
                 <tbody>
                 <tr th:each="i : ${#numbers.sequence(exRegSemester,1)}">
                     <td th:text="${i}" class="semester"></td>
+
                     <!--/*@thymesVar id="#module" type="rocks.turncodr.mycurriculum.model.Module"*/-->
                     <td th:each="m : ${exRegModules}"
                         th:if="${m.semester} == ${i}" th:id="${m.id}"
                         th:colspan="${m.credits}" class="module"
-                        th:style="'background-color: rgb('+${m.areaOfStudies.colorRGB}+');'"
+                        th:style="'background-color: rgb('+${m.areaOfStudies.colorRGB}+');'
                         onclick="showModuleDetails(event);">
                         <p th:text="${m.title}" class="my-0 mx-1"></p>
                     </td>

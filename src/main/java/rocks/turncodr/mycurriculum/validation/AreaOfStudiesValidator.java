@@ -3,6 +3,7 @@ package rocks.turncodr.mycurriculum.validation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -21,7 +22,9 @@ public class AreaOfStudiesValidator implements Validator {
     @Autowired
     private AreaOfStudiesJpaRepository areaOfStudiesJpaRepository;
 
-    private static final int MIN_COLOR_OFFSET = 40;
+    @Autowired
+    @Qualifier("minColorOffset")
+    private int minColorOffset;
     private static final int SQUARE = 2;
     private static final double SQUARE_ROOT = 0.5;
     private boolean isInEditValidation = false;
@@ -58,7 +61,7 @@ public class AreaOfStudiesValidator implements Validator {
                 colorDifference += Math.pow((existingColor[i] - newColor[i]), SQUARE);
             }
             colorDifference = (int) Math.pow(colorDifference, SQUARE_ROOT); //Calculates the 3D offset to an existing color
-            if (colorDifference <= MIN_COLOR_OFFSET) {
+            if (colorDifference <= minColorOffset) {
                 if (!isInEditValidation) {
                     errors.rejectValue("color", "areaOfStudiesCreate.ColorError");
                     break;

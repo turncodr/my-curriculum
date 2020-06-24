@@ -117,7 +117,6 @@ public class AreaOfStudiesController {
     private String intToRGB(int colorAsInt) {
         colorAsInt >>>= 0;
         int b = colorAsInt & 0xFF, g = (colorAsInt & 0xFF00) >>> 8, r = (colorAsInt & 0xFF0000) >>> 16;
-
         return r + "," + g + "," + b;
     }
 }

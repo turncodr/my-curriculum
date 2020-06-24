@@ -43,6 +43,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         this.createModules();
         this.createCurriculum();
         this.createExregWIB();
+        this.createExregMKIB();
     }
 
     /**
@@ -66,6 +67,19 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         this.createSemester6Wib(wib);
         this.createSemester7Wib(wib);
     }
+
+    private void createExregMKIB() {
+        List<Curriculum> curriculum = curriculumService.findAll();
+        ExReg mkib = new ExReg();
+        mkib.setName("Medien-und Kommunikationstechnik Bachelor");
+        mkib.setValidFrom(Date.valueOf("2018-10-01"));
+        mkib.setCurriculum(curriculum.get(2));
+        mkib = exregJpaRepository.save(mkib);
+        System.out.println(mkib.getId());
+
+        this.createSemester1Mkib(mkib);
+    }
+
 
     private void createSemester7Wib(ExReg wib) {
         Module wissenschaftlichesArbeiten = this.createModuleWissenschaftlichesArbeiten();
@@ -841,6 +855,38 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         moduleJpaRepository.save(praktikumProgrammieren);
     }
 
+    private void createSemester1Mkib(ExReg mkib) {
+        Module medien = this.createModulePraktikumFotografie();
+        medien.setExReg(mkib);
+        moduleJpaRepository.save(medien);
+
+    }
+
+
+    private Module createModulePraktikumFotografie() {
+        Module praktikumFotografie = new Module();
+        praktikumFotografie.setTitle("Praktikum Fotografie");
+        praktikumFotografie.setCode("MKIB15");
+        praktikumFotografie.setSubtitle("");
+        praktikumFotografie.setOfferFrequency("jedes Semester");
+        praktikumFotografie.setModuleCoordinator("Prof. Dr. Steffen Schanz");
+        praktikumFotografie.setLecturers("Prof. Dr. Steffen Schanz");
+        praktikumFotografie.setTeachingLanguage("Deutsch");
+        praktikumFotografie.setSemester(1);
+        praktikumFotografie.setCredits(5);
+        praktikumFotografie.setPrerequisites("Keine");
+        praktikumFotografie.setRecommendedPrerequisites("Keine");
+        praktikumFotografie.setLearningOutcomes("Dieses Modul soll Studierenden die Grundlagen der objektorientierten Programmierung der Programmiersprache Java vermitteln und sie in die Lage versetzen, selbständig einfachere Java Programme   zu   entwerfen   und   zu   implementieren.");
+        praktikumFotografie.setContents("Klassen, Objekte, Datenfelder, Konstruktoren, Methoden");
+        praktikumFotografie.setTeachingMethodology("Betreute Rechnerübungen, Folien, Tafel");
+        praktikumFotografie.setReadingList("David J. Barnes und Michael Kölling (2017): Java  lernen  mit  BlueJ:  Objects  first - Eine Einführung in Java. 6. Auflage. Pearson Studium.");
+
+        AreaOfStudies medien = areaOfStudiesJpaRepository.findByName("Medien-und Kommunikationstechnik");
+        praktikumFotografie.setAreaOfStudies(medien);
+
+        return praktikumFotografie;
+    }
+
     private Module createModulePraktikumProgrammieren() {
         Module praktikumProgrammieren = new Module();
         praktikumProgrammieren.setTitle("Praktikum Programmierung");
@@ -1033,6 +1079,18 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             wim.setAcronym("3WIM");
             curriculum.add(wim);
             curriculumService.saveAll(curriculum);
+
+            Curriculum mkib = new Curriculum();
+            mkib.setName("Medien-und Kommunikationstechnik");
+            mkib.setDegree("Bachelor of Science (BSc.)");
+            mkib.setAcronym("3MKIB");
+            curriculum.add(mkib);
+            Curriculum mkim = new Curriculum();
+            mkim.setName("Medien-und Kommunikationstechnik");
+            mkim.setDegree("Master of Science (MSc.)");
+            mkim.setAcronym("3MKIM");
+            curriculum.add(mkim);
+            curriculumService.saveAll(curriculum);
         }
     }
 
@@ -1120,6 +1178,22 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             demo5.setAreaOfStudies(wahl);
             modules.add(demo5);
 
+            Module demo6 = new Module();
+            demo6.setTitle("Praktikum Fotografie");
+            demo6.setCode("MKIB15");
+            demo6.setSubtitle("");
+            demo6.setOfferFrequency("jedes Semester");
+            demo6.setModuleCoordinator("Prof. Dr. Steffan Schenze");
+            demo6.setLecturers("Prof. Dr. Steffan Schenze");
+            demo6.setTeachingLanguage("Deutsch");
+            demo6.setSemester(1);
+            demo6.setCredits(5);
+            demo6.setPrerequisites("Bestandene Zwischenprüfung");
+            demo6.setRecommendedPrerequisites("alle Module der Semester 1-3");
+            AreaOfStudies medien = areaOfStudiesJpaRepository.findByName("Medien-und Kommunikationstechnik");
+            demo6.setAreaOfStudies(medien);
+            modules.add(demo6);
+
             moduleJpaRepository.saveAll(modules);
         }
     }
@@ -1132,6 +1206,11 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             informatik.setName("Informatik");
             informatik.setColorRGB("253,235,16");
             areaOfStudiesJpaRepository.save(informatik);
+
+            AreaOfStudies medien = new AreaOfStudies();
+            medien.setName("Medien-und Kommunikationstechnik");
+            medien.setColorRGB("0,255,255");
+            areaOfStudiesJpaRepository.save(medien);
 
             AreaOfStudies bwl = new AreaOfStudies();
             bwl.setName("BWL");
