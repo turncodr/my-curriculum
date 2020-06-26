@@ -43,6 +43,10 @@
     height: 5rem;
 }
 
+table tbody td:hover{
+    opacity: 0.7;
+}
+
 /* ---------- .table-module-overview end ---------- */
 
 .modal-module-overview {
