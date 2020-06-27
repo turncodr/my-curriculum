@@ -40,7 +40,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
     public void start() {
         running = true;
         this.createAreaOfStudies();
-        this.createModules();
+
         this.createCurriculum();
         this.createExregWIB();
         this.createExregMKIB();
@@ -1091,110 +1091,6 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             mkim.setAcronym("3MKIM");
             curriculum.add(mkim);
             curriculumService.saveAll(curriculum);
-        }
-    }
-
-    /**
-     * Creates example modules and saves them to the database.
-     */
-    @SuppressWarnings("checkstyle:magicnumber")
-    private void createModules() {
-        List<Module> modules = moduleJpaRepository.findAll();
-
-        if (modules.isEmpty()) {
-            Module demo1 = new Module();
-            demo1.setTitle("Grundlagen der Betriebswirtschaftslehre");
-            demo1.setCode("WIB11");
-            demo1.setSubtitle("");
-            demo1.setOfferFrequency("jedes Semester");
-            demo1.setModuleCoordinator("Prof. Dr. Josef Schürle");
-            demo1.setLecturers("Prof. Dr. Josef Schürle");
-            demo1.setTeachingLanguage("Deutsch");
-            demo1.setSemester(1);
-            demo1.setCredits(5);
-            demo1.setPrerequisites("Keine");
-            demo1.setRecommendedPrerequisites("Keine");
-            AreaOfStudies bwl = areaOfStudiesJpaRepository.findByName("BWL");
-            demo1.setAreaOfStudies(bwl);
-            modules.add(demo1);
-            Module demo2 = new Module();
-            demo2.setTitle("Statistik");
-            demo2.setCode("WIB13");
-            demo2.setSubtitle("");
-            demo2.setOfferFrequency("jedes Semester");
-            demo2.setModuleCoordinator("Prof. Dr. Christian Decker");
-            demo2.setLecturers("Prof. Dr. Christian Decker");
-            demo2.setTeachingLanguage("Deutsch");
-            demo2.setSemester(1);
-            demo2.setCredits(5);
-            demo2.setPrerequisites("Online Testat bestanden");
-            demo2.setRecommendedPrerequisites("Keine");
-            AreaOfStudies mathe = areaOfStudiesJpaRepository.findByName("Mathematik");
-            demo2.setAreaOfStudies(mathe);
-            modules.add(demo2);
-            Module demo3 = new Module();
-            demo3.setTitle("Fortgeschrittene Programmierung");
-            demo3.setCode("WIB26");
-            demo3.setSubtitle("");
-            demo3.setOfferFrequency("jedes Semester");
-            demo3.setModuleCoordinator("Prof. Dr. Martin Schmollinger");
-            demo3.setLecturers("Prof. Dr. Martin Schmollinger");
-            demo3.setTeachingLanguage("Deutsch");
-            demo3.setSemester(2);
-            demo3.setCredits(5);
-            demo3.setPrerequisites("Keine");
-            demo3.setRecommendedPrerequisites("Grundlagen der Informatik");
-            AreaOfStudies informatik = areaOfStudiesJpaRepository.findByName("Informatik");
-            demo3.setAreaOfStudies(informatik);
-            modules.add(demo3);
-            Module demo4 = new Module();
-            demo4.setTitle("Software - Engineering");
-            demo4.setCode("WIB33");
-            demo4.setSubtitle("");
-            demo4.setOfferFrequency("jedes Semester");
-            demo4.setModuleCoordinator("Prof. Dr. Christian Decker");
-            demo4.setLecturers("Prof. Dr. Christian Decker");
-            demo4.setTeachingLanguage("Deutsch");
-            demo4.setSemester(3);
-            demo4.setCredits(5);
-            demo4.setPrerequisites("Keine");
-            demo4.setRecommendedPrerequisites("Keine");
-            AreaOfStudies methoden = areaOfStudiesJpaRepository.findByName("Methoden");
-            demo4.setAreaOfStudies(methoden);
-            modules.add(demo4);
-            Module demo5 = new Module();
-            demo5.setTitle("Berufspraktisches Semester");
-            demo5.setCode("WIB41");
-            demo5.setSubtitle("");
-            demo5.setOfferFrequency("jedes Semester");
-            demo5.setModuleCoordinator("Prof. Dr. Alexander Rossmann");
-            demo5.setLecturers("Prof. Dr. Alexander Rossmann");
-            demo5.setTeachingLanguage("Deutsch");
-            demo5.setSemester(4);
-            demo5.setCredits(30);
-            demo5.setPrerequisites("Bestandene Zwischenprüfung");
-            demo5.setRecommendedPrerequisites("alle Module der Semester 1-3");
-            AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
-            demo5.setAreaOfStudies(wahl);
-            modules.add(demo5);
-
-            Module demo6 = new Module();
-            demo6.setTitle("Praktikum Fotografie");
-            demo6.setCode("MKIB15");
-            demo6.setSubtitle("");
-            demo6.setOfferFrequency("jedes Semester");
-            demo6.setModuleCoordinator("Prof. Dr. Steffan Schenze");
-            demo6.setLecturers("Prof. Dr. Steffan Schenze");
-            demo6.setTeachingLanguage("Deutsch");
-            demo6.setSemester(1);
-            demo6.setCredits(5);
-            demo6.setPrerequisites("Bestandene Zwischenprüfung");
-            demo6.setRecommendedPrerequisites("alle Module der Semester 1-3");
-            AreaOfStudies medien = areaOfStudiesJpaRepository.findByName("Medien-und Kommunikationstechnik");
-            demo6.setAreaOfStudies(medien);
-            modules.add(demo6);
-
-            moduleJpaRepository.saveAll(modules);
         }
     }
 
