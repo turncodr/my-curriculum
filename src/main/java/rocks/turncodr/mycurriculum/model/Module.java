@@ -1,21 +1,22 @@
 package rocks.turncodr.mycurriculum.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Entity module.
  */
 @Entity
 public class Module {
+
+    @ElementCollection
+    public List<String> dependentModules = new ArrayList<String>();
+    public ModuleType moduleType = ModuleType.MAIN_MODULE;
 
     public static final Comparator<Module> ALPHABETICAL_ORDER = new Comparator<Module>() {
         public int compare(Module module1, Module module2) {
@@ -250,5 +251,26 @@ public class Module {
 
     public void setAreaOfStudies(AreaOfStudies areaOfStudies) {
         this.areaOfStudies = areaOfStudies;
+    }
+
+    public ModuleType getModuleType() {
+        return this.moduleType;
+    }
+
+    public void setModuleType(ModuleType moduleType) {
+        this.moduleType = moduleType;
+    }
+
+    public void addDependentModule(String moduleCode) {
+        if (!dependentModules.contains(moduleCode))
+            this.dependentModules.add(moduleCode);
+    }
+
+    public void deleteDependentModule(String moduleCode) {
+        dependentModules.removeIf(code -> code.equals(moduleCode));
+    }
+
+    public List<String> getDependentModules() {
+        return dependentModules;
     }
 }

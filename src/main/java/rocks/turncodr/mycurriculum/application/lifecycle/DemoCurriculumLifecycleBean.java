@@ -3,10 +3,7 @@ package rocks.turncodr.mycurriculum.application.lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
-import rocks.turncodr.mycurriculum.model.AreaOfStudies;
-import rocks.turncodr.mycurriculum.model.Curriculum;
-import rocks.turncodr.mycurriculum.model.ExReg;
-import rocks.turncodr.mycurriculum.model.Module;
+import rocks.turncodr.mycurriculum.model.*;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
 import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
 import rocks.turncodr.mycurriculum.services.ExRegJpaRepository;
@@ -108,6 +105,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul4 = new Module();
         wahlpflichtmodul4.setTitle("Wahlpflichtmodul 4");
         wahlpflichtmodul4.setCode("WIB73");
+        wahlpflichtmodul4.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul4.setSubtitle("");
         wahlpflichtmodul4.setOfferFrequency("jedes Semester");
         wahlpflichtmodul4.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -132,6 +130,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul3 = new Module();
         wahlpflichtmodul3.setTitle("Wahlpflichtmodul 3");
         wahlpflichtmodul3.setCode("WIB72");
+        wahlpflichtmodul3.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul3.setSubtitle("");
         wahlpflichtmodul3.setOfferFrequency("jedes Semester");
         wahlpflichtmodul3.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -156,6 +155,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul2 = new Module();
         wahlpflichtmodul2.setTitle("Wahlpflichtmodul 2");
         wahlpflichtmodul2.setCode("WIB71");
+        wahlpflichtmodul2.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul2.setSubtitle("");
         wahlpflichtmodul2.setOfferFrequency("jedes Semester");
         wahlpflichtmodul2.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -316,6 +316,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul = new Module();
         wahlpflichtmodul.setTitle("Wahlpflichtmodul 1");
         wahlpflichtmodul.setCode("WIB55");
+        wahlpflichtmodul.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul.setSubtitle("");
         wahlpflichtmodul.setOfferFrequency("jedes Semester");
         wahlpflichtmodul.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
