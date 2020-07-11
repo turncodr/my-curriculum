@@ -34,7 +34,7 @@
                     </thead>
 
                     <tbody>
-                        <th:block th:each="semester : ${syllabus.semesters}">
+                        <th:block th:each="semester : ${syllabus.semesters}" th:unless="${semester.number} == 0">
                             <tr class="table-primary">
                                 <td th:text="#{general.semester} + ' ' + ${semester.number}" colspan="2">Semester 1</td>
                                 <td th:text="${semester.credits}">30</td>
