@@ -262,8 +262,9 @@ public class Module {
     }
 
     public void addDependentModule(String moduleCode) {
-        if (!dependentModules.contains(moduleCode))
+        if (!dependentModules.contains(moduleCode)) {
             this.dependentModules.add(moduleCode);
+        }
     }
 
     public void deleteDependentModule(String moduleCode) {
