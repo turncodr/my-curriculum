@@ -1,5 +1,8 @@
 package rocks.turncodr.mycurriculum.model;
 
+/**
+ *  Attribute for Module.
+ */
 public enum ModuleType {
     MAIN_MODULE(0),
     PLACEHOLDER_MODULE(1),
@@ -7,7 +10,7 @@ public enum ModuleType {
 
     private int index;
 
-    private ModuleType(int index) {
+    ModuleType(int index) {
         this.index = index;
     }
 
