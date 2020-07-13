@@ -48,6 +48,20 @@
                         <div class="col-md-4">
                             <input class="form-control" type="text" th:field="*{code}" id="code"/>
                         </div>
+                        <div class="col-md-4 moduletype-selection" th:value="*{moduleType.getIndex()}">
+                            <label id="moduletype-text">Wahlpflichtfach</label>
+                            <select id="moduletype-dropdown" class="col-md-7 form-control" style="display: none">
+                                <option value="1">Platzhaltermodul</option>
+                                <option value="2">Wahlpflichtmodul</option>
+                            </select>
+                            <label class="switch">
+                                <input type="hidden" id="selected_module_type" value="MAIN_MODULE"
+                                       th:classappend="${#fields.hasErrors('moduleType')} ? is-invalid : ''"
+                                       th:field="*{moduleType}">
+                                <input type="checkbox" id="module-type-checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label" th:text="#{module.title}" for="title">Modulname</label>
