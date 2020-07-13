@@ -3,9 +3,7 @@ package rocks.turncodr.mycurriculum.application.lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.stereotype.Component;
-import rocks.turncodr.mycurriculum.model.AreaOfStudies;
-import rocks.turncodr.mycurriculum.model.Curriculum;
-import rocks.turncodr.mycurriculum.model.ExReg;
+import rocks.turncodr.mycurriculum.model.*;
 import rocks.turncodr.mycurriculum.model.Module;
 import rocks.turncodr.mycurriculum.services.AreaOfStudiesJpaRepository;
 import rocks.turncodr.mycurriculum.services.CurriculumJpaRepository;
@@ -59,6 +57,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wib = exregJpaRepository.save(wib);
         System.out.println(wib.getId());
 
+        this.createSemester0WiB(wib);
         this.createSemester1Wib(wib);
         this.createSemester2Wib(wib);
         this.createSemester3Wib(wib);
@@ -79,7 +78,32 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
 
         this.createSemester1Mkib(mkib);
     }
+    private void createSemester0WiB(ExReg wib) {
 
+        Module electiveModuleWIProjekt = this.createElectiveModuleWIProjekt();
+        electiveModuleWIProjekt.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleWIProjekt);
+
+        Module electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik = this.createElectiveModuleGesellschaftlicheAspektederWirtschaftsinformatik();
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik);
+
+        Module electiveModuleAgileOrganization = this.createElectiveModuleAgileOrganization();
+        electiveModuleAgileOrganization.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleAgileOrganization);
+
+        Module electiveModuleSocialMedia = this.createElectiveModuleSocialMedia();
+        electiveModuleSocialMedia.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleSocialMedia);
+
+        Module electiveModuleProductManagementEssentials = this.createElectiveModuleProductManagementEssentials();
+        electiveModuleProductManagementEssentials.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleProductManagementEssentials);
+
+        Module electiveModuleUnternehmensmodellierung2 = this.createElectiveModuleUnternehmensmodellierung2();
+        electiveModuleUnternehmensmodellierung2.setExReg(wib);
+        moduleJpaRepository.save(electiveModuleUnternehmensmodellierung2);
+    }
 
     private void createSemester7Wib(ExReg wib) {
         Module wissenschaftlichesArbeiten = this.createModuleWissenschaftlichesArbeiten();
@@ -104,10 +128,161 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
 
     }
 
+    private Module createElectiveModuleUnternehmensmodellierung2() {
+        Module electiveModuleUnternehmensmodellierung2  = new Module();
+        electiveModuleUnternehmensmodellierung2.setTitle("Wahlpflichtmodul: Unternehmensmodellierung 2");
+        electiveModuleUnternehmensmodellierung2.setCode("WIBW");
+        electiveModuleUnternehmensmodellierung2.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleUnternehmensmodellierung2.setSubtitle("");
+        electiveModuleUnternehmensmodellierung2.setOfferFrequency("jedes Semester");
+        electiveModuleUnternehmensmodellierung2.setModuleCoordinator("Prof. Dr. Philipp Zeise");
+        electiveModuleUnternehmensmodellierung2.setLecturers("Prof. Dr. Philipp Zeise");
+        electiveModuleUnternehmensmodellierung2.setTeachingLanguage("Deutsch");
+        electiveModuleUnternehmensmodellierung2.setSemester(0);
+        electiveModuleUnternehmensmodellierung2.setCredits(5);
+        electiveModuleUnternehmensmodellierung2.setPrerequisites("Keine");
+        electiveModuleUnternehmensmodellierung2.setRecommendedPrerequisites("keine");
+        electiveModuleUnternehmensmodellierung2.setLearningOutcomes("Ziele dieses Moduls sind es, den Studierenden den methodischen Umgang mit Standardsoftware-Systemen zu vermitteln, sowie ein integratives Bild der bisher in einzelnen Modulen erworbenen Kenntnisse zu vermitteln. Es wird ein Unternehmensszenario aus verschiedenen Perspektiven heraus bearbeitet. Dies beginnt mit der Analyse und Modellierung relevanter Geschäftsprozesse in den Bereichen Verkauf und Versand, Disposition, Einkauf und Bestandsführung, Produktionsplanung und Steuerung und Finanzbuchhaltung. Mit Hilfe eines marktgängigen Standard-ERP-Systems wird dieses Szenario auf Anwenderebene an Hand eines Beispielunternehmens durchgearbeitet. Im Folgeschritt wird ein eigenes Unternehmen modelliert und so die Sicht eines Unternehmensberaters eingenommen.");
+        electiveModuleUnternehmensmodellierung2.setContents("Seminaristisches Vorgehen: Aus verschiedenen Produkt- und Produktionsstrategien werden Geschäftsprozessmodelle abgeleitet und nach einer praxisrelevanten Standardmethode beschrieben. Damit erarbeiten sich die Studierenden einerseits eine Basis für die folgende Prozessbearbeitung im ERP-StandardSystem, aber auch exemplarische Navigationsmodellen für verschiedene Logistiksituationen. Projektarbeit: Mit Hilfe einer marktgängigen Standardsoftware werden verschiedene Aspekte eines Modellbetriebs in den Bereichen Verkauf und Versand, Disposition, Einkauf und Bestandsführung, Produktionsplanung und Steuerung und Finanzbuchhaltung abgebildet. Dies geschieht in kleineren Teilprojekten, der Student wird so mit der Organisation von Projektgruppen vertraut gemacht. Dies wird ergänzt mit Methodenwissen zum Thema Projektmanagement, Projektbearbeitung und Teststrategien. In den Projektgruppen wird mit Hilfe von Customizing jeweils ein eigenes Unternehmensmodell aufgebaut. Erfolgskriterium ist, dass die modellierten Geschäftsprozesse mit dem implementierten Unternehmensmodell durchgeführt werden können. Hierzu muss auch eine sich an professionellen Maßstäben orientierte Projektdokumentation erstellt werden.");
+        electiveModuleUnternehmensmodellierung2.setTeachingMethodology("Vorlesung mit handlungsorientierten Workshop-Sequenzen zu den Themen Prozessmodellierung und Prozessbearbeitung. Einführung in die Nutzung von Standardsystemen an Hand von Basisszenarien.\n" + "Umfangreiche, selbständig organisierte Projektarbeit in Gruppen von 4-5 Studierenden zu den Themen Customizing, Projektbearbeitung, Dokumentation und Teststrategien. Die Studenten erhalten Vorlesungsskripte zur Vorlesung in elektronischer Form.");
+        electiveModuleUnternehmensmodellierung2.setReadingList("• Andre Maassen et.al. (2003): Grundkurs SAP R/3, Vieweg Verlag, 2. Auflage • SAP-Help-System (online-Bibliothek) • Michael Wobbermin (2000): Arbeitsbuch Buchhaltung, Jahresabschluß, Bilanzanalyse, Schäffer-Poeschel Verlag");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleUnternehmensmodellierung2.setAreaOfStudies(wahl);
+
+        return electiveModuleUnternehmensmodellierung2;
+    }
+
+    private Module createElectiveModuleProductManagementEssentials() {
+        Module electiveModuleProductManagementEssentials  = new Module();
+        electiveModuleProductManagementEssentials.setTitle("Wahlpflichtmodul: Product Management Essentials");
+        electiveModuleProductManagementEssentials.setCode("WIBW");
+        electiveModuleProductManagementEssentials.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleProductManagementEssentials.setSubtitle("");
+        electiveModuleProductManagementEssentials.setOfferFrequency("jedes Semester");
+        electiveModuleProductManagementEssentials.setModuleCoordinator("Prof. Dr. Jürgen Münch");
+        electiveModuleProductManagementEssentials.setLecturers("Prof. Dr. Jürgen Münch");
+        electiveModuleProductManagementEssentials.setTeachingLanguage("Deutsch");
+        electiveModuleProductManagementEssentials.setSemester(0);
+        electiveModuleProductManagementEssentials.setCredits(5);
+        electiveModuleProductManagementEssentials.setPrerequisites("Keine");
+        electiveModuleProductManagementEssentials.setRecommendedPrerequisites("keine");
+        electiveModuleProductManagementEssentials.setLearningOutcomes("Die Entwicklung von Produkten und Dienstleistungen hat einen maßgeblichen Einfluss auf den Erfolg von Unternehmen. Durch den Einsatz digitaler Technologien und Plattformen wie Cloud Computing und Open Source lassen sich heutzutage mit verhältnismäßig wenig Aufwand unterschiedlichste Produkte und Dienstleistungen entwickeln. Aber welche Produkte und Dienstleistungen sollte man eigentlich entwickeln? Welche Ideen sind es wert, umgesetzt zu werden? Welche Features sollten implementiert werden und in welcher Reihenfolge? Was mag der Kunde und wofür wird er bezahlen? Wie bringt man Business und Entwicklung in einem Unternehmen zusammen? Die Aufgabe des Produktmanagers ist es, diese Fragen zu beantworten. Beim Produktmanagement geht es im Kern darum, Kundenprobleme zu lösen, um Geschäftsziele zu erreichen. Das Modul \"Product Management Essentials\" bietet Ihnen einen grundlegenden Einstieg in das Thema \"Produktmanagement\". Sie werden befähigt, die Rolle des Produktmanagers und seine Arbeitsweisen zu verstehen. Sie lernen, wie man eine Produktstrategie entwickelt und wie man den Kunden- und Geschäftsnutzen von Produkten und Dienstleistungen kontinuierlich testet. Anhand anschaulicher Fallstudien wie car2go, Spotify oder Facebook lernen Sie, wie Produkte erfolgreich entwickelt werden. Sie erlangen ein besseres Verständnis der Rolle digitaler Technologien bei der Produktentwicklung.");
+        electiveModuleProductManagementEssentials.setContents("Aufgaben des Produktmanagements");
+        electiveModuleProductManagementEssentials.setTeachingMethodology("Vorlesung mit praktischen Beispielen");
+        electiveModuleProductManagementEssentials.setReadingList("Klein,  L.  (2016):  Build  Better  Products.  A  Modern  Approach  to  Building  Successful  UserCentered Products. Rosenfeld.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleProductManagementEssentials.setAreaOfStudies(wahl);
+
+        return electiveModuleProductManagementEssentials;
+    }
+
+    private Module createElectiveModuleSocialMedia() {
+        Module electiveModuleSocialMedia = new Module();
+        electiveModuleSocialMedia.setTitle("Wahlpflichtmodul: Social Media");
+        electiveModuleSocialMedia.setCode("WIBW");
+        electiveModuleSocialMedia.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleSocialMedia.setSubtitle("");
+        electiveModuleSocialMedia.setOfferFrequency("jedes Wintersemester");
+        electiveModuleSocialMedia.setModuleCoordinator("Prof. Dr. Alexander Rossmann");
+        electiveModuleSocialMedia.setLecturers("Prof. Dr. Alexander Rossmann");
+        electiveModuleSocialMedia.setTeachingLanguage("Englisch");
+        electiveModuleSocialMedia.setSemester(0);
+        electiveModuleSocialMedia.setCredits(5);
+        electiveModuleSocialMedia.setPrerequisites("Keine");
+        electiveModuleSocialMedia.setRecommendedPrerequisites("keine");
+        electiveModuleSocialMedia.setLearningOutcomes("Das wesentliche Lernziel des Moduls liegt in der Integration von Social Media Konzepten in digitale Strategien, Geschäfts-  und Betriebsmodelle. Dabei erfolgt zunächst eine Einführung in die begrifflichen Grundlagen von Web 2.0 und Social Media. Auf dieser Grundlage wird der Einfluss von Social Media auf Interaktionsprozesse, User Generated Content und typische Rollenmodelle in der Wertschöpfung skizziert. Dies lässt sich anhand von Fallbeispielen aus unterschiedlichen Unternehmen und Branchen konkretisieren. Ein weiterer Schwerpunkt liegt schließlich in der Einbindung von Social Media Konzepten in Geschäfts- und Betriebsmodelle. Dabei lassen sich zunächst typischen Prozesse für die Nutzung von Social Media identifizieren, z.B. in den Bereichen Innovationsmanagement, Produktentwicklung, Kundenservice, Marketing und Vertrieb. Diese basieren auf theoretischen Grundprinzipien der Co-Creation zwischen verschiedenen Interessengruppen. Entsprechend wird die Entstehung von User Engagement in Social Media Konzepten thematisiert. Die Studierenden lernen zunächst externe Social Media Plattformen und deren strategischen Nutzung sowie im Anschluss daran die Anwendung von Corporate Social Media kennen. Dabei werden auch relevanten IT- und Softwarekonzepte für die Nutzung von Corporate Social Media skizziert. Schließlich werden relevante Erfolgsfaktoren für eine nachhaltige Nutzung von Social Media thematisiert. Diese beziehen sich z.B. auf die Kompetenz der Mitarbeiter/innen, die Anpassung von Geschäftsprozessen sowie das Management des kulturellen Wandels. Die Teilnehmer können auf dieser Basis wesentliche Schritte der Entwicklung und Umsetzung einer Social Media Strategie bestimmen. Dies gilt sowohl für die passive Nutzung von Social Media und das Social Media Monitoring, als auch für die aktive Anwendung eigener Social Media Anwendungen, die Erzeugung und Kuration von Content und das Community Management. Derartige Anwendungsprozess werden abschließend auf der Basis konkreter Social Media Strategien in der Unternehmenspraxis reflektiert.");
+        electiveModuleSocialMedia.setContents("Begriffliche Grundlagen von Web 2.0 und Social Media. ");
+        electiveModuleSocialMedia.setTeachingMethodology("Vorlesung,   Übungsaufgaben,   Fallstudien,   Skript   mit   PPT-Folien,   beispielhafte   Publikationen,   Projektarbeit, Präsentationen.");
+        electiveModuleSocialMedia.setReadingList("Back,  A.  &  Gronau,  N.  (2012).  Web  2.0  und  Social  Media  in  der  Unternehmenspraxis: Grundlagen,    Anwendungen    und    Methoden    mit    zahlreichen    Fallstudien.    Oldenbourg    Wissenschaftsverlag 2012 ");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleSocialMedia.setAreaOfStudies(wahl);
+
+        return electiveModuleSocialMedia;
+    }
+
+    private Module createElectiveModuleAgileOrganization() {
+        Module electiveModuleAgileOrganization = new Module();
+        electiveModuleAgileOrganization.setTitle("Wahlpflichtmodul: Agile Organization");
+        electiveModuleAgileOrganization.setCode("WIBW");
+        electiveModuleAgileOrganization.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleAgileOrganization.setSubtitle("");
+        electiveModuleAgileOrganization.setOfferFrequency("jedes Sommersemester");
+        electiveModuleAgileOrganization.setModuleCoordinator("Prof. Dr. Alexander Rossmann");
+        electiveModuleAgileOrganization.setLecturers("Prof. Dr. Alexander Rossmann");
+        electiveModuleAgileOrganization.setTeachingLanguage("Englisch");
+        electiveModuleAgileOrganization.setSemester(0);
+        electiveModuleAgileOrganization.setCredits(5);
+        electiveModuleAgileOrganization.setPrerequisites("Keine");
+        electiveModuleAgileOrganization.setRecommendedPrerequisites("keine");
+        electiveModuleAgileOrganization.setLearningOutcomes("Die Ziele des Moduls „Agile Organization“ beziehen sich auf die Vermittlung von Konzepten, Methoden und Modellen für agile Organisationsmodelle. Dabei werden auch die Implikationen digitaler Technologien für die Unternehmensorganisation thematisiert. Auf Grund der Ausrichtung des Moduls steht die Entwicklung von Organisationsmodellen besonders im Fokus. Dabei werden sowohl klassische wie auch neuere Organisationsmodelle diskutiert. Besonders zur Diskussion steht dabei auch, wie in neueren Organisationsmodellen Arbeitsprozesse organisiert werden. Dies bezieht sich auf grundlegende Konzepte der Computer Supported Collaborative Work und auf Fragen der Aufbau- und Ablauforganisation in Unternehmen. Ein weiteres Ziel des Moduls liegt darin, den Wandel in der Kommunikation und Zusammenarbeit in Unternehmen aufzuzeigen und Perspektiven für die zukünftige Änderung von Arbeit und der Anwendung neuer Technologien und Arbeitsformen aufzuzeigen. Im Detail werden dabei Enterprise Social Networks (ESN) betrachtet. Dies bezieht sich von der Einführung von ESN, über die Definition von Use Cases, bis hin zu Fragen der Governance und des Community Managements. Dabei werden auch rechtliche Grundfragen für den Einsatz entsprechender Systeme erörtert. Abschließend geht es um die Frage, welche Wechselwirkung zwischen ESN und Ansätzen der agilen Organisation vorliegt.");
+        electiveModuleAgileOrganization.setContents("Grundlagen der Organisation in Unternehmen, Aufbau- und Ablauforganisation.");
+        electiveModuleAgileOrganization.setTeachingMethodology("Vorlesung, Übungsaufgaben, Fallstudien, Skript mit PPT-Folien, beispielhafte Publikationen,  ESN Plattformen in der Cloud, Hausarbeiten, Präsentationen, Projektarbeit.");
+        electiveModuleAgileOrganization.setReadingList("Back, A., & Seufert, A. (2000). Computer Supported Cooperative Work (CSCW)-State-of-theArt und zukünftige Herausforderungen. HMD-Praxis der Wirtschaftsinformatik, 37(213), 522.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleAgileOrganization.setAreaOfStudies(wahl);
+
+        return electiveModuleAgileOrganization;
+    }
+
+    private Module createElectiveModuleWIProjekt() {
+        Module electiveModuleWIProjekt = new Module();
+        electiveModuleWIProjekt.setTitle("Wahlpflichtmodul: WI-Projekt");
+        electiveModuleWIProjekt.setCode("WIBW");
+        electiveModuleWIProjekt.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleWIProjekt.setSubtitle("");
+        electiveModuleWIProjekt.setOfferFrequency("jedes Semester");
+        electiveModuleWIProjekt.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
+        electiveModuleWIProjekt.setLecturers("Alle Dozenten der Fakultät");
+        electiveModuleWIProjekt.setTeachingLanguage("Deutsch");
+        electiveModuleWIProjekt.setSemester(0);
+        electiveModuleWIProjekt.setCredits(5);
+        electiveModuleWIProjekt.setPrerequisites("Keine");
+        electiveModuleWIProjekt.setRecommendedPrerequisites("keine");
+        electiveModuleWIProjekt.setLearningOutcomes("Am Beispiel einer konkreten Aufgabenstellung aus dem Themengebiet der Wirtschaftsinformatik wird unter Anwendung von wissenschaftlichen und praxisorientierten Methoden, Strukturen und Inhalten ein eigenes Projekt geplant und durchgeführt. ");
+        electiveModuleWIProjekt.setContents("Projektarbeit an einer konkreten Aufgabenstellung aus dem Themenfeld der Wirtschaftsinformatik mit dem Ziel der Integration von betriebswirtschaftlichem Wissen mit geeigneten Informatiktechnologien zur Lösung dieser Aufgabe. Die Aufgabenstellung ist im Team (Zielgröße: 5 Studierende) zu bearbeiten. Dafür ist ein integriertes betriebswirtschaftliches und IT-technologisches Konzept für eine Lösung der Aufgabenstellung zu entwerfen. Dieses Konzept muss von den Studierenden in eine adäquate IT-technische Problemlösung umgesetzt werden. Projekt begleitend sind die bisher erworbenen Projektmanagement-Kenntnisse anzuwenden. Das erarbeitete Projektergebnis und die Projekterfahrungen sind in Form einer Abschlusspräsentation einem größeren Auditorium vorzustellen und zu verteidigen. Die Projektergebnisse sind in einer Gesamtprojektdokumentation zu erfassen. ");
+        electiveModuleWIProjekt.setTeachingMethodology("Durch den Dozenten moderierte und eigenständige Gruppenarbeit der Studierenden. Die Studierenden entscheiden selbständig über die eingesetzten Medienformen.");
+        electiveModuleWIProjekt.setReadingList("Abhängig von der jeweiligen Aufgabenstellung.");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleWIProjekt.setAreaOfStudies(wahl);
+
+        return electiveModuleWIProjekt;
+    }
+
+    private Module createElectiveModuleGesellschaftlicheAspektederWirtschaftsinformatik() {
+        Module electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik  = new Module();
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setTitle("Wahlpflichtmodul: Gesellschaftliche Aspekte der Wirtschaftsinformatik");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setCode("WIBW");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setModuleType(ModuleType.ELECTIVE_MODULE);
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setSubtitle("");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setOfferFrequency("jedes Semester");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setModuleCoordinator("Prof. Dr. Diemar Bönke");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setLecturers("Prof. Dr. Diemar Bönke");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setTeachingLanguage("Deutsch");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setSemester(0);
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setCredits(5);
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setPrerequisites("Keine");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setRecommendedPrerequisites("keine");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setLearningOutcomes("In dieser Veranstaltung zur Wirtschaftsinformatik werden Erkenntnis- und Gestaltungsansätze des Faches um Umfeld von gesellschaftlichen und wirtschaftlichen Entwicklungen vermittelt. Dabei werden auf interdisziplinärer Basis sowohl übergreifende Kenntnisse als auch Einblicke in Teilgebiete des Faches vermittelt. Es werden Wechselwirkungen zwischen verschieden Disziplinen und deren Auswirkungen aufgezeigt. Die Studierenden erwerben die Fähigkeit zur wissenschaftlichen Einordnung ihres Faches und deren Relevanz für gesellschaftliche Entwicklungen in einem globalisierten Umfeld");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setContents("Das  Modul  ordnet  die  wissenschaftliche  Disziplin  Wirtschaftsinformatik  in  das  Umfeld  einer  globalisierten    Welt    im    sozio-ökonomischen    Wandel    ein.    Es    werden    Erkenntnis- und Gestaltungsziele der Wirtschaftsinformatik vorgestellt. Abgrenzung und Beziehungen zu anderen wissenschaftlichen  Disziplinen  werden  aufgezeigt.  Elemente  der  Wirtschaftsinformatik  werden  einem  gesamtheitlichen  Verständnis  zugeführt.  Hierzu  zählen  Hard-  und Softwarekomponenten, Architekturen    der    Infrastruktur    von    informationstechnischen    Umgebungen    zur    Lösung    unternehmerischer   Aufgabenstellungen,   aber   insbesondere   der   Umgang   mit   Zielsystemen,   Entscheidungen bei unsicherer Informationslage sowie Chancen und Risiken beim Aufbau inner- und überbetrieblichen Wertschöpfungsketten.  Erörtert   werden   gesellschaftliche   Fragestellungen   und   Grundbegriffe,   z.B.   hinsichtlich   des   naturwissenschaftlichen  und  ökonomischen  Informations-  und  Wissensbegriffes.  Die  Diskussion  dieser Aspekte nach philosophischen und ethischen Kriterien erlauben es, ethische Leitlinien für die Wirtschaftsinformatik abzuleiten.");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setTeachingMethodology("Das Modul besteht aus einer Vorlesung im seminaristischen Stil mit Anschrieben, multimedialen Präsentationen  und  Diskussionen.  Es  werden  disziplinspezifische  Medien  verwendet,  die  die  Verständnisbildung für die spezifischen Denk- und Vorgehensweisen unterstützen.");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setReadingList("Buhl,   Hans   Ulrich,   König,   Wolfgang:   Herausforderungen   der   Globalisierung   für   die   Wirtschaftsinformatik-Ausbildung. In: Wirtschaftsinformatik 49 (2007), Nr. 4, S. 241-243.  \uF0B7Fenner, Dagmar (2008): Ethik. Wie soll ich handeln? . Stuttgart. UTB");
+
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setAreaOfStudies(wahl);
+
+        return electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik;
+    }
+
     private Module createModuleWahlpflichtmodul4() {
         Module wahlpflichtmodul4 = new Module();
         wahlpflichtmodul4.setTitle("Wahlpflichtmodul 4");
         wahlpflichtmodul4.setCode("WIB73");
+        wahlpflichtmodul4.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul4.setSubtitle("");
         wahlpflichtmodul4.setOfferFrequency("jedes Semester");
         wahlpflichtmodul4.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -132,6 +307,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul3 = new Module();
         wahlpflichtmodul3.setTitle("Wahlpflichtmodul 3");
         wahlpflichtmodul3.setCode("WIB72");
+        wahlpflichtmodul3.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul3.setSubtitle("");
         wahlpflichtmodul3.setOfferFrequency("jedes Semester");
         wahlpflichtmodul3.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -156,6 +332,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul2 = new Module();
         wahlpflichtmodul2.setTitle("Wahlpflichtmodul 2");
         wahlpflichtmodul2.setCode("WIB71");
+        wahlpflichtmodul2.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul2.setSubtitle("");
         wahlpflichtmodul2.setOfferFrequency("jedes Semester");
         wahlpflichtmodul2.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
@@ -316,6 +493,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         Module wahlpflichtmodul = new Module();
         wahlpflichtmodul.setTitle("Wahlpflichtmodul 1");
         wahlpflichtmodul.setCode("WIB55");
+        wahlpflichtmodul.setModuleType(ModuleType.PLACEHOLDER_MODULE);
         wahlpflichtmodul.setSubtitle("");
         wahlpflichtmodul.setOfferFrequency("jedes Semester");
         wahlpflichtmodul.setModuleCoordinator("Studiendekan (Prof. Dr. Josef Schürle)");
