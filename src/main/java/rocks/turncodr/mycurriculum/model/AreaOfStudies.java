@@ -22,7 +22,7 @@ public class AreaOfStudies implements Comparable<AreaOfStudies> {
     @NotBlank
     private String name;
     //only used for validation purposes. -1 for not set.
-    private int color = -1;
+    private Integer color = -1;
 
     private String colorRGB;
 

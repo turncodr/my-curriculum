@@ -122,7 +122,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wahlpflichtmodul4.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
         wahlpflichtmodul4.setReadingList("Abhängig von der gewählten Veranstaltung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         wahlpflichtmodul4.setAreaOfStudies(wahl);
 
         return wahlpflichtmodul4;
@@ -146,7 +146,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wahlpflichtmodul3.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
         wahlpflichtmodul3.setReadingList("Abhängig von der gewählten Veranstaltung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         wahlpflichtmodul3.setAreaOfStudies(wahl);
 
         return wahlpflichtmodul3;
@@ -170,7 +170,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wahlpflichtmodul2.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
         wahlpflichtmodul2.setReadingList("Abhängig von der gewählten Veranstaltung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         wahlpflichtmodul2.setAreaOfStudies(wahl);
 
         return wahlpflichtmodul2;
@@ -194,7 +194,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         bachelorThesis.setTeachingMethodology("Fachliche und methodische Betreuung der Bachelorarbeit durch Beratungs-Betreuungsgespräche, die bei unternehmensnahen Arbeiten auch vor Ort stattfinden.");
         bachelorThesis.setReadingList("Abhängig von der jeweiligen Aufgabenstellung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         bachelorThesis.setAreaOfStudies(wahl);
 
         return bachelorThesis;
@@ -255,7 +255,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         spezialisierungssemester.setTeachingMethodology("Abhängig von den im Learning Agreement vereinbarten Veranstaltungen.");
         spezialisierungssemester.setReadingList("Abhängig von den im Learning Agreement vereinbarten Veranstaltungen.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         spezialisierungssemester.setAreaOfStudies(wahl);
 
         return spezialisierungssemester;
@@ -279,7 +279,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         auslandssemester.setTeachingMethodology("Diverse Medienformen, die von der Lehrenden der ausländischen Hochschule, an der der Studienaufenthalt durchgeführt wird, bestimmt werden.");
         auslandssemester.setReadingList("Literaturverzeichnisse zu den jeweiligen Lehrveranstaltungen der Gasthochschule. ");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         auslandssemester.setAreaOfStudies(wahl);
 
         return auslandssemester;
@@ -330,7 +330,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         wahlpflichtmodul.setTeachingMethodology("Abhängig von der gewählten Veranstaltung.");
         wahlpflichtmodul.setReadingList("Abhängig von der gewählten Veranstaltung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         wahlpflichtmodul.setAreaOfStudies(wahl);
 
         return wahlpflichtmodul;
@@ -481,7 +481,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         berufspraktischesSemester.setTeachingMethodology("");
         berufspraktischesSemester.setReadingList("Vorbereitungsveranstaltungen zu Form und Inhalt der betrieblichen Praxisphase: Verweise auf Internet-Quellen.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         berufspraktischesSemester.setAreaOfStudies(wahl);
 
         return berufspraktischesSemester;
@@ -1174,7 +1174,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             demo5.setCredits(30);
             demo5.setPrerequisites("Bestandene Zwischenprüfung");
             demo5.setRecommendedPrerequisites("alle Module der Semester 1-3");
-            AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+            AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
             demo5.setAreaOfStudies(wahl);
             modules.add(demo5);
 
@@ -1228,7 +1228,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
             areaOfStudiesJpaRepository.save(methoden);
 
             AreaOfStudies wahl = new AreaOfStudies();
-            wahl.setName("Wahl/Projekt/Thesis");
+            wahl.setName("Wahlbereich");
             wahl.setColorRGB("0,176,80");
             areaOfStudiesJpaRepository.save(wahl);
         }
