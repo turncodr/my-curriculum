@@ -39,10 +39,10 @@
                                 <td th:text="#{general.semester} + ' ' + ${semester.number}" colspan="2">Semester 1</td>
                                 <td th:text="${semester.credits}">30</td>
                             </tr>
-                            <tr th:each="module : ${semester.modules}" th:if="${module.moduleType.getIndex() == 0 || module.moduleType.getIndex() == 1}">
+                            <tr th:each="module : ${semester.modules}" th:if="${module.moduleType.ordinal() == 0 || module.moduleType.ordinal() == 1}">
                                 <td th:text="${module.code}">WIB11</td>
                                 <td>
-                                    <th:block th:switch="${module.moduleType.getIndex()}">
+                                    <th:block th:switch="${module.moduleType.ordinal()}">
                                         <a th:case="0" th:text="${module.title}" th:href="'#module' + ${module.id}"
                                            class="no-underline"></a>
                                         <a th:case="1" th:text="${module.title}" href="#elective-module-anchor"
@@ -65,7 +65,7 @@
                                 <th colspan="3">Wahlpflichtmodule</th>
                             </tr>
                             <th:block th:each="semester : ${syllabus.semesters}">
-                                <tr th:each="module : ${semester.modules}" th:if="${module.moduleType.getIndex() == 2}">
+                                <tr th:each="module : ${semester.modules}" th:if="${module.moduleType.ordinal() == 2}">
                                     <td th:text="${module.code}">WIB11</td>
                                     <td>
                                         <a th:text="${module.title}" th:href="'#module' + ${module.id}"
@@ -81,7 +81,7 @@
 
         <!-- description of each module in semester order -->
         <th:block th:each="semester : ${syllabus.semesters}">
-            <div th:each="module : ${semester.modules}" class="my-5 p-3 border" th:id="'module' + ${module.id}" th:if="${module.moduleType.getIndex() == 0}" >
+            <div th:each="module : ${semester.modules}" class="my-5 p-3 border" th:id="'module' + ${module.id}" th:if="${module.moduleType.ordinal() == 0}" >
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
@@ -154,7 +154,7 @@
     <br id="elective-module-anchor">
     <h1>Wahlpflichtmodule</h1>
     <th:block th:each="semester : ${syllabus.semesters}">
-        <div th:each="module : ${semester.modules}" class="my-5 p-3 border" th:id="'module' + ${module.id}" th:if="${module.moduleType.getIndex() == 2}" >
+        <div th:each="module : ${semester.modules}" class="my-5 p-3 border" th:id="'module' + ${module.id}" th:if="${module.moduleType.ordinal() == 2}" >
             <div class="table-responsive">
                 <table class="table">
                     <tbody>
