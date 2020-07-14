@@ -40,7 +40,7 @@
                 <tr th:each="i : ${#numbers.sequence(exRegSemester,1)}">
                     <td th:text="${i}" class="semester"></td>
                     <!--/*@thymesVar id="#module" type="rocks.turncodr.mycurriculum.model.Module"*/-->
-                    <th:block th:each="m : ${exRegModules}" th:switch="${m.moduleType.getIndex()}"
+                    <th:block th:each="m : ${exRegModules}" th:switch="${m.moduleType.ordinal()}"
                               th:if="${m.semester} == ${i}">
                         <td th:case="0"
                             th:id="${m.id}"

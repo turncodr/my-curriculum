@@ -48,7 +48,7 @@
                         <div class="col-md-4">
                             <input class="form-control" type="text" th:field="*{code}" id="code"/>
                         </div>
-                        <div class="col-md-4 moduletype-selection" th:value="*{moduleType.getIndex()}">
+                        <div class="col-md-4 moduletype-selection" th:value="*{moduleType.ordinal()}">
                             <label id="moduletype-text">Wahlpflichtfach</label>
                             <select id="moduletype-dropdown" class="col-md-7 form-control" style="display: none">
                                 <option value="1">Platzhaltermodul</option>
