@@ -1,6 +1,10 @@
 applications:
 - name: my-curriculum
   path: target/my-curriculum.jar
-  buildpack: java_buildpack
+  buildpacks: 
+    - https://github.com/cloudfoundry/java-buildpack.git
   memory: 1G
   disk_quota: 256M 
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ "jre": { version: 11.+ } }'
+    
