@@ -53,19 +53,24 @@ footer .icon-foreground {
 }
 
 #moduletype-text {
-    width: 198px;
+    margin: 0 40px 0 0;
+    padding: 0.25rem 0;
 }
 
 #moduletype-dropdown {
     display: inline-block;
     min-width: 172px;
 }
+.moduletype-selection-inner {
+    float:right;
+    min-height: 38px;
+}
 
 .moduletype-selection .switch {
-    right: -50px;
-    margin-top: 6px;
+    margin: 6px;
     position: relative;
-    display: inline-block;
+    display: block;
+    float: right;
     width: 50px;
     height: 25px;
 }
@@ -111,9 +116,9 @@ footer .icon-foreground {
 }
 
 .moduletype-selection input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    transform: translateX(25px);
 }
 
 /* Rounded sliders */
