@@ -52,12 +52,12 @@ footer .icon-foreground {
     width: 60%;
 }
 
-#moduletype-text {
+.moduletype-text {
     margin: 0 40px 0 0;
     padding: 0.25rem 0;
 }
 
-#moduletype-dropdown {
+.moduletype-dropdown {
     display: inline-block;
     min-width: 172px;
 }
