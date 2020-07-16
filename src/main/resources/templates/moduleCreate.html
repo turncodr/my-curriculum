@@ -50,16 +50,16 @@
                         </div>
                         <div class="col-md-4 moduletype-selection" th:value="*{moduleType.ordinal()}">
                             <div class="moduletype-selection-inner">
-                               <label id="moduletype-text">Wahlpflichtfach:</label>
-                                <select id="moduletype-dropdown" class="col-md-7 form-control" style="display: none">
+                               <label class="moduletype-text">Wahlpflichtfach:</label>
+                                <select class="moduletype-dropdown col-md-7 form-control" style="display: none">
                                     <option value="1">Platzhaltermodul</option>
                                     <option value="2">Wahlpflichtmodul</option>
                                 </select>
                                 <label class="switch">
-                                    <input type="hidden" id="selected_module_type" value="MAIN_MODULE"
+                                    <input type="hidden" class="selected_module_type" value="MAIN_MODULE"
                                            th:classappend="${#fields.hasErrors('moduleType')} ? is-invalid : ''"
                                            th:field="*{moduleType}">
-                                    <input type="checkbox" id="module-type-checkbox">
+                                    <input type="checkbox" class="module-type-checkbox">
                                     <span class="slider round"></span>
                                 </label>
                             </div>

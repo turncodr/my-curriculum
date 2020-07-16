@@ -56,10 +56,8 @@ var dragAndDropModulePlaceholder = $('<div></div>', {
  * Creates a new semester panel and adds it to the list.
  */
 function addNewSemester() {
-    if (electiveModuleExistent && semesterCounter < 0) {
+    if (semesterCounter < 0) {
         semesterCounter = 0;
-    } else if (!electiveModuleExistent && semesterCounter < 1) {
-        semesterCounter = 1;
     }
     if (semesterCounter === 0) {
         semesterHTMLName = "Wahlpflichtmodule";
@@ -108,6 +106,7 @@ function addNewSemester() {
             },
             dragstart: drag
         }
+
     });
 
     /**
@@ -229,6 +228,11 @@ function addNewSemester() {
     semester.append(semesterBody);
     $("#semesterContainer").append(semester);
     semesterCounter++;
+        if (electiveModuleExistent) {
+            $('#semester0').css('display', 'block');
+        } else {
+            $('#semester0').css('display', 'none');
+        }
 }
 
 function allowDrag(event) {
@@ -292,6 +296,7 @@ function createStub() {
             title: $('#stub_title').val(),
             areaOfStudies: areaOfStudiesMap[$('#areaOfStudies').val().replace("#","")],
             lecturers: $('#stub_lecturers').val(),
+            moduleType: $('#stub_moduletype').val(),
             stubId: nextStubId
         };
         moduleStubs[nextStubId] = stub;
@@ -320,6 +325,10 @@ function addStub(stub) {
 //            areaOfStudiesColor = areaOfStudies.colorRGB;
 //        }
 //    });
+    if (stub.moduleType === 'ELECTIVE_MODULE') {
+        $('#semester0').css("display", "block");
+        electiveModuleExistent = true;
+    }
     $('<div></div>', {
         "class": "card module",
         "style": "background-color:rgb(" + areaOfStudiesMap[stub.areaOfStudies.id].colorRGB + ")",
@@ -432,8 +441,6 @@ $(document).ready(function () {
             electiveModuleExistent = true;
         }
     });
-    if(electiveModuleExistent) {
-        addNewSemester();
-    }
+    addNewSemester();
     addNewSemester();
 });
