@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Spring securtiy configuration class.
+ * Handles all non-secured and secured pages.
+ */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -24,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     LoginAccessDeniedHandler accessDeniedHandler;
 
     private BCryptPasswordEncoder encoder;
+
+    private final static int STRENGTH_NUMBER_ENCODER = 10;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -67,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private List<User> createUsers() {
         List<User> userList = new ArrayList<>();
-        encoder = new BCryptPasswordEncoder(10);
+        encoder = new BCryptPasswordEncoder(STRENGTH_NUMBER_ENCODER);
         //Password safed with encoding MD5 (raw password: password)
         userList.add(new User("Admin", encoder.encode("5f4dcc3b5aa765d61d8327deb882cf99"),
                 Collections.singleton(new SimpleGrantedAuthority("ADMIN"))));
