@@ -24,11 +24,11 @@ public class LoginAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (auth != null) {
-            log.info(auth.getName()
-                    + " was trying to access protected resource: \n"
-                    + httpServletRequest.getRequestURI() + "\n");
-        }
+//        if (auth != null) {
+//            log.info(auth.getName()
+//                    + " was trying to access protected resource: \n"
+//                    + httpServletRequest.getRequestURI() + "\n");
+//        }
 
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/access-denied");
 
