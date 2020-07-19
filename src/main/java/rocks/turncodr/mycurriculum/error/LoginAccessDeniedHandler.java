@@ -26,7 +26,7 @@ public class LoginAccessDeniedHandler implements AccessDeniedHandler {
 
         if (auth != null) {
             log.info(auth.getName()
-                    + " was trying to access protected resource: "
+                    + " was trying to access protected resource: \n"
                     + httpServletRequest.getRequestURI());
         }
 

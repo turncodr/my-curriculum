@@ -29,8 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private BCryptPasswordEncoder encoder;
 
-    private final static int STRENGTH_NUMBER_ENCODER = 10;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(
@@ -73,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private List<User> createUsers() {
         List<User> userList = new ArrayList<>();
+        int STRENGTH_NUMBER_ENCODER = 10;
         encoder = new BCryptPasswordEncoder(STRENGTH_NUMBER_ENCODER);
         //Password safed with encoding MD5 (raw password: password)
         userList.add(new User("Admin", encoder.encode("5f4dcc3b5aa765d61d8327deb882cf99"),
