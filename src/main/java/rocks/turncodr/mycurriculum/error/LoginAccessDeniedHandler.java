@@ -18,7 +18,7 @@ import java.io.IOException;
 @Component
 public class LoginAccessDeniedHandler implements AccessDeniedHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginAccessDeniedHandler.class);
+    private final Logger log = LoggerFactory.getLogger(LoginAccessDeniedHandler.class);
 
     @Override
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException {
@@ -27,7 +27,7 @@ public class LoginAccessDeniedHandler implements AccessDeniedHandler {
         if (auth != null) {
             log.info(auth.getName()
                     + " was trying to access protected resource: \n"
-                    + httpServletRequest.getRequestURI());
+                    + httpServletRequest.getRequestURI() + "\n");
         }
 
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/access-denied");
