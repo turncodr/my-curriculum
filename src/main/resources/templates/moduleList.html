@@ -7,39 +7,40 @@
 <div id="content">
     <h1 th:text="#{moduleList.pageTitle}">Modules</h1>
     <hr class="pb-2"/>
-    <div>
-        <form>
-            <div class="row justify-content-center">
-                <div class="col-md-2">
-                    <label for="backButton" style="padding-right:100%">&nbsp;</label>
-                    <input id="backButton" class="btn btn-primary" onclick='javascript:window.history.back()' th:value="'&laquo; '+#{general.back}" type='button'/>
-                </div>
-                <div class="col-md-2">
-                    <label for="curriculum" th:text="#{moduleList.curriculum}">Curriculum</label>
-                    <input id="curriculum" type="text" class="form-control" th:value="${param.curriculum}"/>
-                </div>
-                <div class="col-md-3">
-                    <label for="exreg" th:text="#{moduleList.exreg}">ExReg</label>
-                    <input id="exreg" type="text" class="form-control" th:value="${exreg != null} ? ${exreg.name} : ''"/>
-                </div>
-                <div class="col-md-3">
-                    <label for="module" th:text="#{moduleList.module}">Module</label>
-                    <input id="module" type="text" class="form-control"/>
-                </div>
-                <div class="col-md-2">
-                    <label for="newModule" th:text="#{general.create}">Create</label>
-                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}" href="#" th:href="@{/module/create}">New</a>
-                </div>
-            </div>
-        </form>
-    </div>
-    <hr/>
-    <div class="form-group form-row h6">
-        <div class="col-md-2" th:text="'&nbsp;'+#{moduleList.curriculum}">&nbsp;Curriculum</div>
-        <div class="col-md-2" th:text="#{moduleList.validity}">Validity</div>
-        <div class="col-md-4" th:text="#{moduleList.module}">Module</div>
-        <div class="col-md-4" th:text="#{moduleList.moduleCoordinator}">Module Coordinator</div>
-    </div>
+    <!--   --------ADMIN FUNCTIONALITY--------  -->
+<!--    <div>-->
+<!--        <form>-->
+<!--            <div class="row justify-content-center">-->
+<!--                <div class="col-md-2">-->
+<!--                    <label for="backButton" style="padding-right:100%">&nbsp;</label>-->
+<!--                    <input id="backButton" class="btn btn-primary" onclick='javascript:window.history.back()' th:value="'&laquo; '+#{general.back}" type='button'/>-->
+<!--                </div>-->
+<!--                <div class="col-md-2">-->
+<!--                    <label for="curriculum" th:text="#{moduleList.curriculum}">Curriculum</label>-->
+<!--                    <input id="curriculum" type="text" class="form-control" th:value="${param.curriculum}"/>-->
+<!--                </div>-->
+<!--                <div class="col-md-3">-->
+<!--                    <label for="exreg" th:text="#{moduleList.exreg}">ExReg</label>-->
+<!--                    <input id="exreg" type="text" class="form-control" th:value="${exreg != null} ? ${exreg.name} : ''"/>-->
+<!--                </div>-->
+<!--                <div class="col-md-3">-->
+<!--                    <label for="module" th:text="#{moduleList.module}">Module</label>-->
+<!--                    <input id="module" type="text" class="form-control"/>-->
+<!--                </div>-->
+<!--                <div class="col-md-2">-->
+<!--                    <label for="newModule" th:text="#{general.create}">Create</label>-->
+<!--                    <a id="newModule" role="button" class="btn btn-primary mb-2" th:text="#{moduleList.newModule}" href="#" th:href="@{/module/create}">New</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <hr/>-->
+<!--    <div class="form-group form-row h6">-->
+<!--        <div class="col-md-2" th:text="'&nbsp;'+#{moduleList.curriculum}">&nbsp;Curriculum</div>-->
+<!--        <div class="col-md-2" th:text="#{moduleList.validity}">Validity</div>-->
+<!--        <div class="col-md-4" th:text="#{moduleList.module}">Module</div>-->
+<!--        <div class="col-md-4" th:text="#{moduleList.moduleCoordinator}">Module Coordinator</div>-->
+<!--    </div>-->
     <div class="form-group form-row border p-1 v-center"
          th:each="module : ${moduleList}">
         <div class="col-md-2 my-1" th:if="${module.exReg}!=null">
@@ -55,11 +56,12 @@
         <div class="col-md-2 my-1" th:unless="${module.exReg}!=null">-</div>
         <div class="col-md-4 my-1" th:text="${module.title}"></div>
         <div class="col-md-3 my-1" th:text="${module.moduleCoordinator}"></div>
-        <div class="col-md-1 text-center">
-            <a class="btn btn-info text-white py-0 px-2" role="button" th:href="@{/module/edit?id=} + |${module.id}|">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-        </div>
+        <!--   --------ADMIN FUNCTIONALITY--------  -->
+<!--        <div class="col-md-1 text-center">-->
+<!--            <a class="btn btn-info text-white py-0 px-2" role="button" th:href="@{/module/edit?id=} + |${module.id}|">-->
+<!--                <i class="fas fa-pencil-alt"></i>-->
+<!--            </a>-->
+<!--        </div>-->
     </div>
 </div>
 </body>

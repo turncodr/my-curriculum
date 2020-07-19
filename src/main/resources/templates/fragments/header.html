@@ -42,6 +42,9 @@
 					<li class="nav-item">
 						<a class="nav-link" th:href="@{/module/list}">Modul</a>
 					</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<a class="nav-link" th:href="@{/admin}">Admintool</a>
+					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
