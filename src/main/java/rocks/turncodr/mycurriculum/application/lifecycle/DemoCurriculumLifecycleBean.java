@@ -150,7 +150,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleUnternehmensmodellierung2.setTeachingMethodology("Vorlesung mit handlungsorientierten Workshop-Sequenzen zu den Themen Prozessmodellierung und Prozessbearbeitung. Einführung in die Nutzung von Standardsystemen an Hand von Basisszenarien.\n" + "Umfangreiche, selbständig organisierte Projektarbeit in Gruppen von 4-5 Studierenden zu den Themen Customizing, Projektbearbeitung, Dokumentation und Teststrategien. Die Studenten erhalten Vorlesungsskripte zur Vorlesung in elektronischer Form.");
         electiveModuleUnternehmensmodellierung2.setReadingList("• Andre Maassen et.al. (2003): Grundkurs SAP R/3, Vieweg Verlag, 2. Auflage • SAP-Help-System (online-Bibliothek) • Michael Wobbermin (2000): Arbeitsbuch Buchhaltung, Jahresabschluß, Bilanzanalyse, Schäffer-Poeschel Verlag");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleUnternehmensmodellierung2.setAreaOfStudies(wahl);
 
         return electiveModuleUnternehmensmodellierung2;
@@ -175,7 +175,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleProductManagementEssentials.setTeachingMethodology("Vorlesung mit praktischen Beispielen");
         electiveModuleProductManagementEssentials.setReadingList("Klein,  L.  (2016):  Build  Better  Products.  A  Modern  Approach  to  Building  Successful  UserCentered Products. Rosenfeld.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleProductManagementEssentials.setAreaOfStudies(wahl);
 
         return electiveModuleProductManagementEssentials;
@@ -200,7 +200,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleSocialMedia.setTeachingMethodology("Vorlesung,   Übungsaufgaben,   Fallstudien,   Skript   mit   PPT-Folien,   beispielhafte   Publikationen,   Projektarbeit, Präsentationen.");
         electiveModuleSocialMedia.setReadingList("Back,  A.  &  Gronau,  N.  (2012).  Web  2.0  und  Social  Media  in  der  Unternehmenspraxis: Grundlagen,    Anwendungen    und    Methoden    mit    zahlreichen    Fallstudien.    Oldenbourg    Wissenschaftsverlag 2012 ");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleSocialMedia.setAreaOfStudies(wahl);
 
         return electiveModuleSocialMedia;
@@ -225,7 +225,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleAgileOrganization.setTeachingMethodology("Vorlesung, Übungsaufgaben, Fallstudien, Skript mit PPT-Folien, beispielhafte Publikationen,  ESN Plattformen in der Cloud, Hausarbeiten, Präsentationen, Projektarbeit.");
         electiveModuleAgileOrganization.setReadingList("Back, A., & Seufert, A. (2000). Computer Supported Cooperative Work (CSCW)-State-of-theArt und zukünftige Herausforderungen. HMD-Praxis der Wirtschaftsinformatik, 37(213), 522.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleAgileOrganization.setAreaOfStudies(wahl);
 
         return electiveModuleAgileOrganization;
@@ -250,7 +250,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleWIProjekt.setTeachingMethodology("Durch den Dozenten moderierte und eigenständige Gruppenarbeit der Studierenden. Die Studierenden entscheiden selbständig über die eingesetzten Medienformen.");
         electiveModuleWIProjekt.setReadingList("Abhängig von der jeweiligen Aufgabenstellung.");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleWIProjekt.setAreaOfStudies(wahl);
 
         return electiveModuleWIProjekt;
@@ -275,7 +275,7 @@ public class DemoCurriculumLifecycleBean implements SmartLifecycle {
         electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setTeachingMethodology("Das Modul besteht aus einer Vorlesung im seminaristischen Stil mit Anschrieben, multimedialen Präsentationen  und  Diskussionen.  Es  werden  disziplinspezifische  Medien  verwendet,  die  die  Verständnisbildung für die spezifischen Denk- und Vorgehensweisen unterstützen.");
         electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setReadingList("Buhl,   Hans   Ulrich,   König,   Wolfgang:   Herausforderungen   der   Globalisierung   für   die   Wirtschaftsinformatik-Ausbildung. In: Wirtschaftsinformatik 49 (2007), Nr. 4, S. 241-243.  \uF0B7Fenner, Dagmar (2008): Ethik. Wie soll ich handeln? . Stuttgart. UTB");
 
-        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahl/Projekt/Thesis");
+        AreaOfStudies wahl = areaOfStudiesJpaRepository.findByName("Wahlbereich");
         electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik.setAreaOfStudies(wahl);
 
         return electiveModuleGesellschaftlicheAspektederWirtschaftsinformatik;
