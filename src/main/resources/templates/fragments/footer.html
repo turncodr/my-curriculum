@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<meta charset="UTF-8">
-	<title>Title</title>
+<meta charset="UTF-8">
+<title>Title</title>
 </head>
 <body>
-<footer th:fragment="footer" th:align="center">
-	<div class="d-flex bg-dark text-light py-2">
-		<div class="d-flex container">
-			<div class="d-flex flex-grow-1">
-				<a href="https://www.reutlingen-university.de/home/"
-				   class="align-self-center no-underline">Reutlingen-University</a>
-			</div>
-			<div class="d-flex flex-grow-1">
+	<footer th:fragment="footer" th:align="center">
+		<div class="d-flex bg-dark text-light py-2">
+			<div class="d-flex container">
+				<div class="d-flex flex-grow-1">
+					<a href="https://www.reutlingen-university.de/home/"
+						class="align-self-center no-underline">Reutlingen-University</a>
+				</div>
+				<div class="d-flex flex-grow-1">
 					<span class="align-self-center no-underline" sec:authorize="isAuthenticated()"
 						  style="display: inline-block;">| Logged user: <span class="align-self-center no-underline" sec:authentication="name"></span> |
                     	Roles: <span class="align-self-center no-underline" sec:authentication="principal.authorities"></span> |
                     	<a th:href="@{/admin/logout}" class="align-self-center no-underline">Sign Out</a> |
                 	</span>
-			</div>
-			<div class="d-flex">
-				<a href="https://github.com/turncodr/my-curriculum" rel="me"
-				   class="footer-icon no-underline">
-					<div class="bg-white rounded-circle icon-background-circle">
-					</div>
-					<div class="icon-foreground">
-						<i class="fab fa-github-square"></i>
-					</div>
-				</a> <a href="https://git-scm.com/" rel="me"
+				</div>
+				<div class="d-flex">
+					<a href="https://github.com/turncodr/my-curriculum" rel="me"
 						class="footer-icon no-underline">
-				<div class="bg-white rounded-circle icon-background-circle">
+						<div class="bg-white rounded-circle icon-background-circle">
+						</div>
+						<div class="icon-foreground">
+							<i class="fab fa-github-square"></i>
+						</div>
+					</a> <a href="https://git-scm.com/" rel="me"
+						class="footer-icon no-underline">
+						<div class="bg-white rounded-circle icon-background-circle">
+						</div>
+						<div class="icon-foreground">
+							<i class="fab fa-git-square"></i>
+						</div>
+					</a> <a href="https://www.w3schools.com/html/html5_intro.asp" rel="me"
+						class="footer-icon no-underline">
+						<div class="bg-white icon-background-shield"></div>
+						<div class="icon-foreground">
+							<i class="fab fa-html5"></i>
+						</div>
+					</a>
 				</div>
-				<div class="icon-foreground">
-					<i class="fab fa-git-square"></i>
-				</div>
-			</a> <a href="https://www.w3schools.com/html/html5_intro.asp" rel="me"
-					class="footer-icon no-underline">
-				<div class="bg-white icon-background-shield"></div>
-				<div class="icon-foreground">
-					<i class="fab fa-html5"></i>
-				</div>
-			</a>
 			</div>
 		</div>
-	</div>
-</footer>
+	</footer>
 
 </body>
 </html>

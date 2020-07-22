@@ -61,6 +61,18 @@
                             <input class="form-control" type="text" id="stub_lecturers"/>
                         </div>
                     </div>
+                    <div class="form-group row moduletype-selection" value="0">
+                            <label class="col-md-4" style="padding: 5px 15px;">Wahlpflichtfach:</label>
+                            <label class="switch" style="margin: 6px 15px;">
+                                <input type="hidden" id="stub_moduletype" class="selected_module_type" value="MAIN_MODULE">
+                                <input type="checkbox" class="module-type-checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <select class="moduletype-dropdown col-md-5 form-control" style="display: none; min-width: 215px;">
+                                <option value="1">Platzhaltermodul</option>
+                                <option value="2">Wahlpflichtmodul</option>
+                            </select>
+                    </div>
                 </div>
 
                 <!-- Modal footer -->

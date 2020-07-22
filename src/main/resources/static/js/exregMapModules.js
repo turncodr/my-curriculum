@@ -14,7 +14,17 @@ var nextStubId = 1;
  * Counter which keeps the number of the next semester.
  * It's also used to create the semester IDs.
  */
-var semesterCounter = 1;
+var semesterCounter = 0;
+/**
+ *
+ * Boolean if an elective module is existent in the unmapped module list.
+ */
+var electiveModuleExistent = false;
+/**
+ *
+ * String for the correct semester name shown in the semester list.
+ */
+var semesterHTMLName = "";
 var delBtnSemesterId = {};//object which maps the delete button ids to semester id
 var listOfSemester = {};//object which maps the semester id to the semesterCounter
 
@@ -46,8 +56,13 @@ var dragAndDropModulePlaceholder = $('<div></div>', {
  * Creates a new semester panel and adds it to the list.
  */
 function addNewSemester() {
-    if (semesterCounter < 1) {
-        semesterCounter = 1;
+    if (semesterCounter < 0) {
+        semesterCounter = 0;
+    }
+    if (semesterCounter === 0) {
+        semesterHTMLName = "Wahlpflichtmodule";
+    } else {
+        semesterHTMLName = semesterCounter + ". Semester";
     }
     var semesterId = "semester" + semesterCounter;
     var delBtnId = "deleteButton" + semesterCounter;
@@ -91,6 +106,7 @@ function addNewSemester() {
             },
             dragstart: drag
         }
+
     });
 
     /**
@@ -128,7 +144,7 @@ function addNewSemester() {
      */
     var semesterTitle = $('<div></div>', {
         "class": "card-header",
-        html: "<span id=" + spanId + ">" + semesterCounter + ". Semester</span>",
+        html: "<span id=" + spanId + ">" + semesterHTMLName + "</span>",
         on: {
             dragover: function (event) {
                 event.preventDefault();
@@ -212,6 +228,11 @@ function addNewSemester() {
     semester.append(semesterBody);
     $("#semesterContainer").append(semester);
     semesterCounter++;
+        if (electiveModuleExistent) {
+            $('#semester0').css('display', 'block');
+        } else {
+            $('#semester0').css('display', 'none');
+        }
 }
 
 function allowDrag(event) {
@@ -275,6 +296,7 @@ function createStub() {
             title: $('#stub_title').val(),
             areaOfStudies: areaOfStudiesMap[$('#areaOfStudies').val().replace("#","")],
             lecturers: $('#stub_lecturers').val(),
+            moduleType: $('#stub_moduletype').val(),
             stubId: nextStubId
         };
         moduleStubs[nextStubId] = stub;
@@ -303,6 +325,10 @@ function addStub(stub) {
 //            areaOfStudiesColor = areaOfStudies.colorRGB;
 //        }
 //    });
+    if (stub.moduleType === 'ELECTIVE_MODULE') {
+        $('#semester0').css("display", "block");
+        electiveModuleExistent = true;
+    }
     $('<div></div>', {
         "class": "card module",
         "style": "background-color:rgb(" + areaOfStudiesMap[stub.areaOfStudies.id].colorRGB + ")",
@@ -411,6 +437,10 @@ function save() {
 $(document).ready(function () {
     listOfUnmappedModules.forEach(function (module) {
         existingModulesMap[module.id] = module;
+        if (module.moduleType === "ELECTIVE_MODULE") {
+            electiveModuleExistent = true;
+        }
     });
+    addNewSemester();
     addNewSemester();
 });

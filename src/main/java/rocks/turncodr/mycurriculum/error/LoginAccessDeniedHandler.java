@@ -11,25 +11,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
-
 /**
  * Handler for secured pages.
  */
 @Component
 public class LoginAccessDeniedHandler implements AccessDeniedHandler {
-  private final Logger log = LoggerFactory.getLogger(LoginAccessDeniedHandler.class);
+    private final Logger log = LoggerFactory.getLogger(LoginAccessDeniedHandler.class);
 
-  @Override
-  public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                     AccessDeniedException e) throws IOException {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @Override
+    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                       AccessDeniedException e) throws IOException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-    if (auth != null) {
-      log.info(auth.getName()
+        if (auth != null) {
+            log.info(auth.getName()
                     + " was trying to access protected resource: \n"
                     + httpServletRequest.getRequestURI() + "\n");
-    }
-    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/access-denied");
+        }
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/access-denied");
 
-  }
+    }
 }

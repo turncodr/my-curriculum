@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-	<!--/*
-        ======================================================
-         change stuff in the <head> only for testing purposes.
-         it will have no effect on the deployed page.
-         for that you have to look at the head-fragment.
-        ======================================================
-        */-->
+<!--/*
+    ======================================================
+     change stuff in the <head> only for testing purposes.
+     it will have no effect on the deployed page.
+     for that you have to look at the head-fragment.
+    ======================================================
+    */-->
 
-	<!--/* default css */-->
-	<link href="../../static/css/bootstrap.min.css" rel="stylesheet"
-		  media="screen" th:href="@{/css/bootstrap.min.css}" />
-	<link rel="stylesheet" href="/css/main.css" />
+<!--/* default css */-->
+<link href="../../static/css/bootstrap.min.css" rel="stylesheet"
+	media="screen" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" href="/css/main.css" />
 
-	<!--/* placeholder for additional links which may be needed for some pages */-->
-	<!--/* replaces this block with the given ${links} fragment */-->
-	<th:block th:replace="${links}" />
+<!--/* placeholder for additional links which may be needed for some pages */-->
+<!--/* replaces this block with the given ${links} fragment */-->
+<th:block th:replace="${links}" />
 
-	<!--/* default scripts */-->
-	<script src="../../static/js/jquery.min.js"
-			th:src="@{/js/jquery.min.js}"></script>
-	<script src="../../static/js/bootstrap.min.js"
-			th:src="@{/js/bootstrap.min.js}"></script>
+<!--/* default scripts */-->
+<script src="../../static/js/jquery.min.js"
+	th:src="@{/js/jquery.min.js}"></script>
+<script src="../../static/js/bootstrap.min.js"
+	th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<header th:fragment="header">
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a th:href="@{/home}" class="navbar-brand">my-curriculum</a>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+			<div class="container">
+				<div class="navbar-header">
+					<a th:href="@{/home}" class="navbar-brand">my-curriculum</a>
+				</div>
+				<div class="navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/curriculum/list}">Studiengang</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/exreg/list}">StuPro</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/module/list}">Modul</a>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<a class="nav-link" th:href="@{/admin}">Admintool</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<div sec:authorize="!isAuthenticated()">
+								<a class="nav-link" th:href="@{/admin/login}">
+									<button type="button" class="btn btn-success">Login</button>
+								</a>
+							</div>
+							<div sec:authorize="isAuthenticated()">
+								<a class="nav-link" th:href="@{/admin/logout}">
+									<button type="button" class="btn btn-success">Sign Out</button>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class="navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/curriculum/list}">Studiengang</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/exreg/list}">StuPro</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/module/list}">Modul</a>
-					</li>
-					<li class="nav-item" sec:authorize="isAuthenticated()">
-						<a class="nav-link" th:href="@{/admin}">Admintool</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<div sec:authorize="!isAuthenticated()">
-							<a class="nav-link" th:href="@{/admin/login}">
-								<button type="button" class="btn btn-success">Login</button>
-							</a>
-						</div>
-						<div sec:authorize="isAuthenticated()">
-							<a class="nav-link" th:href="@{/admin/logout}">
-								<button type="button" class="btn btn-success">Sign Out</button>
-							</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</header>
+		</nav>
+	</header>
 </body>
 </html>
