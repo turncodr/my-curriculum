@@ -1,0 +1,23 @@
+<!--suppress ThymeleafMessagesResolveInspection -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{this :: .custom-css}, ~{})">
+    <title th:text="#{error-501.pageTitle}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <!--/* custom css */-->
+    <link class="custom-css" rel="stylesheet" href="../static/css/error.css" th:href="@{/css/error.css}"/>
+
+    <!--/* default scripts */-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div id="content" class="text-center">
+    <p><h3>:(</h3></p>
+    <h1><p th:text="#{error-501.message}">Die Gesuchte Seite konnte leider nicht gefunden werden.</p></h1>
+    <a href="/" th:text="#{error-501.return}">Zurück zur Startseite.</a>
+</div>
+</body>
+</html>
