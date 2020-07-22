@@ -9,3 +9,4 @@ applications:
      JBP_CONFIG_OPEN_JDK_JRE: '{ "jre": { version: 11.+ } }'
   spring.jpa:
     database-platform: org.hibernate.dialect.DB2400Dialect
+
