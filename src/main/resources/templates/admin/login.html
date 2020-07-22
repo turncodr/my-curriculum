@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{this :: .custom-css}, ~{})">
+    <title th:text="#{login.pageTitle}"></title>
+    <link class="custom-css" rel="stylesheet" href="../../static/css/login.css"
+          th:href="@{/css/login.css}"/>
+</head>
+<body class="text-center">
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <!-- no-op -->
+            </div>
+            <div class="col-sm login-form">
+                <form th:action="@{/admin/login}" method="post">
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">
+                            Falsches Passwort oder Nutzername.
+                        </div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">
+                            Sie wurden ausgeloggt.
+                        </div>
+                    </div>
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           class="form-control" th:placeholder="#{login.username}" required>
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           class="form-control"  th:placeholder="#{login.password}" required>
+
+                    <button class="form-control btn btn-success buttonSubmit" onclick="onSubmit()" th:text="#{login.message}"></button>
+
+                </form>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+                <script>
+                    function onSubmit() {
+                        let pass = document.getElementById("password");
+                        pass.value = CryptoJS.MD5(pass.value).toString();
+                    }
+                </script>
+
+            </div>
+            <div class="col-sm">
+                <!-- no-op -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

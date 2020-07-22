@@ -1,0 +1,17 @@
+<!--suppress ThymeleafMessagesResolveInspection -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
+    <title>Admin Page</title>
+
+</head>
+<body>
+<div id="content" class="text-center">
+    <p>Dies ist eine abgesicherte Seite</p>
+
+    <a th:href="@{/admin/logout}">Sign Out</a>
+
+</div>
+</body>
+</html>
