@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})">
 <head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
     <title th:text="#{curriculumList.listOfCurricula}">My Curriculum</title>
 </head>
@@ -8,26 +9,26 @@
     <h1 th:text="#{curriculumList.listOfCurricula}"></h1>
     <hr class="pb-2"/>
     <!--   --------ADMIN FUNCTIONALITY--------  -->
-<!--    <div>-->
-<!--        <form>-->
-<!--            <div class="row justify-content-center">-->
-<!--                <div class="col-md-3">-->
-<!--                    <label for="curriculum" th:text="#{curriculumList.curriculum}">Curriculum</label>-->
-<!--                    <input id="curriculum" type="text" class="form-control"/>-->
-<!--                </div>-->
-<!--                <div class="col-md-2">-->
-<!--                    <label for="newCurriculum" th:text="#{general.create}">Create</label>-->
-<!--                    <a id="newCurriculum" role="button" class="btn btn-primary mb-2" th:text="#{curriculumList.newCurriculum}" href="#" th:href="@{/curriculum/create}">New</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--    <hr/>-->
-<!--    <div class="form-group form-row h6">-->
-<!--        <div class="col-md-4" th:text="'&nbsp;'+#{curriculumList.curriculum}">&nbsp;Curriculum</div>-->
-<!--        <div class="col-md-2" th:text="#{curriculumList.acronym}">Acronym</div>-->
-<!--        <div class="col-md-4" th:text="#{curriculumList.degree}">Degree</div>-->
-<!--    </div>-->
+    <div sec:authorize="isAuthenticated()">
+        <form>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <label for="curriculum" th:text="#{curriculumList.curriculum}">Curriculum</label>
+                    <input id="curriculum" type="text" class="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <label for="newCurriculum" th:text="#{general.create}">Create</label>
+                    <a id="newCurriculum" role="button" class="btn btn-primary mb-2" th:text="#{curriculumList.newCurriculum}" href="#" th:href="@{/curriculum/create}">New</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div class="form-group form-row h6" sec:authorize="isAuthenticated()">
+        <div class="col-md-4" th:text="'&nbsp;'+#{curriculumList.curriculum}">&nbsp;Curriculum</div>
+        <div class="col-md-2" th:text="#{curriculumList.acronym}">Acronym</div>
+        <div class="col-md-4" th:text="#{curriculumList.degree}">Degree</div>
+    </div>
     <div>
         <div class="form-group form-row border p-1"
              th:each="curriculum : ${curricula}">
