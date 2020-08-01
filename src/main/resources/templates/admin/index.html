@@ -2,16 +2,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/html :: html(~{this :: head}, ~{this :: #content})"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/head :: head(~{this :: title}, ~{}, ~{})">
+<head th:replace="fragments/head :: head(~{this :: title}, ~{this :: .custom-css}, ~{})">
     <title>Admin Page</title>
-
+    <link class="custom-css" rel="stylesheet" href="../../static/css/admin.css" th:href="@{/css/admin.css}"/>
 </head>
-<body>
-<div id="content" class="text-center">
-    <p>Dies ist eine abgesicherte Seite</p>
+<body id="content">
+<div class="row-items">
 
-    <a th:href="@{/admin/logout}">Sign Out</a>
+    <!-- Faculties -->
+    <!-- Hard coded, since there are no faculties right now. -->
 
+    <div class="tab-column">
+        <h3 class="title" th:text="#{overview.faculties}">Faculties</h3>
+        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+            <a class="nav-link" id="inf-pills-tab" href="#" data-toggle="pill" role="tab">INF</a>
+            <a class="nav-link" id="td-pills-tab" href="#" data-toggle="pill" role="tab">TD</a>
+            <a class="nav-link" id="tec-pills-tab" href="#" data-toggle="pill" role="tab">TEC</a>
+            <a class="nav-link" id="ac-pills-tab" href="#" data-toggle="pill" role="tab">AC</a>
+            <a class="nav-link" id="esb-pills-tab" href="#" data-toggle="pill" role="tab">ESB</a>
+        </div>
+    </div>
+
+    <!-- Curricula -->
+
+    <div class="tab-column">
+        <h3 class="title" th:text="#{curriculumList.listOfCurricula}">Curricula</h3>
+        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+            <a class="nav-link"
+               th:each="curriculum : ${curricula}"
+               th:href="@{/exreg/list(curriculum=${curriculum.id})}"
+               th:text="${curriculum.name}">-</a>
+        </div>
+    </div>
+
+    <!-- Modules -->
+
+    <div class="tab-column">
+        <h3 class="title" th:text="#{moduleList.moduleHeader}">Modules</h3>
+        <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+            <a class="nav-link"
+               th:each="module : ${moduleList}"
+               th:href="@{/module/edit?id=} + |${module.id}|"
+               th:text="${module.title}">-</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
